@@ -137,7 +137,7 @@ static time_t l_checktime (lua_State *L, int arg) {
 
 
 
-
+#if defined(IOS)
 static int os_execute (lua_State *L) {
   const char *cmd = luaL_optstring(L, 1, NULL);
   int stat = system(cmd);
@@ -148,6 +148,7 @@ static int os_execute (lua_State *L) {
     return 1;
   }
 }
+#endif
 
 
 static int os_remove (lua_State *L) {
@@ -387,7 +388,7 @@ static const luaL_Reg syslib[] = {
   {"clock",     os_clock},
   {"date",      os_date},
   {"difftime",  os_difftime},
-  {"execute",   os_execute},
+  // {"execute",   os_execute},
   {"exit",      os_exit},
   {"getenv",    os_getenv},
   {"remove",    os_remove},

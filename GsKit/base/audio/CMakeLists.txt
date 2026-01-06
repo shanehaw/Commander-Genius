@@ -25,4 +25,9 @@ add_library(GsKit_base_audio STATIC
     sound/CSoundSlot.h
 )
 
-target_link_libraries(GsKit_base_audio GsKit_base_interface)
+target_link_libraries(GsKit_base_audio
+    PUBLIC
+        GsKit_base_interface
+        SDL2
+        SDL2_mixer
+)

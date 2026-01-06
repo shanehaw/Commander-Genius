@@ -120,10 +120,15 @@ else()
 
     add_subdirectory(base)
 
-    Target_link_libraries(${PROJECT_NAME} GsKit_base)
-    Target_link_libraries(${PROJECT_NAME} GsKit_fileio)
-    Target_link_libraries(${PROJECT_NAME} GsKit_widgets)
-    Target_link_libraries(${PROJECT_NAME} GsKit_graphics)
+	target_link_libraries(${PROJECT_NAME}
+		PUBLIC
+			GsKit_base
+			GsKit_fileio
+			GsKit_widgets
+			GsKit_graphics
+			SDL2
+			SDL2_mixer
+	)
 
 IF(USE_OPENGL)
     # OpenGL stuff to link

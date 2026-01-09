@@ -28,6 +28,7 @@ mLogicLatency(1000.0f/DEFAULT_LPS_VORTICON)
 
 void CTimer::setFPS( const float fps )
 {
+	printf("Setting FPS = %f\n", fps);
     const auto fpsResult = (fps <= MIN_FPS) ? MIN_FPS :
                            (fps >= MAX_FPS) ? MAX_FPS : fps;
 

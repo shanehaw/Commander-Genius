@@ -18,6 +18,9 @@
 #include "fileio/CConfiguration.h"
 #include "engine/core/VGamepads/vgamepadsimple.h"
 
+#if defined(__APPLE__) 
+#include <TargetConditionals.h> 
+#endif
 /**
  * \brief	Only saves the last used resolution or window size.
  * \return	If the configuration has been saved successfully, it return true, else it's false.
@@ -231,6 +234,7 @@ bool CSettings::loadDrvCfg()
     if(!config.Parse())
         return false;
 
+
     CVidConfig vidConf;
 
     int value = 0;
@@ -252,7 +256,15 @@ bool CSettings::loadDrvCfg()
     sscanf( arcStr.c_str(), "%i:%i", &vidConf.mAspectCorrection.dim.x,
             &vidConf.mAspectCorrection.dim.y );
 
-    config.ReadKeyword("Video", "vsync", &vidConf.mVSync, true);
+	printf("settings pre pre-processor if: current value = %s\n", vidConf.mVSync ? "true": "false");
+#if TARGET_OS_SIMULATOR
+	// vsync does not work on the simulator
+	vidConf.mVSync = false;
+#else    
+	config.ReadKeyword("Video", "vsync", &vidConf.mVSync, true);
+#endif
+	printf("settings post pre-processor if: current value = %s\n", vidConf.mVSync ? "true": "false");
+
     config.ReadInteger("Video", "filter", &value, 1);
 
     // Boundary check
@@ -306,6 +318,7 @@ bool CSettings::loadDrvCfg()
     config.ReadInteger("Bound", "down", &CameraBounds.down, 108);
     config.ReadInteger("Bound", "speed", &CameraBounds.speed, 20);
 
+	printf("from settings: new value = %s\n", vidConf.mVSync ? "true": "false");
     gVideoDriver.setVidConfig(vidConf);
 
     int framerate;
@@ -352,7 +365,8 @@ void CSettings::loadDefaultGraphicsCfg() //Loads default graphics
 
 	gVideoDriver.setZoom(1);
     gTimer.setFPS(60.0f);
-#if defined(ANDROID)	
+#if defined(ANDROID) || defined(TARGET_OS_IOS)	
+	printf("Set aspect ratio to 0,0\n");
 	gVideoDriver.setAspectCorrection(0,0);
 #else
 	gVideoDriver.setAspectCorrection(4,3);
@@ -399,7 +413,7 @@ void CSettings::loadDefaultGameCfg()
     setOption( GameOption::MODERN,          "Modern Style   ", "modern_style", 1 );
     setOption( GameOption::HUD,				"HUD Display    ", "hud", 1 );
     setOption( GameOption::SPECIALFX,		"Special Effects", "specialfx", 1 );
-    setOption( GameOption::SHOWFPS,			"Show FPS       ", "showfps", 0 );    
+    setOption( GameOption::SHOWFPS,			"Show FPS       ", "showfps", 1 );    
 #if defined(EMBEDDED)
     setOption( GameOption::SANDWICHMENU,    "SW Button      ", "sandwichbutton", 1 );
 #else

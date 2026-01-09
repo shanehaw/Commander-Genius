@@ -26,14 +26,12 @@ if (IOS)
         cmake_policy(SET CMP0135 NEW)
     endif()
 
-    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-
     # Make sure all configurations output libraries in the same directory instead of in sub-directories per config
     # This allows easier linking from the Xcode iOS project
-    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_DEBUG ${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
-    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE ${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
-    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELWITHDEBINFO ${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
-    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_MINSIZEREL ${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
+	set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/libs)
+    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/libs)
+    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELWITHDEBINFO ${CMAKE_BINARY_DIR}/libs)
+    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_MINSIZEREL ${CMAKE_BINARY_DIR}/libs)
 
     # Disable ImageIO for SDL2_image as it's not available for iOS, just OS X, and will fail at link time
     set(SDL2IMAGE_BACKEND_IMAGEIO 0)
@@ -66,6 +64,7 @@ if (IOS)
       URL            https://github.com/libsdl-org/SDL_ttf/archive/refs/tags/release-2.24.0.zip
       SOURCE_DIR     ${CMAKE_BINARY_DIR}/external/SDL2_ttf
       DOWNLOAD_EXTRACT_TIMESTAMP TRUE
+      PATCH_COMMAND sh external/download.sh
     )
 
     # Build all libraries as static for iOS
@@ -91,7 +90,8 @@ if (IOS)
     set(SDL2MIXER_MIDI_FLUIDSYNTH OFF CACHE BOOL "" FORCE)
     set(SDL2MIXER_WAVPACK OFF CACHE BOOL "" FORCE)
     set(SDL2TTF_VENDORED ON CACHE BOOL "" FORCE)
-
+    set(SDL2MIXER_MIDI_NATIVE OFF CACHE BOOL "" FORCE)
+    set(SDL2MIXER_MIDI_TIMIDITY ON CACHE BOOL "" FORCE)
     # Make sure debug libs have the same name as release ones
     set(SDL_CMAKE_DEBUG_POSTFIX "" CACHE STRING "" FORCE)
     set(SDL2IMAGE_DEBUG_POSTFIX "" CACHE STRING "" FORCE)
@@ -99,6 +99,9 @@ if (IOS)
     set(SDL2TTF_DEBUG_POSTFIX "" CACHE STRING "" FORCE)
 
     FetchContent_MakeAvailable(SDL SDL_image SDL_mixer SDL_ttf)
+
+    # SDL2_ttf needs to download free type before it will
+    # execute_process(COMMAND ${CMAKE_BINARY_DIR}/external/SDL2_ttf/external/download.sh)
     
     # Set SDL2 variables for find_package compatibility
     # This prevents GsKit from trying to find SDL2 via find_package
@@ -124,6 +127,10 @@ if (IOS)
     # Export these for subdirectories
     set(SDL2_INCLUDE_DIR ${SDL2_INCLUDE_DIR} CACHE STRING "SDL2 include directory")
     set(SDL2_LIBRARY ${SDL2_LIBRARY} CACHE STRING "SDL2 library")
+	set(USE_VIRTUALPAD ON)
+
+
+
 
 endif()
 

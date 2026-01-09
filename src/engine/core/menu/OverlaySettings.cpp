@@ -79,6 +79,7 @@ void OverlaySettings::release()
 
     mUsersConf.mShowCursor = mpShowCursorSwitch->isEnabled();
 
+	printf("overlay settings. New value = %s\n", mUsersConf.mVSync ? "true": "false");
     gVideoDriver.setVidConfig(mUsersConf);
 
     gSettings.saveDrvCfg();

@@ -28,7 +28,12 @@ bool CVidConfig::operator!=(const CVidConfig& target)
 void CVidConfig::reset()
 {
     // Default values
+#ifdef TARGET_OS_SIMULATOR
+    printf("setting vsync = false\n");
+    mVSync = false;
+#else
     mVSync = true;
+#endif
 
     mDisplayRect.pos.x = 0;
     mDisplayRect.pos.y = 0;
@@ -73,7 +78,8 @@ void CVidConfig::reset()
     mAspectCorrection.dim.y=0;
 #endif
 
-#if defined(ANDROID)
+#if defined(ANDROID) || defined(TARGET_OS_IOS)
+	printf("matched with defined(TARGET_OS_IOS)\n");
     mAspectCorrection.dim.x=0;
     mAspectCorrection.dim.y=0;
 #endif

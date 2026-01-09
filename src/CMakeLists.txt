@@ -88,8 +88,13 @@ if(OPT_PATH)
 endif(OPT_PATH)
 
 set(CGENIUS_SRC CGenius.cpp
+	CGeniusEntry.cpp
     misc.cpp
     ${cg_obj_libs})
+
+if(IOS)
+    list(REMOVE_ITEM CGENIUS_SRC CGenius.cpp)
+endif()
 
 if(NINTENDO_SWITCH)
     set(CGENIUS_SRC ${CGENIUS_SRC} switch.c)
@@ -126,15 +131,15 @@ endif()
 set_property(TARGET CGeniusExe PROPERTY C_STANDARD 99)
 
 # Link CG Engines
-target_link_libraries (CGeniusExe engine)
+target_link_libraries (CGeniusExe PUBLIC engine)
 
 # Link GsKit
-target_link_libraries (CGeniusExe GsKit)
+target_link_libraries (CGeniusExe PUBLIC GsKit)
 
 # iOS-specific linking
 if(IOS)
     # Link SDL2 libraries that were fetched in the root CMakeLists.txt
-    target_link_libraries(CGeniusExe SDL2 SDL2_image)
+	target_link_libraries(CGeniusExe PUBLIC SDL2 SDL2_image)
     
     # Set library properties for iOS
     set_target_properties(CGeniusExe PROPERTIES

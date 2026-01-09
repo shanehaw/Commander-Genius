@@ -138,7 +138,7 @@ bool CVideoDriver::initResolutionList()
 
     GsVec2D<Uint16> resolution = {1920, 1080};
 
-#if defined(ANDROID)
+#if defined(ANDROID) || defined(TARGET_OS_IOS)
     resolution.x = 320;
     resolution.y = 200;
 #elif defined(__SWITCH__)
@@ -320,6 +320,10 @@ std::set<std::string> CVideoDriver::getAspectStrSet()
 
 void CVideoDriver::setVidConfig(const CVidConfig& VidConf)
 {
+	printf("Seting vid config\n");
+	printf("New vsync = %s\n", VidConf.mVSync ? "true" : "false");
+	printf("New vpad = %s\n", VidConf.mVPad ? "true" : "false");
+
     mVidConfig = VidConf;
 
     SDL_ShowCursor(mVidConfig.mShowCursor ? SDL_ENABLE : SDL_DISABLE);

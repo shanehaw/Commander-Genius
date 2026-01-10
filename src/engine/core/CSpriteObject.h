@@ -229,7 +229,7 @@ class CSpriteObject
     void processMoveBitRight();
     virtual void processMoveBitDown();
     void processMoveBitUp();
-    void processMove(const int move_x, const int move_y);
+    virtual void processMove(const int move_x, const int move_y);
 
     /*
      * \brief As especially in Galaxy some tiles still can get into blocks where they shouldn't

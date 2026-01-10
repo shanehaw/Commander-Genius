@@ -186,10 +186,68 @@ const int BABY_SMALLJUMP = 80;
 
 void CVortikid::baby_jump(int big)
 {
+	// Don't jump if hitting ceiling already
+    // const int x1 = getXPosition() + m_BBox.x1;
+    // const int x2 = getXPosition() + m_BBox.x2;
+    // const int y1 = getYPosition() + m_BBox.y1;
+    
+    // if(checkSolidU(x1, x2, y1))
+    // {
+    //     printf("VortiKid blocked from jumping - ceiling detected\n");
+    //     return;  // Can't jump, there's a ceiling
+    // }
+
 	if ((rand()&2)==0) big = 1-big;
 	yinertia =  (big==BABY_JUMP_BIG) ? -BABY_BIGJUMP : -BABY_SMALLJUMP ;
-
+	// SDMH Change added this line
+	xinertia = 0;
+	// END
 	jumpdectimer = 0;
 }
 
-
+void CVortikid::processMove(const int move_x, const int move_y)
+{
+    // For fast-moving VortiKids, do a lookahead collision check
+    // to prevent tunneling through walls
+    if(move_y < 0)  // Moving upward
+    {
+        std::vector<CTileProperties> &TileProperty = gBehaviorEngine.getTileProperties();
+        
+        const int x1 = getXPosition() + m_BBox.x1;
+        const int x2 = getXPosition() + m_BBox.x2;
+        const int y1 = getYPosition() + m_BBox.y1;
+        
+        // Check EVERY tile along the movement path
+        const int startY = y1 >> CSF;
+        const int endY = (y1 + move_y) >> CSF;
+        
+        // Scan from current position to destination
+        for(int checkY = startY; checkY >= endY; checkY--)
+        {
+            for(int checkX = (x1 >> CSF); checkX <= (x2 >> CSF); checkX++)
+            {
+                Uint16 tileNum = mpMap->at(checkX, checkY, 1);
+                
+                if(tileNum != 0 && tileNum < TileProperty.size())
+                {
+                    // Check if this tile blocks from below (bdown property)
+                    Sint8 blocksDown = TileProperty[tileNum].bdown;
+                    
+                    if(blocksDown)  // This tile blocks upward movement
+                    {
+                        printf("🛑 VortiKid BLOCKED by tile %d (bdown=%d) at (%d,%d) while moving upward\n",
+                               tileNum, blocksDown, checkX, checkY);
+                        
+                        // Stop at this position
+                        yinertia = 0;
+                        blockedu = true;
+                        return;  // Don't process movement
+                    }
+                }
+            }
+        }
+    }
+    
+    // No collision detected in path, use normal movement
+    CSpriteObject::processMove(move_x, move_y);
+}

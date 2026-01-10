@@ -89,6 +89,7 @@ add_custom_target(
 
 # Add dependency on xxd if we built it
 if(NOT IOS AND NOT OSXCROSS)
+	set_property(TARGET createGameLauncherMenu APPEND PROPERTY SOURCES gameselector.h gameselector.cpp)
     add_dependencies(createGameLauncherMenu xxd)
 endif()
 

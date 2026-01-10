@@ -128,8 +128,6 @@ void GameSpecSettings::release()
     if(oldVidConf == mUsersConf)
         return;
 
-	printf("Setting video config\n");
-	printf("vsync = %s\n", mUsersConf.mVSync ? "true": "false");
     gVideoDriver.setVidConfig(mUsersConf);
 
     // At this point we also must apply and save the settings

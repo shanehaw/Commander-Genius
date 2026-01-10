@@ -23,6 +23,7 @@ public:
 	void getTouchedBy(CSpriteObject &theObject);
 	void process();
 	void baby_jump(int big);
+	void processMove(const int move_x, const int move_y) override;
 private:
 	vort_baby_actions state;
 	direction_t dir;

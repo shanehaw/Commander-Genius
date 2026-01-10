@@ -259,9 +259,12 @@ bool CSettings::loadDrvCfg()
 	printf("settings pre pre-processor if: current value = %s\n", vidConf.mVSync ? "true": "false");
 #if TARGET_OS_SIMULATOR
 	// vsync does not work on the simulator
+	printf("in target os simulator???\n")
 	vidConf.mVSync = false;
 #else    
-	config.ReadKeyword("Video", "vsync", &vidConf.mVSync, true);
+	printf("force vsync to true rather than read config\n");
+	vidConf.mVSync = true;
+	//config.ReadKeyword("Video", "vsync", &vidConf.mVSync, true);
 #endif
 	printf("settings post pre-processor if: current value = %s\n", vidConf.mVSync ? "true": "false");
 

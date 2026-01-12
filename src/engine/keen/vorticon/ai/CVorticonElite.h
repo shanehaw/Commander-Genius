@@ -26,6 +26,7 @@ public:
 	void process();
 	void initiatejump();
 	void getShotByRay(object_t &obj_type);
+	void getTouchedBy(CSpriteObject &theObject);
 
 private:
 	vortelite_actions state;

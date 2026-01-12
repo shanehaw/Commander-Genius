@@ -62,7 +62,7 @@ class CVorticon : public CVorticonSpriteObject
 public:
 	CVorticon( std::shared_ptr<CMap> p_map, Uint32 x, Uint32 y, char hp=1, object_t objtype=OBJ_VORT);
 	virtual bool isNearby(CSpriteObject &theObject);
-	void getTouchedBy(CSpriteObject &theObject);
+	virtual void getTouchedBy(CSpriteObject &theObject);
 	void process();
 	void initiateJump();
 

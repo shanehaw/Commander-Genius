@@ -346,4 +346,11 @@ void CVorticonElite::getShotByRay(object_t &obj_type)
 	}
 }
 
-
+void CVorticonElite::getTouchedBy(CSpriteObject &theObject)
+{
+    if( CPlayer *player = dynamic_cast<CPlayer*>(&theObject) )
+    {
+    if (state != VORTELITE_DYING and !mIsDead and state != VORT2_DYING)
+        player->kill();
+    }
+}

@@ -57,6 +57,10 @@
 
 #endif
 
+#if defined(TARGET_OS_IPHONE) || defined(TARGET_IPHONE_SIMULATOR)
+std::string gIOSSandboxSharedFilesDir;
+#endif
+
 searchpathlist tSearchPaths;
 
 void printSearchPaths()
@@ -483,10 +487,9 @@ void InitBaseSearchPaths()
     basesearchpaths.clear();
 
 #if defined(TARGET_OS_IPHONE) || defined(TARGET_IPHONE_SIMULATOR)
-    AddToFileList(&basesearchpaths, "${HOME}/Library/Application Support/Commander Genius");
-    AddToFileList(&basesearchpaths, ".");
-    AddToFileList(&basesearchpaths, "${BIN}");
-    AddToFileList(&basesearchpaths, SYSTEM_DATA_DIR"/commandergenius");
+	printf("gIOSSandboxSharedFilesDir=%s\n", gIOSSandboxSharedFilesDir.c_str());
+    // AddToFileList(&basesearchpaths, ".");
+    AddToFileList(&basesearchpaths, gIOSSandboxSharedFilesDir);
 #elif defined(__APPLE__)
     AddToFileList(&basesearchpaths, "${HOME}/Library/Application Support/Commander Genius");
     AddToFileList(&basesearchpaths, ".");
@@ -840,6 +843,8 @@ std::string GetHomeDir()
 std::string GetSystemDataDir() {
 #ifndef WIN32
     return SYSTEM_DATA_DIR;
+#elif defined(TARGET_OS_IPHONE) || defined(TARGET_IPHONE_SIMULATOR)
+    return gIOSSandboxSharedFilesDir;
 #else
     // windows don't have such dir, don't it?
     // or should we return windows/system32 (which is not exactly intended here)?

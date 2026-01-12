@@ -1,0 +1,598 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8A5B10832F0E9DC200733764 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5BC4292F0E70F400733764 /* UIKit.framework */; };
+		8A5B10842F0E9DD000733764 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5BC4592F0E975800733764 /* Foundation.framework */; };
+		8A5B10852F0E9DDA00733764 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5BC4352F0E714A00733764 /* AVFoundation.framework */; };
+		8A5B10862F0E9DE400733764 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5BC4332F0E713F00733764 /* AudioToolbox.framework */; };
+		8A5B10872F0E9DF300733764 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5BC4402F0E84D500733764 /* CoreBluetooth.framework */; };
+		8A5B10882F0E9DFD00733764 /* CoreHaptics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5BC4422F0E84DE00733764 /* CoreHaptics.framework */; };
+		8A5B10892F0E9E0B00733764 /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5BC4372F0E715500733764 /* GameController.framework */; };
+		8A5B108A2F0E9E1A00733764 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5BC43D2F0E717600733764 /* CoreMotion.framework */; };
+		8A5B108B2F0E9E2400733764 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5BC42F2F0E712600733764 /* QuartzCore.framework */; };
+		8A5B108C2F0E9E2E00733764 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5BC4392F0E716100733764 /* Metal.framework */; };
+		8A5B108D2F0E9E7900733764 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5BC43B2F0E716B00733764 /* OpenGLES.framework */; };
+		8A5B108E2F0E9ED300733764 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5BC42D2F0E711B00733764 /* CoreGraphics.framework */; };
+		8A5B11692F0F023F00733764 /* libengine_keen_vorticon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11432F0F023D00733764 /* libengine_keen_vorticon.a */; };
+		8A5B116A2F0F023F00733764 /* libengine_keen_galaxy_common.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11442F0F023D00733764 /* libengine_keen_galaxy_common.a */; };
+		8A5B116B2F0F023F00733764 /* libGsKit_base_interface.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11452F0F023D00733764 /* libGsKit_base_interface.a */; };
+		8A5B116C2F0F023F00733764 /* libdepklite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11462F0F023D00733764 /* libdepklite.a */; };
+		8A5B116D2F0F023F00733764 /* libGsKit_base.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11472F0F023D00733764 /* libGsKit_base.a */; };
+		8A5B116E2F0F023F00733764 /* libGsKit_base_video.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11482F0F023D00733764 /* libGsKit_base_video.a */; };
+		8A5B116F2F0F023F00733764 /* libengine_core_mode.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11492F0F023D00733764 /* libengine_core_mode.a */; };
+		8A5B11702F0F023F00733764 /* libengine_core_menu_widgets.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B114A2F0F023D00733764 /* libengine_core_menu_widgets.a */; };
+		8A5B11712F0F023F00733764 /* libengine_keen_galaxy_ep4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B114B2F0F023D00733764 /* libengine_keen_galaxy_ep4.a */; };
+		8A5B11722F0F023F00733764 /* libengine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B114C2F0F023D00733764 /* libengine.a */; };
+		8A5B11732F0F023F00733764 /* libSDL2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B114D2F0F023D00733764 /* libSDL2.a */; };
+		8A5B11742F0F023F00733764 /* libcg_dialog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B114E2F0F023D00733764 /* libcg_dialog.a */; };
+		8A5B11752F0F023F00733764 /* libengine_keen_galaxy_menu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B114F2F0F023D00733764 /* libengine_keen_galaxy_menu.a */; };
+		8A5B11762F0F023F00733764 /* libGsKit_base_audio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11502F0F023D00733764 /* libGsKit_base_audio.a */; };
+		8A5B11772F0F023F00733764 /* libGsKit_graphics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11512F0F023D00733764 /* libGsKit_graphics.a */; };
+		8A5B11782F0F023F00733764 /* libSDL2_image.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11522F0F023D00733764 /* libSDL2_image.a */; };
+		8A5B11792F0F023F00733764 /* libengine_keen_galaxy_res.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11532F0F023D00733764 /* libengine_keen_galaxy_res.a */; };
+		8A5B117A2F0F023F00733764 /* libGsKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11542F0F023E00733764 /* libGsKit.a */; };
+		8A5B117B2F0F023F00733764 /* libSDL2_ttf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11552F0F023E00733764 /* libSDL2_ttf.a */; };
+		8A5B117C2F0F023F00733764 /* libengine_core_menu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11562F0F023E00733764 /* libengine_core_menu.a */; };
+		8A5B117D2F0F023F00733764 /* libfileio_compression.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11572F0F023E00733764 /* libfileio_compression.a */; };
+		8A5B117E2F0F023F00733764 /* librefkeen_kdreams.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11582F0F023E00733764 /* librefkeen_kdreams.a */; };
+		8A5B117F2F0F023F00733764 /* libengine_keen_galaxy_ep5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11592F0F023E00733764 /* libengine_keen_galaxy_ep5.a */; };
+		8A5B11802F0F023F00733764 /* libengine_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B115A2F0F023E00733764 /* libengine_core.a */; };
+		8A5B11812F0F023F00733764 /* libengine_keen_galaxy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B115B2F0F023E00733764 /* libengine_keen_galaxy.a */; };
+		8A5B11822F0F023F00733764 /* libengine_keen_dreams.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B115C2F0F023E00733764 /* libengine_keen_dreams.a */; };
+		8A5B11832F0F023F00733764 /* librefkeen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B115D2F0F023E00733764 /* librefkeen.a */; };
+		8A5B11842F0F023F00733764 /* libSDL2_mixer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B115E2F0F023E00733764 /* libSDL2_mixer.a */; };
+		8A5B11852F0F023F00733764 /* libGsKit_base_lua.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B115F2F0F023E00733764 /* libGsKit_base_lua.a */; };
+		8A5B11862F0F023F00733764 /* libfileio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11602F0F023E00733764 /* libfileio.a */; };
+		8A5B11872F0F023F00733764 /* libfreetyped.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11612F0F023E00733764 /* libfreetyped.a */; };
+		8A5B11882F0F023F00733764 /* libGsKit_fileio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11622F0F023E00733764 /* libGsKit_fileio.a */; };
+		8A5B11892F0F023F00733764 /* libengine_core_vgamepad.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11632F0F023E00733764 /* libengine_core_vgamepad.a */; };
+		8A5B118A2F0F023F00733764 /* libGsKit_widgets.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11642F0F023E00733764 /* libGsKit_widgets.a */; };
+		8A5B118B2F0F023F00733764 /* libengine_keen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11652F0F023E00733764 /* libengine_keen.a */; };
+		8A5B118C2F0F023F00733764 /* libengine_keen_galaxy_ep6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11662F0F023E00733764 /* libengine_keen_galaxy_ep6.a */; };
+		8A5B118D2F0F023F00733764 /* libunzip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11672F0F023E00733764 /* libunzip.a */; };
+		8A5B118E2F0F023F00733764 /* libCommanderGenius.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11682F0F023E00733764 /* libCommanderGenius.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		8A5B11432F0F023D00733764 /* libengine_keen_vorticon.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_keen_vorticon.a; path = "../../build-ios/libs/libengine_keen_vorticon.a"; sourceTree = "<group>"; };
+		8A5B11442F0F023D00733764 /* libengine_keen_galaxy_common.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_keen_galaxy_common.a; path = "../../build-ios/libs/libengine_keen_galaxy_common.a"; sourceTree = "<group>"; };
+		8A5B11452F0F023D00733764 /* libGsKit_base_interface.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGsKit_base_interface.a; path = "../../build-ios/libs/libGsKit_base_interface.a"; sourceTree = "<group>"; };
+		8A5B11462F0F023D00733764 /* libdepklite.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdepklite.a; path = "../../build-ios/libs/libdepklite.a"; sourceTree = "<group>"; };
+		8A5B11472F0F023D00733764 /* libGsKit_base.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGsKit_base.a; path = "../../build-ios/libs/libGsKit_base.a"; sourceTree = "<group>"; };
+		8A5B11482F0F023D00733764 /* libGsKit_base_video.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGsKit_base_video.a; path = "../../build-ios/libs/libGsKit_base_video.a"; sourceTree = "<group>"; };
+		8A5B11492F0F023D00733764 /* libengine_core_mode.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_core_mode.a; path = "../../build-ios/libs/libengine_core_mode.a"; sourceTree = "<group>"; };
+		8A5B114A2F0F023D00733764 /* libengine_core_menu_widgets.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_core_menu_widgets.a; path = "../../build-ios/libs/libengine_core_menu_widgets.a"; sourceTree = "<group>"; };
+		8A5B114B2F0F023D00733764 /* libengine_keen_galaxy_ep4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_keen_galaxy_ep4.a; path = "../../build-ios/libs/libengine_keen_galaxy_ep4.a"; sourceTree = "<group>"; };
+		8A5B114C2F0F023D00733764 /* libengine.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine.a; path = "../../build-ios/libs/libengine.a"; sourceTree = "<group>"; };
+		8A5B114D2F0F023D00733764 /* libSDL2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2.a; path = "../../build-ios/libs/libSDL2.a"; sourceTree = "<group>"; };
+		8A5B114E2F0F023D00733764 /* libcg_dialog.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcg_dialog.a; path = "../../build-ios/libs/libcg_dialog.a"; sourceTree = "<group>"; };
+		8A5B114F2F0F023D00733764 /* libengine_keen_galaxy_menu.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_keen_galaxy_menu.a; path = "../../build-ios/libs/libengine_keen_galaxy_menu.a"; sourceTree = "<group>"; };
+		8A5B11502F0F023D00733764 /* libGsKit_base_audio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGsKit_base_audio.a; path = "../../build-ios/libs/libGsKit_base_audio.a"; sourceTree = "<group>"; };
+		8A5B11512F0F023D00733764 /* libGsKit_graphics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGsKit_graphics.a; path = "../../build-ios/libs/libGsKit_graphics.a"; sourceTree = "<group>"; };
+		8A5B11522F0F023D00733764 /* libSDL2_image.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2_image.a; path = "../../build-ios/libs/libSDL2_image.a"; sourceTree = "<group>"; };
+		8A5B11532F0F023D00733764 /* libengine_keen_galaxy_res.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_keen_galaxy_res.a; path = "../../build-ios/libs/libengine_keen_galaxy_res.a"; sourceTree = "<group>"; };
+		8A5B11542F0F023E00733764 /* libGsKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGsKit.a; path = "../../build-ios/libs/libGsKit.a"; sourceTree = "<group>"; };
+		8A5B11552F0F023E00733764 /* libSDL2_ttf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2_ttf.a; path = "../../build-ios/libs/libSDL2_ttf.a"; sourceTree = "<group>"; };
+		8A5B11562F0F023E00733764 /* libengine_core_menu.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_core_menu.a; path = "../../build-ios/libs/libengine_core_menu.a"; sourceTree = "<group>"; };
+		8A5B11572F0F023E00733764 /* libfileio_compression.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfileio_compression.a; path = "../../build-ios/libs/libfileio_compression.a"; sourceTree = "<group>"; };
+		8A5B11582F0F023E00733764 /* librefkeen_kdreams.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = librefkeen_kdreams.a; path = "../../build-ios/libs/librefkeen_kdreams.a"; sourceTree = "<group>"; };
+		8A5B11592F0F023E00733764 /* libengine_keen_galaxy_ep5.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_keen_galaxy_ep5.a; path = "../../build-ios/libs/libengine_keen_galaxy_ep5.a"; sourceTree = "<group>"; };
+		8A5B115A2F0F023E00733764 /* libengine_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_core.a; path = "../../build-ios/libs/libengine_core.a"; sourceTree = "<group>"; };
+		8A5B115B2F0F023E00733764 /* libengine_keen_galaxy.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_keen_galaxy.a; path = "../../build-ios/libs/libengine_keen_galaxy.a"; sourceTree = "<group>"; };
+		8A5B115C2F0F023E00733764 /* libengine_keen_dreams.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_keen_dreams.a; path = "../../build-ios/libs/libengine_keen_dreams.a"; sourceTree = "<group>"; };
+		8A5B115D2F0F023E00733764 /* librefkeen.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = librefkeen.a; path = "../../build-ios/libs/librefkeen.a"; sourceTree = "<group>"; };
+		8A5B115E2F0F023E00733764 /* libSDL2_mixer.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2_mixer.a; path = "../../build-ios/libs/libSDL2_mixer.a"; sourceTree = "<group>"; };
+		8A5B115F2F0F023E00733764 /* libGsKit_base_lua.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGsKit_base_lua.a; path = "../../build-ios/libs/libGsKit_base_lua.a"; sourceTree = "<group>"; };
+		8A5B11602F0F023E00733764 /* libfileio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfileio.a; path = "../../build-ios/libs/libfileio.a"; sourceTree = "<group>"; };
+		8A5B11612F0F023E00733764 /* libfreetyped.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetyped.a; path = "../../build-ios/libs/libfreetyped.a"; sourceTree = "<group>"; };
+		8A5B11622F0F023E00733764 /* libGsKit_fileio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGsKit_fileio.a; path = "../../build-ios/libs/libGsKit_fileio.a"; sourceTree = "<group>"; };
+		8A5B11632F0F023E00733764 /* libengine_core_vgamepad.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_core_vgamepad.a; path = "../../build-ios/libs/libengine_core_vgamepad.a"; sourceTree = "<group>"; };
+		8A5B11642F0F023E00733764 /* libGsKit_widgets.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGsKit_widgets.a; path = "../../build-ios/libs/libGsKit_widgets.a"; sourceTree = "<group>"; };
+		8A5B11652F0F023E00733764 /* libengine_keen.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_keen.a; path = "../../build-ios/libs/libengine_keen.a"; sourceTree = "<group>"; };
+		8A5B11662F0F023E00733764 /* libengine_keen_galaxy_ep6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_keen_galaxy_ep6.a; path = "../../build-ios/libs/libengine_keen_galaxy_ep6.a"; sourceTree = "<group>"; };
+		8A5B11672F0F023E00733764 /* libunzip.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libunzip.a; path = "../../build-ios/libs/libunzip.a"; sourceTree = "<group>"; };
+		8A5B11682F0F023E00733764 /* libCommanderGenius.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCommanderGenius.a; path = "../../build-ios/libs/libCommanderGenius.a"; sourceTree = "<group>"; };
+		8A5BC3FE2F0E6EC000733764 /* CommanderGenius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CommanderGenius.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A5BC4292F0E70F400733764 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		8A5BC42B2F0E711000733764 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		8A5BC42D2F0E711B00733764 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		8A5BC42F2F0E712600733764 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		8A5BC4312F0E713200733764 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		8A5BC4332F0E713F00733764 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		8A5BC4352F0E714A00733764 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		8A5BC4372F0E715500733764 /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = System/Library/Frameworks/GameController.framework; sourceTree = SDKROOT; };
+		8A5BC4392F0E716100733764 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
+		8A5BC43B2F0E716B00733764 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		8A5BC43D2F0E717600733764 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		8A5BC4402F0E84D500733764 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		8A5BC4422F0E84DE00733764 /* CoreHaptics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreHaptics.framework; path = System/Library/Frameworks/CoreHaptics.framework; sourceTree = SDKROOT; };
+		8A5BC4592F0E975800733764 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		8A5B11202F0EDF4400733764 /* Exceptions for "CommanderGenius" folder in "CommanderGenius" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+				main.hpp,
+			);
+			target = 8A5BC3FD2F0E6EC000733764 /* CommanderGenius */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		8A5BC4002F0E6EC000733764 /* CommanderGenius */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				8A5B11202F0EDF4400733764 /* Exceptions for "CommanderGenius" folder in "CommanderGenius" target */,
+			);
+			explicitFileTypes = {
+				main.hpp = sourcecode.cpp.objcpp;
+			};
+			path = CommanderGenius;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8A5B10822F0E9DA400733764 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A5B11692F0F023F00733764 /* libengine_keen_vorticon.a in Frameworks */,
+				8A5B116A2F0F023F00733764 /* libengine_keen_galaxy_common.a in Frameworks */,
+				8A5B116B2F0F023F00733764 /* libGsKit_base_interface.a in Frameworks */,
+				8A5B116C2F0F023F00733764 /* libdepklite.a in Frameworks */,
+				8A5B116D2F0F023F00733764 /* libGsKit_base.a in Frameworks */,
+				8A5B116E2F0F023F00733764 /* libGsKit_base_video.a in Frameworks */,
+				8A5B116F2F0F023F00733764 /* libengine_core_mode.a in Frameworks */,
+				8A5B11702F0F023F00733764 /* libengine_core_menu_widgets.a in Frameworks */,
+				8A5B11712F0F023F00733764 /* libengine_keen_galaxy_ep4.a in Frameworks */,
+				8A5B11722F0F023F00733764 /* libengine.a in Frameworks */,
+				8A5B11732F0F023F00733764 /* libSDL2.a in Frameworks */,
+				8A5B11742F0F023F00733764 /* libcg_dialog.a in Frameworks */,
+				8A5B11752F0F023F00733764 /* libengine_keen_galaxy_menu.a in Frameworks */,
+				8A5B11762F0F023F00733764 /* libGsKit_base_audio.a in Frameworks */,
+				8A5B11772F0F023F00733764 /* libGsKit_graphics.a in Frameworks */,
+				8A5B11782F0F023F00733764 /* libSDL2_image.a in Frameworks */,
+				8A5B11792F0F023F00733764 /* libengine_keen_galaxy_res.a in Frameworks */,
+				8A5B117A2F0F023F00733764 /* libGsKit.a in Frameworks */,
+				8A5B117B2F0F023F00733764 /* libSDL2_ttf.a in Frameworks */,
+				8A5B117C2F0F023F00733764 /* libengine_core_menu.a in Frameworks */,
+				8A5B117D2F0F023F00733764 /* libfileio_compression.a in Frameworks */,
+				8A5B117E2F0F023F00733764 /* librefkeen_kdreams.a in Frameworks */,
+				8A5B117F2F0F023F00733764 /* libengine_keen_galaxy_ep5.a in Frameworks */,
+				8A5B11802F0F023F00733764 /* libengine_core.a in Frameworks */,
+				8A5B11812F0F023F00733764 /* libengine_keen_galaxy.a in Frameworks */,
+				8A5B11822F0F023F00733764 /* libengine_keen_dreams.a in Frameworks */,
+				8A5B11832F0F023F00733764 /* librefkeen.a in Frameworks */,
+				8A5B11842F0F023F00733764 /* libSDL2_mixer.a in Frameworks */,
+				8A5B11852F0F023F00733764 /* libGsKit_base_lua.a in Frameworks */,
+				8A5B11862F0F023F00733764 /* libfileio.a in Frameworks */,
+				8A5B11872F0F023F00733764 /* libfreetyped.a in Frameworks */,
+				8A5B11882F0F023F00733764 /* libGsKit_fileio.a in Frameworks */,
+				8A5B11892F0F023F00733764 /* libengine_core_vgamepad.a in Frameworks */,
+				8A5B118A2F0F023F00733764 /* libGsKit_widgets.a in Frameworks */,
+				8A5B118B2F0F023F00733764 /* libengine_keen.a in Frameworks */,
+				8A5B118C2F0F023F00733764 /* libengine_keen_galaxy_ep6.a in Frameworks */,
+				8A5B118D2F0F023F00733764 /* libunzip.a in Frameworks */,
+				8A5B118E2F0F023F00733764 /* libCommanderGenius.a in Frameworks */,
+				8A5B108E2F0E9ED300733764 /* CoreGraphics.framework in Frameworks */,
+				8A5B108D2F0E9E7900733764 /* OpenGLES.framework in Frameworks */,
+				8A5B108C2F0E9E2E00733764 /* Metal.framework in Frameworks */,
+				8A5B108B2F0E9E2400733764 /* QuartzCore.framework in Frameworks */,
+				8A5B108A2F0E9E1A00733764 /* CoreMotion.framework in Frameworks */,
+				8A5B10892F0E9E0B00733764 /* GameController.framework in Frameworks */,
+				8A5B10882F0E9DFD00733764 /* CoreHaptics.framework in Frameworks */,
+				8A5B10872F0E9DF300733764 /* CoreBluetooth.framework in Frameworks */,
+				8A5B10862F0E9DE400733764 /* AudioToolbox.framework in Frameworks */,
+				8A5B10852F0E9DDA00733764 /* AVFoundation.framework in Frameworks */,
+				8A5B10842F0E9DD000733764 /* Foundation.framework in Frameworks */,
+				8A5B10832F0E9DC200733764 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8A5BC3F52F0E6EC000733764 = {
+			isa = PBXGroup;
+			children = (
+				8A5BC4002F0E6EC000733764 /* CommanderGenius */,
+				8A5BC41C2F0E704900733764 /* Frameworks */,
+				8A5BC3FF2F0E6EC000733764 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8A5BC3FF2F0E6EC000733764 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8A5BC3FE2F0E6EC000733764 /* CommanderGenius.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8A5BC41C2F0E704900733764 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8A5B114E2F0F023D00733764 /* libcg_dialog.a */,
+				8A5B11682F0F023E00733764 /* libCommanderGenius.a */,
+				8A5B11462F0F023D00733764 /* libdepklite.a */,
+				8A5B114C2F0F023D00733764 /* libengine.a */,
+				8A5B115A2F0F023E00733764 /* libengine_core.a */,
+				8A5B11562F0F023E00733764 /* libengine_core_menu.a */,
+				8A5B114A2F0F023D00733764 /* libengine_core_menu_widgets.a */,
+				8A5B11492F0F023D00733764 /* libengine_core_mode.a */,
+				8A5B11632F0F023E00733764 /* libengine_core_vgamepad.a */,
+				8A5B11652F0F023E00733764 /* libengine_keen.a */,
+				8A5B115C2F0F023E00733764 /* libengine_keen_dreams.a */,
+				8A5B115B2F0F023E00733764 /* libengine_keen_galaxy.a */,
+				8A5B11442F0F023D00733764 /* libengine_keen_galaxy_common.a */,
+				8A5B114B2F0F023D00733764 /* libengine_keen_galaxy_ep4.a */,
+				8A5B11592F0F023E00733764 /* libengine_keen_galaxy_ep5.a */,
+				8A5B11662F0F023E00733764 /* libengine_keen_galaxy_ep6.a */,
+				8A5B114F2F0F023D00733764 /* libengine_keen_galaxy_menu.a */,
+				8A5B11532F0F023D00733764 /* libengine_keen_galaxy_res.a */,
+				8A5B11432F0F023D00733764 /* libengine_keen_vorticon.a */,
+				8A5B11602F0F023E00733764 /* libfileio.a */,
+				8A5B11572F0F023E00733764 /* libfileio_compression.a */,
+				8A5B11612F0F023E00733764 /* libfreetyped.a */,
+				8A5B11542F0F023E00733764 /* libGsKit.a */,
+				8A5B11472F0F023D00733764 /* libGsKit_base.a */,
+				8A5B11502F0F023D00733764 /* libGsKit_base_audio.a */,
+				8A5B11452F0F023D00733764 /* libGsKit_base_interface.a */,
+				8A5B115F2F0F023E00733764 /* libGsKit_base_lua.a */,
+				8A5B11482F0F023D00733764 /* libGsKit_base_video.a */,
+				8A5B11622F0F023E00733764 /* libGsKit_fileio.a */,
+				8A5B11512F0F023D00733764 /* libGsKit_graphics.a */,
+				8A5B11642F0F023E00733764 /* libGsKit_widgets.a */,
+				8A5B115D2F0F023E00733764 /* librefkeen.a */,
+				8A5B11582F0F023E00733764 /* librefkeen_kdreams.a */,
+				8A5B114D2F0F023D00733764 /* libSDL2.a */,
+				8A5B11522F0F023D00733764 /* libSDL2_image.a */,
+				8A5B115E2F0F023E00733764 /* libSDL2_mixer.a */,
+				8A5B11552F0F023E00733764 /* libSDL2_ttf.a */,
+				8A5B11672F0F023E00733764 /* libunzip.a */,
+				8A5BC4592F0E975800733764 /* Foundation.framework */,
+				8A5BC4422F0E84DE00733764 /* CoreHaptics.framework */,
+				8A5BC4402F0E84D500733764 /* CoreBluetooth.framework */,
+				8A5BC43D2F0E717600733764 /* CoreMotion.framework */,
+				8A5BC43B2F0E716B00733764 /* OpenGLES.framework */,
+				8A5BC4392F0E716100733764 /* Metal.framework */,
+				8A5BC4372F0E715500733764 /* GameController.framework */,
+				8A5BC4352F0E714A00733764 /* AVFoundation.framework */,
+				8A5BC4332F0E713F00733764 /* AudioToolbox.framework */,
+				8A5BC4312F0E713200733764 /* CoreAudio.framework */,
+				8A5BC42F2F0E712600733764 /* QuartzCore.framework */,
+				8A5BC42D2F0E711B00733764 /* CoreGraphics.framework */,
+				8A5BC42B2F0E711000733764 /* CoreFoundation.framework */,
+				8A5BC4292F0E70F400733764 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8A5BC3FD2F0E6EC000733764 /* CommanderGenius */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8A5BC4192F0E6EC200733764 /* Build configuration list for PBXNativeTarget "CommanderGenius" */;
+			buildPhases = (
+				8A5BC3FA2F0E6EC000733764 /* Sources */,
+				8A5BC3FC2F0E6EC000733764 /* Resources */,
+				8A5BC43F2F0E753300733764 /* ShellScript */,
+				8A5B10822F0E9DA400733764 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				8A5BC4002F0E6EC000733764 /* CommanderGenius */,
+			);
+			name = CommanderGenius;
+			packageProductDependencies = (
+			);
+			productName = CommanderGenius;
+			productReference = 8A5BC3FE2F0E6EC000733764 /* CommanderGenius.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8A5BC3F62F0E6EC000733764 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 2620;
+				TargetAttributes = {
+					8A5BC3FD2F0E6EC000733764 = {
+						CreatedOnToolsVersion = 26.2;
+					};
+				};
+			};
+			buildConfigurationList = 8A5BC3F92F0E6EC000733764 /* Build configuration list for PBXProject "CommanderGenius" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				English,
+			);
+			mainGroup = 8A5BC3F52F0E6EC000733764;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 8A5BC3FF2F0E6EC000733764 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8A5BC3FD2F0E6EC000733764 /* CommanderGenius */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8A5BC3FC2F0E6EC000733764 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8A5BC43F2F0E753300733764 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo \"PROJECT_DIR = ${PROJECT_DIR}\"\necho \"SRCROOT = ${SRCROOT}\"\necho \"Built Products Dir = ${BUILT_PRODUCTS_DIR}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8A5BC3FA2F0E6EC000733764 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		8A5BC4172F0E6EC200733764 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = A6P2SNQ49U;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		8A5BC4182F0E6EC200733764 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = A6P2SNQ49U;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8A5BC41A2F0E6EC200733764 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A6P2SNQ49U;
+				GENERATE_INFOPLIST_FILE = YES;
+				"HEADER_SEARCH_PATHS[arch=*]" = (
+					"$(PROJECT_DIR)/../../build-ios/external/SDL2/include/**",
+					"$(PROJECT_DIR)/../../build-ios/_deps/sdl-build/include/**",
+					"$(PROJECT_DIR)/../../src/**",
+					"$(PROJECT_DIR)/../../GsKit/**",
+				);
+				INFOPLIST_FILE = CommanderGenius/Info.plist;
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = metal;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)/../../build-ios/libs";
+				MARKETING_VERSION = 1.0;
+				"OTHER_LDFLAGS[arch=*]" = "";
+				PRODUCT_BUNDLE_IDENTIFIER = CommanderGenius.CommanderGenius;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8A5BC41B2F0E6EC200733764 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A6P2SNQ49U;
+				GENERATE_INFOPLIST_FILE = YES;
+				"HEADER_SEARCH_PATHS[arch=*]" = (
+					"$(PROJECT_DIR)/../../build-ios/external/SDL2/include/**",
+					"$(PROJECT_DIR)/../../build-ios/_deps/sdl-build/include/**",
+					"$(PROJECT_DIR)/../../src/**",
+					"$(PROJECT_DIR)/../../GsKit/**",
+				);
+				INFOPLIST_FILE = CommanderGenius/Info.plist;
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = metal;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)/../../build-ios/libs";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = CommanderGenius.CommanderGenius;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8A5BC3F92F0E6EC000733764 /* Build configuration list for PBXProject "CommanderGenius" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8A5BC4172F0E6EC200733764 /* Debug */,
+				8A5BC4182F0E6EC200733764 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8A5BC4192F0E6EC200733764 /* Build configuration list for PBXNativeTarget "CommanderGenius" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8A5BC41A2F0E6EC200733764 /* Debug */,
+				8A5BC41B2F0E6EC200733764 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8A5BC3F62F0E6EC000733764 /* Project object */;
+}

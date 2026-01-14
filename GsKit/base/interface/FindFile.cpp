@@ -67,11 +67,13 @@ void printSearchPaths()
 {
     // print the searchpaths, this may be very usefull for the user
     gLogging.textOut(FONTCOLORS::BLACK,"I have now the following searchpaths (in this order):\n");
+	printf("I have the following searchpaths:\n");
     for(auto p2 = tSearchPaths.begin(); p2 != tSearchPaths.end(); p2++)
     {
         std::string path = *p2;
         ReplaceFileVariables(path);
         gLogging.textOut(FONTCOLORS::GREEN,"  %s\n", path.c_str());
+		printf("%s:\n", path.c_str());
     }
     gLogging.textOut(FONTCOLORS::BLACK," And that's all.\n");
 }
@@ -84,7 +86,8 @@ void InitSearchPaths(const std::string &cfgFname)
 
     int i = 1;
 
-#ifndef ANDROID
+#if !defined(ANDROID) && !defined(TARGET_OS_IOS)
+	printf("Read from config\n");
     while(true)
     {
 
@@ -736,6 +739,7 @@ bool OpenGameFileR(std::ifstream& f,
 std::ofstream OpenGameFileW(const std::string& path,
                                const std::ios_base::openmode mode)
 {
+	printf("open game filew(2arg) with path=%s\n", path.c_str());
     std::ofstream f;
 
     if(path.size() == 0)
@@ -755,22 +759,28 @@ std::ofstream OpenGameFileW(const std::string& path,
     return f;
 }
 
-
-bool OpenGameFileW(std::ofstream& f, const std::string& path, std::ios_base::openmode mode)
+bool OpenGameFileW(std::ofstream& f,
+                   const std::string& path,
+                   std::ios_base::openmode mode)
 {
-    if(path.size() == 0)
+    if (path.empty())
         return false;
 
+	printf("open game filew(3arg) with path=%s\n", path.c_str());
+
     std::string fullfn = GetWriteFullFileName(path, true);
-    if(fullfn.size() != 0) {
-        try {
-            f.open(Utf8ToSystemNative(fullfn).c_str(), mode);
-            return f.is_open();
-        } catch(...) {}
+    if (fullfn.empty())
+        return false;
+
+    f.open(Utf8ToSystemNative(fullfn).c_str(), mode);
+
+    if (!f.is_open())
+    {
+        printf("Failed to open file: %s\n", fullfn.c_str());
         return false;
     }
 
-    return false;
+    return true;
 }
 
 

@@ -88,8 +88,12 @@ bool CSettings::saveDrvCfg()
 
         int i = 1;
 
+#if !defined(TARGET_OS_IOS)
+// Because on IOS each time the app is updated / a new build is done we run in a new container. It should not 
+// keep track of the search paths
         for(searchpathlist::const_iterator p = tSearchPaths.begin(); p != tSearchPaths.end(); p++, i++)
             config.WriteString("FileHandling", "SearchPath" + itoa(i), *p);
+#endif
 
         CVidConfig &VidConf = gVideoDriver.getVidConfig();
         config.SetKeyword("Video", "fullscreen", VidConf.mFullscreen);
@@ -259,7 +263,7 @@ bool CSettings::loadDrvCfg()
 	printf("settings pre pre-processor if: current value = %s\n", vidConf.mVSync ? "true": "false");
 #if TARGET_OS_SIMULATOR
 	// vsync does not work on the simulator
-	printf("in target os simulator???\n")
+    printf("in target os simulator???\n");
 	vidConf.mVSync = false;
 #else    
 	printf("force vsync to true rather than read config\n");

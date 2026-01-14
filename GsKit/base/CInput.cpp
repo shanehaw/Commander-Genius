@@ -1114,7 +1114,7 @@ void CInput::pollEvents()
             break;
 #endif
 
-#ifndef ANDROID
+#if !defined(ANDROID) && !defined(TARGET_OS_IOS)
         case SDL_MOUSEBUTTONDOWN:
 
             if(Event.button.button <= 3)

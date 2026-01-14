@@ -79,11 +79,17 @@ public:
 
     void removeFingerId(const Sint64 fid);
 
+	bool hasFinger(const Sint64 fid)
+	{
+        return mFingerSet.count(fid) > 0;
+	}
+
     bool hasFingers() const
     {
         return !mFingerSet.empty();
     }
 
+	bool isInsideExpanded(const GsVec2D<float> &Pos, float margin);
 
     int immediateIndex = 0;
 

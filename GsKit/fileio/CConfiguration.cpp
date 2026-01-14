@@ -28,7 +28,10 @@ bool CConfiguration::saveCfgFile()
 {
 	std::ofstream file;
 	if(!OpenGameFileW(file, m_filename))
+	{
+		printf("failed to open config file for writing\n");
 		return false;
+	}
 
 	SectionMap::iterator sect = m_sections.begin();
 	for(; sect != m_sections.end() ; sect++)

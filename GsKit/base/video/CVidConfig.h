@@ -15,7 +15,7 @@
 #include <SDL.h>
 #include <base/interface/Color.h>
 #include <base/video/scaler/CScaler.h>
-
+#include <TargetConditionals.h>
 #include <string>
 
 const unsigned int RES_BPP = 32;
@@ -79,7 +79,7 @@ public:
 #endif
 
 #ifdef USE_VIRTUALPAD
-#if defined(ANDROID) || defined(TARGET_OS_IOS)
+#if defined(ANDROID) || TARGET_OS_IOS
   bool mVPad = true;
 #else
   bool mVPad = false;

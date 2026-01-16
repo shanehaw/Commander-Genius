@@ -19,85 +19,50 @@
 		8A5B108C2F0E9E2E00733764 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5BC4392F0E716100733764 /* Metal.framework */; };
 		8A5B108D2F0E9E7900733764 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5BC43B2F0E716B00733764 /* OpenGLES.framework */; };
 		8A5B108E2F0E9ED300733764 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5BC42D2F0E711B00733764 /* CoreGraphics.framework */; };
-		8A5B11692F0F023F00733764 /* libengine_keen_vorticon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11432F0F023D00733764 /* libengine_keen_vorticon.a */; };
-		8A5B116A2F0F023F00733764 /* libengine_keen_galaxy_common.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11442F0F023D00733764 /* libengine_keen_galaxy_common.a */; };
-		8A5B116B2F0F023F00733764 /* libGsKit_base_interface.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11452F0F023D00733764 /* libGsKit_base_interface.a */; };
-		8A5B116C2F0F023F00733764 /* libdepklite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11462F0F023D00733764 /* libdepklite.a */; };
-		8A5B116D2F0F023F00733764 /* libGsKit_base.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11472F0F023D00733764 /* libGsKit_base.a */; };
-		8A5B116E2F0F023F00733764 /* libGsKit_base_video.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11482F0F023D00733764 /* libGsKit_base_video.a */; };
-		8A5B116F2F0F023F00733764 /* libengine_core_mode.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11492F0F023D00733764 /* libengine_core_mode.a */; };
-		8A5B11702F0F023F00733764 /* libengine_core_menu_widgets.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B114A2F0F023D00733764 /* libengine_core_menu_widgets.a */; };
-		8A5B11712F0F023F00733764 /* libengine_keen_galaxy_ep4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B114B2F0F023D00733764 /* libengine_keen_galaxy_ep4.a */; };
-		8A5B11722F0F023F00733764 /* libengine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B114C2F0F023D00733764 /* libengine.a */; };
-		8A5B11732F0F023F00733764 /* libSDL2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B114D2F0F023D00733764 /* libSDL2.a */; };
-		8A5B11742F0F023F00733764 /* libcg_dialog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B114E2F0F023D00733764 /* libcg_dialog.a */; };
-		8A5B11752F0F023F00733764 /* libengine_keen_galaxy_menu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B114F2F0F023D00733764 /* libengine_keen_galaxy_menu.a */; };
-		8A5B11762F0F023F00733764 /* libGsKit_base_audio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11502F0F023D00733764 /* libGsKit_base_audio.a */; };
-		8A5B11772F0F023F00733764 /* libGsKit_graphics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11512F0F023D00733764 /* libGsKit_graphics.a */; };
-		8A5B11782F0F023F00733764 /* libSDL2_image.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11522F0F023D00733764 /* libSDL2_image.a */; };
-		8A5B11792F0F023F00733764 /* libengine_keen_galaxy_res.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11532F0F023D00733764 /* libengine_keen_galaxy_res.a */; };
-		8A5B117A2F0F023F00733764 /* libGsKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11542F0F023E00733764 /* libGsKit.a */; };
-		8A5B117B2F0F023F00733764 /* libSDL2_ttf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11552F0F023E00733764 /* libSDL2_ttf.a */; };
-		8A5B117C2F0F023F00733764 /* libengine_core_menu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11562F0F023E00733764 /* libengine_core_menu.a */; };
-		8A5B117D2F0F023F00733764 /* libfileio_compression.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11572F0F023E00733764 /* libfileio_compression.a */; };
-		8A5B117E2F0F023F00733764 /* librefkeen_kdreams.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11582F0F023E00733764 /* librefkeen_kdreams.a */; };
-		8A5B117F2F0F023F00733764 /* libengine_keen_galaxy_ep5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11592F0F023E00733764 /* libengine_keen_galaxy_ep5.a */; };
-		8A5B11802F0F023F00733764 /* libengine_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B115A2F0F023E00733764 /* libengine_core.a */; };
-		8A5B11812F0F023F00733764 /* libengine_keen_galaxy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B115B2F0F023E00733764 /* libengine_keen_galaxy.a */; };
-		8A5B11822F0F023F00733764 /* libengine_keen_dreams.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B115C2F0F023E00733764 /* libengine_keen_dreams.a */; };
-		8A5B11832F0F023F00733764 /* librefkeen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B115D2F0F023E00733764 /* librefkeen.a */; };
-		8A5B11842F0F023F00733764 /* libSDL2_mixer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B115E2F0F023E00733764 /* libSDL2_mixer.a */; };
-		8A5B11852F0F023F00733764 /* libGsKit_base_lua.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B115F2F0F023E00733764 /* libGsKit_base_lua.a */; };
-		8A5B11862F0F023F00733764 /* libfileio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11602F0F023E00733764 /* libfileio.a */; };
-		8A5B11872F0F023F00733764 /* libfreetyped.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11612F0F023E00733764 /* libfreetyped.a */; };
-		8A5B11882F0F023F00733764 /* libGsKit_fileio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11622F0F023E00733764 /* libGsKit_fileio.a */; };
-		8A5B11892F0F023F00733764 /* libengine_core_vgamepad.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11632F0F023E00733764 /* libengine_core_vgamepad.a */; };
-		8A5B118A2F0F023F00733764 /* libGsKit_widgets.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11642F0F023E00733764 /* libGsKit_widgets.a */; };
-		8A5B118B2F0F023F00733764 /* libengine_keen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11652F0F023E00733764 /* libengine_keen.a */; };
-		8A5B118C2F0F023F00733764 /* libengine_keen_galaxy_ep6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11662F0F023E00733764 /* libengine_keen_galaxy_ep6.a */; };
-		8A5B118D2F0F023F00733764 /* libunzip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11672F0F023E00733764 /* libunzip.a */; };
-		8A5B118E2F0F023F00733764 /* libCommanderGenius.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5B11682F0F023E00733764 /* libCommanderGenius.a */; };
+		8A895AC62F1A7DC100A1EE19 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895AC52F1A7DC100A1EE19 /* Security.framework */; };
+		8A895AEE2F1A7DF800A1EE19 /* libengine_keen_vorticon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895AC72F1A7DF700A1EE19 /* libengine_keen_vorticon.a */; };
+		8A895AEF2F1A7DF800A1EE19 /* libengine_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895AC82F1A7DF700A1EE19 /* libengine_core.a */; };
+		8A895AF02F1A7DF800A1EE19 /* libSDL2_ttf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895AC92F1A7DF700A1EE19 /* libSDL2_ttf.a */; };
+		8A895AF12F1A7DF800A1EE19 /* libcg_dialog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895ACA2F1A7DF700A1EE19 /* libcg_dialog.a */; };
+		8A895AF22F1A7DF800A1EE19 /* libengine_keen_galaxy_menu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895ACB2F1A7DF700A1EE19 /* libengine_keen_galaxy_menu.a */; };
+		8A895AF32F1A7DF800A1EE19 /* libGsKit_base.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895ACC2F1A7DF700A1EE19 /* libGsKit_base.a */; };
+		8A895AF42F1A7DF800A1EE19 /* libGsKit_base_interface.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895ACD2F1A7DF700A1EE19 /* libGsKit_base_interface.a */; };
+		8A895AF52F1A7DF800A1EE19 /* libGsKit_fileio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895ACE2F1A7DF700A1EE19 /* libGsKit_fileio.a */; };
+		8A895AF62F1A7DF800A1EE19 /* libengine_keen_galaxy_common.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895ACF2F1A7DF700A1EE19 /* libengine_keen_galaxy_common.a */; };
+		8A895AF72F1A7DF800A1EE19 /* libSDL2_mixer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895AD02F1A7DF700A1EE19 /* libSDL2_mixer.a */; };
+		8A895AF82F1A7DF800A1EE19 /* libengine_keen_galaxy_res.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895AD12F1A7DF700A1EE19 /* libengine_keen_galaxy_res.a */; };
+		8A895AF92F1A7DF800A1EE19 /* libengine_core_mode.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895AD22F1A7DF700A1EE19 /* libengine_core_mode.a */; };
+		8A895AFA2F1A7DF800A1EE19 /* libSDL2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895AD32F1A7DF700A1EE19 /* libSDL2.a */; };
+		8A895AFB2F1A7DF800A1EE19 /* libengine_core_vgamepad.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895AD42F1A7DF700A1EE19 /* libengine_core_vgamepad.a */; };
+		8A895AFC2F1A7DF800A1EE19 /* libengine_core_menu_widgets.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895AD52F1A7DF700A1EE19 /* libengine_core_menu_widgets.a */; };
+		8A895AFD2F1A7DF800A1EE19 /* libGsKit_base_video.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895AD62F1A7DF700A1EE19 /* libGsKit_base_video.a */; };
+		8A895AFE2F1A7DF800A1EE19 /* libfreetyped.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895AD72F1A7DF700A1EE19 /* libfreetyped.a */; };
+		8A895AFF2F1A7DF800A1EE19 /* libengine_keen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895AD82F1A7DF700A1EE19 /* libengine_keen.a */; };
+		8A895B002F1A7DF800A1EE19 /* libengine_core_menu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895AD92F1A7DF700A1EE19 /* libengine_core_menu.a */; };
+		8A895B012F1A7DF800A1EE19 /* librefkeen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895ADA2F1A7DF700A1EE19 /* librefkeen.a */; };
+		8A895B022F1A7DF800A1EE19 /* libdepklite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895ADB2F1A7DF700A1EE19 /* libdepklite.a */; };
+		8A895B032F1A7DF800A1EE19 /* libGsKit_graphics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895ADC2F1A7DF700A1EE19 /* libGsKit_graphics.a */; };
+		8A895B042F1A7DF800A1EE19 /* libGsKit_widgets.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895ADD2F1A7DF700A1EE19 /* libGsKit_widgets.a */; };
+		8A895B052F1A7DF800A1EE19 /* libunzip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895ADE2F1A7DF700A1EE19 /* libunzip.a */; };
+		8A895B062F1A7DF800A1EE19 /* librefkeen_kdreams.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895ADF2F1A7DF700A1EE19 /* librefkeen_kdreams.a */; };
+		8A895B072F1A7DF800A1EE19 /* libSDL2_image.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895AE02F1A7DF700A1EE19 /* libSDL2_image.a */; };
+		8A895B082F1A7DF800A1EE19 /* libengine_keen_galaxy_ep5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895AE12F1A7DF800A1EE19 /* libengine_keen_galaxy_ep5.a */; };
+		8A895B092F1A7DF800A1EE19 /* libengine_keen_galaxy_ep4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895AE22F1A7DF800A1EE19 /* libengine_keen_galaxy_ep4.a */; };
+		8A895B0A2F1A7DF800A1EE19 /* libfileio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895AE32F1A7DF800A1EE19 /* libfileio.a */; };
+		8A895B0B2F1A7DF800A1EE19 /* libfileio_compression.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895AE42F1A7DF800A1EE19 /* libfileio_compression.a */; };
+		8A895B0C2F1A7DF800A1EE19 /* libGsKit_base_audio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895AE52F1A7DF800A1EE19 /* libGsKit_base_audio.a */; };
+		8A895B0D2F1A7DF800A1EE19 /* libGsKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895AE62F1A7DF800A1EE19 /* libGsKit.a */; };
+		8A895B0E2F1A7DF800A1EE19 /* libGsKit_base_lua.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895AE72F1A7DF800A1EE19 /* libGsKit_base_lua.a */; };
+		8A895B0F2F1A7DF800A1EE19 /* libcurl-d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895AE82F1A7DF800A1EE19 /* libcurl-d.a */; };
+		8A895B102F1A7DF800A1EE19 /* libengine_keen_galaxy_ep6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895AE92F1A7DF800A1EE19 /* libengine_keen_galaxy_ep6.a */; };
+		8A895B112F1A7DF800A1EE19 /* libengine_keen_galaxy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895AEA2F1A7DF800A1EE19 /* libengine_keen_galaxy.a */; };
+		8A895B122F1A7DF800A1EE19 /* libengine_keen_dreams.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895AEB2F1A7DF800A1EE19 /* libengine_keen_dreams.a */; };
+		8A895B132F1A7DF800A1EE19 /* libCommanderGenius.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895AEC2F1A7DF800A1EE19 /* libCommanderGenius.a */; };
+		8A895B142F1A7DF800A1EE19 /* libengine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895AED2F1A7DF800A1EE19 /* libengine.a */; };
+		8A895B162F1A7E7A00A1EE19 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A895B152F1A7E7A00A1EE19 /* libz.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8A5B11432F0F023D00733764 /* libengine_keen_vorticon.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_keen_vorticon.a; path = "../../build-ios/libs/libengine_keen_vorticon.a"; sourceTree = "<group>"; };
-		8A5B11442F0F023D00733764 /* libengine_keen_galaxy_common.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_keen_galaxy_common.a; path = "../../build-ios/libs/libengine_keen_galaxy_common.a"; sourceTree = "<group>"; };
-		8A5B11452F0F023D00733764 /* libGsKit_base_interface.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGsKit_base_interface.a; path = "../../build-ios/libs/libGsKit_base_interface.a"; sourceTree = "<group>"; };
-		8A5B11462F0F023D00733764 /* libdepklite.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdepklite.a; path = "../../build-ios/libs/libdepklite.a"; sourceTree = "<group>"; };
-		8A5B11472F0F023D00733764 /* libGsKit_base.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGsKit_base.a; path = "../../build-ios/libs/libGsKit_base.a"; sourceTree = "<group>"; };
-		8A5B11482F0F023D00733764 /* libGsKit_base_video.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGsKit_base_video.a; path = "../../build-ios/libs/libGsKit_base_video.a"; sourceTree = "<group>"; };
-		8A5B11492F0F023D00733764 /* libengine_core_mode.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_core_mode.a; path = "../../build-ios/libs/libengine_core_mode.a"; sourceTree = "<group>"; };
-		8A5B114A2F0F023D00733764 /* libengine_core_menu_widgets.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_core_menu_widgets.a; path = "../../build-ios/libs/libengine_core_menu_widgets.a"; sourceTree = "<group>"; };
-		8A5B114B2F0F023D00733764 /* libengine_keen_galaxy_ep4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_keen_galaxy_ep4.a; path = "../../build-ios/libs/libengine_keen_galaxy_ep4.a"; sourceTree = "<group>"; };
-		8A5B114C2F0F023D00733764 /* libengine.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine.a; path = "../../build-ios/libs/libengine.a"; sourceTree = "<group>"; };
-		8A5B114D2F0F023D00733764 /* libSDL2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2.a; path = "../../build-ios/libs/libSDL2.a"; sourceTree = "<group>"; };
-		8A5B114E2F0F023D00733764 /* libcg_dialog.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcg_dialog.a; path = "../../build-ios/libs/libcg_dialog.a"; sourceTree = "<group>"; };
-		8A5B114F2F0F023D00733764 /* libengine_keen_galaxy_menu.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_keen_galaxy_menu.a; path = "../../build-ios/libs/libengine_keen_galaxy_menu.a"; sourceTree = "<group>"; };
-		8A5B11502F0F023D00733764 /* libGsKit_base_audio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGsKit_base_audio.a; path = "../../build-ios/libs/libGsKit_base_audio.a"; sourceTree = "<group>"; };
-		8A5B11512F0F023D00733764 /* libGsKit_graphics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGsKit_graphics.a; path = "../../build-ios/libs/libGsKit_graphics.a"; sourceTree = "<group>"; };
-		8A5B11522F0F023D00733764 /* libSDL2_image.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2_image.a; path = "../../build-ios/libs/libSDL2_image.a"; sourceTree = "<group>"; };
-		8A5B11532F0F023D00733764 /* libengine_keen_galaxy_res.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_keen_galaxy_res.a; path = "../../build-ios/libs/libengine_keen_galaxy_res.a"; sourceTree = "<group>"; };
-		8A5B11542F0F023E00733764 /* libGsKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGsKit.a; path = "../../build-ios/libs/libGsKit.a"; sourceTree = "<group>"; };
-		8A5B11552F0F023E00733764 /* libSDL2_ttf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2_ttf.a; path = "../../build-ios/libs/libSDL2_ttf.a"; sourceTree = "<group>"; };
-		8A5B11562F0F023E00733764 /* libengine_core_menu.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_core_menu.a; path = "../../build-ios/libs/libengine_core_menu.a"; sourceTree = "<group>"; };
-		8A5B11572F0F023E00733764 /* libfileio_compression.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfileio_compression.a; path = "../../build-ios/libs/libfileio_compression.a"; sourceTree = "<group>"; };
-		8A5B11582F0F023E00733764 /* librefkeen_kdreams.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = librefkeen_kdreams.a; path = "../../build-ios/libs/librefkeen_kdreams.a"; sourceTree = "<group>"; };
-		8A5B11592F0F023E00733764 /* libengine_keen_galaxy_ep5.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_keen_galaxy_ep5.a; path = "../../build-ios/libs/libengine_keen_galaxy_ep5.a"; sourceTree = "<group>"; };
-		8A5B115A2F0F023E00733764 /* libengine_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_core.a; path = "../../build-ios/libs/libengine_core.a"; sourceTree = "<group>"; };
-		8A5B115B2F0F023E00733764 /* libengine_keen_galaxy.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_keen_galaxy.a; path = "../../build-ios/libs/libengine_keen_galaxy.a"; sourceTree = "<group>"; };
-		8A5B115C2F0F023E00733764 /* libengine_keen_dreams.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_keen_dreams.a; path = "../../build-ios/libs/libengine_keen_dreams.a"; sourceTree = "<group>"; };
-		8A5B115D2F0F023E00733764 /* librefkeen.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = librefkeen.a; path = "../../build-ios/libs/librefkeen.a"; sourceTree = "<group>"; };
-		8A5B115E2F0F023E00733764 /* libSDL2_mixer.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2_mixer.a; path = "../../build-ios/libs/libSDL2_mixer.a"; sourceTree = "<group>"; };
-		8A5B115F2F0F023E00733764 /* libGsKit_base_lua.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGsKit_base_lua.a; path = "../../build-ios/libs/libGsKit_base_lua.a"; sourceTree = "<group>"; };
-		8A5B11602F0F023E00733764 /* libfileio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfileio.a; path = "../../build-ios/libs/libfileio.a"; sourceTree = "<group>"; };
-		8A5B11612F0F023E00733764 /* libfreetyped.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetyped.a; path = "../../build-ios/libs/libfreetyped.a"; sourceTree = "<group>"; };
-		8A5B11622F0F023E00733764 /* libGsKit_fileio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGsKit_fileio.a; path = "../../build-ios/libs/libGsKit_fileio.a"; sourceTree = "<group>"; };
-		8A5B11632F0F023E00733764 /* libengine_core_vgamepad.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_core_vgamepad.a; path = "../../build-ios/libs/libengine_core_vgamepad.a"; sourceTree = "<group>"; };
-		8A5B11642F0F023E00733764 /* libGsKit_widgets.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGsKit_widgets.a; path = "../../build-ios/libs/libGsKit_widgets.a"; sourceTree = "<group>"; };
-		8A5B11652F0F023E00733764 /* libengine_keen.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_keen.a; path = "../../build-ios/libs/libengine_keen.a"; sourceTree = "<group>"; };
-		8A5B11662F0F023E00733764 /* libengine_keen_galaxy_ep6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_keen_galaxy_ep6.a; path = "../../build-ios/libs/libengine_keen_galaxy_ep6.a"; sourceTree = "<group>"; };
-		8A5B11672F0F023E00733764 /* libunzip.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libunzip.a; path = "../../build-ios/libs/libunzip.a"; sourceTree = "<group>"; };
-		8A5B11682F0F023E00733764 /* libCommanderGenius.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCommanderGenius.a; path = "../../build-ios/libs/libCommanderGenius.a"; sourceTree = "<group>"; };
 		8A5BC3FE2F0E6EC000733764 /* CommanderGenius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CommanderGenius.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A5BC4292F0E70F400733764 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8A5BC42B2F0E711000733764 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -113,6 +78,47 @@
 		8A5BC4402F0E84D500733764 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		8A5BC4422F0E84DE00733764 /* CoreHaptics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreHaptics.framework; path = System/Library/Frameworks/CoreHaptics.framework; sourceTree = SDKROOT; };
 		8A5BC4592F0E975800733764 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		8A895AC52F1A7DC100A1EE19 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		8A895AC72F1A7DF700A1EE19 /* libengine_keen_vorticon.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_keen_vorticon.a; path = "../../build-ios/libs/libengine_keen_vorticon.a"; sourceTree = "<group>"; };
+		8A895AC82F1A7DF700A1EE19 /* libengine_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_core.a; path = "../../build-ios/libs/libengine_core.a"; sourceTree = "<group>"; };
+		8A895AC92F1A7DF700A1EE19 /* libSDL2_ttf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2_ttf.a; path = "../../build-ios/libs/libSDL2_ttf.a"; sourceTree = "<group>"; };
+		8A895ACA2F1A7DF700A1EE19 /* libcg_dialog.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcg_dialog.a; path = "../../build-ios/libs/libcg_dialog.a"; sourceTree = "<group>"; };
+		8A895ACB2F1A7DF700A1EE19 /* libengine_keen_galaxy_menu.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_keen_galaxy_menu.a; path = "../../build-ios/libs/libengine_keen_galaxy_menu.a"; sourceTree = "<group>"; };
+		8A895ACC2F1A7DF700A1EE19 /* libGsKit_base.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGsKit_base.a; path = "../../build-ios/libs/libGsKit_base.a"; sourceTree = "<group>"; };
+		8A895ACD2F1A7DF700A1EE19 /* libGsKit_base_interface.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGsKit_base_interface.a; path = "../../build-ios/libs/libGsKit_base_interface.a"; sourceTree = "<group>"; };
+		8A895ACE2F1A7DF700A1EE19 /* libGsKit_fileio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGsKit_fileio.a; path = "../../build-ios/libs/libGsKit_fileio.a"; sourceTree = "<group>"; };
+		8A895ACF2F1A7DF700A1EE19 /* libengine_keen_galaxy_common.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_keen_galaxy_common.a; path = "../../build-ios/libs/libengine_keen_galaxy_common.a"; sourceTree = "<group>"; };
+		8A895AD02F1A7DF700A1EE19 /* libSDL2_mixer.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2_mixer.a; path = "../../build-ios/libs/libSDL2_mixer.a"; sourceTree = "<group>"; };
+		8A895AD12F1A7DF700A1EE19 /* libengine_keen_galaxy_res.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_keen_galaxy_res.a; path = "../../build-ios/libs/libengine_keen_galaxy_res.a"; sourceTree = "<group>"; };
+		8A895AD22F1A7DF700A1EE19 /* libengine_core_mode.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_core_mode.a; path = "../../build-ios/libs/libengine_core_mode.a"; sourceTree = "<group>"; };
+		8A895AD32F1A7DF700A1EE19 /* libSDL2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2.a; path = "../../build-ios/libs/libSDL2.a"; sourceTree = "<group>"; };
+		8A895AD42F1A7DF700A1EE19 /* libengine_core_vgamepad.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_core_vgamepad.a; path = "../../build-ios/libs/libengine_core_vgamepad.a"; sourceTree = "<group>"; };
+		8A895AD52F1A7DF700A1EE19 /* libengine_core_menu_widgets.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_core_menu_widgets.a; path = "../../build-ios/libs/libengine_core_menu_widgets.a"; sourceTree = "<group>"; };
+		8A895AD62F1A7DF700A1EE19 /* libGsKit_base_video.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGsKit_base_video.a; path = "../../build-ios/libs/libGsKit_base_video.a"; sourceTree = "<group>"; };
+		8A895AD72F1A7DF700A1EE19 /* libfreetyped.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetyped.a; path = "../../build-ios/libs/libfreetyped.a"; sourceTree = "<group>"; };
+		8A895AD82F1A7DF700A1EE19 /* libengine_keen.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_keen.a; path = "../../build-ios/libs/libengine_keen.a"; sourceTree = "<group>"; };
+		8A895AD92F1A7DF700A1EE19 /* libengine_core_menu.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_core_menu.a; path = "../../build-ios/libs/libengine_core_menu.a"; sourceTree = "<group>"; };
+		8A895ADA2F1A7DF700A1EE19 /* librefkeen.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = librefkeen.a; path = "../../build-ios/libs/librefkeen.a"; sourceTree = "<group>"; };
+		8A895ADB2F1A7DF700A1EE19 /* libdepklite.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdepklite.a; path = "../../build-ios/libs/libdepklite.a"; sourceTree = "<group>"; };
+		8A895ADC2F1A7DF700A1EE19 /* libGsKit_graphics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGsKit_graphics.a; path = "../../build-ios/libs/libGsKit_graphics.a"; sourceTree = "<group>"; };
+		8A895ADD2F1A7DF700A1EE19 /* libGsKit_widgets.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGsKit_widgets.a; path = "../../build-ios/libs/libGsKit_widgets.a"; sourceTree = "<group>"; };
+		8A895ADE2F1A7DF700A1EE19 /* libunzip.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libunzip.a; path = "../../build-ios/libs/libunzip.a"; sourceTree = "<group>"; };
+		8A895ADF2F1A7DF700A1EE19 /* librefkeen_kdreams.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = librefkeen_kdreams.a; path = "../../build-ios/libs/librefkeen_kdreams.a"; sourceTree = "<group>"; };
+		8A895AE02F1A7DF700A1EE19 /* libSDL2_image.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2_image.a; path = "../../build-ios/libs/libSDL2_image.a"; sourceTree = "<group>"; };
+		8A895AE12F1A7DF800A1EE19 /* libengine_keen_galaxy_ep5.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_keen_galaxy_ep5.a; path = "../../build-ios/libs/libengine_keen_galaxy_ep5.a"; sourceTree = "<group>"; };
+		8A895AE22F1A7DF800A1EE19 /* libengine_keen_galaxy_ep4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_keen_galaxy_ep4.a; path = "../../build-ios/libs/libengine_keen_galaxy_ep4.a"; sourceTree = "<group>"; };
+		8A895AE32F1A7DF800A1EE19 /* libfileio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfileio.a; path = "../../build-ios/libs/libfileio.a"; sourceTree = "<group>"; };
+		8A895AE42F1A7DF800A1EE19 /* libfileio_compression.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfileio_compression.a; path = "../../build-ios/libs/libfileio_compression.a"; sourceTree = "<group>"; };
+		8A895AE52F1A7DF800A1EE19 /* libGsKit_base_audio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGsKit_base_audio.a; path = "../../build-ios/libs/libGsKit_base_audio.a"; sourceTree = "<group>"; };
+		8A895AE62F1A7DF800A1EE19 /* libGsKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGsKit.a; path = "../../build-ios/libs/libGsKit.a"; sourceTree = "<group>"; };
+		8A895AE72F1A7DF800A1EE19 /* libGsKit_base_lua.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGsKit_base_lua.a; path = "../../build-ios/libs/libGsKit_base_lua.a"; sourceTree = "<group>"; };
+		8A895AE82F1A7DF800A1EE19 /* libcurl-d.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libcurl-d.a"; path = "../../build-ios/libs/libcurl-d.a"; sourceTree = "<group>"; };
+		8A895AE92F1A7DF800A1EE19 /* libengine_keen_galaxy_ep6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_keen_galaxy_ep6.a; path = "../../build-ios/libs/libengine_keen_galaxy_ep6.a"; sourceTree = "<group>"; };
+		8A895AEA2F1A7DF800A1EE19 /* libengine_keen_galaxy.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_keen_galaxy.a; path = "../../build-ios/libs/libengine_keen_galaxy.a"; sourceTree = "<group>"; };
+		8A895AEB2F1A7DF800A1EE19 /* libengine_keen_dreams.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine_keen_dreams.a; path = "../../build-ios/libs/libengine_keen_dreams.a"; sourceTree = "<group>"; };
+		8A895AEC2F1A7DF800A1EE19 /* libCommanderGenius.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCommanderGenius.a; path = "../../build-ios/libs/libCommanderGenius.a"; sourceTree = "<group>"; };
+		8A895AED2F1A7DF800A1EE19 /* libengine.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libengine.a; path = "../../build-ios/libs/libengine.a"; sourceTree = "<group>"; };
+		8A895B152F1A7E7A00A1EE19 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -145,44 +151,47 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A5B11692F0F023F00733764 /* libengine_keen_vorticon.a in Frameworks */,
-				8A5B116A2F0F023F00733764 /* libengine_keen_galaxy_common.a in Frameworks */,
-				8A5B116B2F0F023F00733764 /* libGsKit_base_interface.a in Frameworks */,
-				8A5B116C2F0F023F00733764 /* libdepklite.a in Frameworks */,
-				8A5B116D2F0F023F00733764 /* libGsKit_base.a in Frameworks */,
-				8A5B116E2F0F023F00733764 /* libGsKit_base_video.a in Frameworks */,
-				8A5B116F2F0F023F00733764 /* libengine_core_mode.a in Frameworks */,
-				8A5B11702F0F023F00733764 /* libengine_core_menu_widgets.a in Frameworks */,
-				8A5B11712F0F023F00733764 /* libengine_keen_galaxy_ep4.a in Frameworks */,
-				8A5B11722F0F023F00733764 /* libengine.a in Frameworks */,
-				8A5B11732F0F023F00733764 /* libSDL2.a in Frameworks */,
-				8A5B11742F0F023F00733764 /* libcg_dialog.a in Frameworks */,
-				8A5B11752F0F023F00733764 /* libengine_keen_galaxy_menu.a in Frameworks */,
-				8A5B11762F0F023F00733764 /* libGsKit_base_audio.a in Frameworks */,
-				8A5B11772F0F023F00733764 /* libGsKit_graphics.a in Frameworks */,
-				8A5B11782F0F023F00733764 /* libSDL2_image.a in Frameworks */,
-				8A5B11792F0F023F00733764 /* libengine_keen_galaxy_res.a in Frameworks */,
-				8A5B117A2F0F023F00733764 /* libGsKit.a in Frameworks */,
-				8A5B117B2F0F023F00733764 /* libSDL2_ttf.a in Frameworks */,
-				8A5B117C2F0F023F00733764 /* libengine_core_menu.a in Frameworks */,
-				8A5B117D2F0F023F00733764 /* libfileio_compression.a in Frameworks */,
-				8A5B117E2F0F023F00733764 /* librefkeen_kdreams.a in Frameworks */,
-				8A5B117F2F0F023F00733764 /* libengine_keen_galaxy_ep5.a in Frameworks */,
-				8A5B11802F0F023F00733764 /* libengine_core.a in Frameworks */,
-				8A5B11812F0F023F00733764 /* libengine_keen_galaxy.a in Frameworks */,
-				8A5B11822F0F023F00733764 /* libengine_keen_dreams.a in Frameworks */,
-				8A5B11832F0F023F00733764 /* librefkeen.a in Frameworks */,
-				8A5B11842F0F023F00733764 /* libSDL2_mixer.a in Frameworks */,
-				8A5B11852F0F023F00733764 /* libGsKit_base_lua.a in Frameworks */,
-				8A5B11862F0F023F00733764 /* libfileio.a in Frameworks */,
-				8A5B11872F0F023F00733764 /* libfreetyped.a in Frameworks */,
-				8A5B11882F0F023F00733764 /* libGsKit_fileio.a in Frameworks */,
-				8A5B11892F0F023F00733764 /* libengine_core_vgamepad.a in Frameworks */,
-				8A5B118A2F0F023F00733764 /* libGsKit_widgets.a in Frameworks */,
-				8A5B118B2F0F023F00733764 /* libengine_keen.a in Frameworks */,
-				8A5B118C2F0F023F00733764 /* libengine_keen_galaxy_ep6.a in Frameworks */,
-				8A5B118D2F0F023F00733764 /* libunzip.a in Frameworks */,
-				8A5B118E2F0F023F00733764 /* libCommanderGenius.a in Frameworks */,
+				8A895B162F1A7E7A00A1EE19 /* libz.tbd in Frameworks */,
+				8A895AEE2F1A7DF800A1EE19 /* libengine_keen_vorticon.a in Frameworks */,
+				8A895AEF2F1A7DF800A1EE19 /* libengine_core.a in Frameworks */,
+				8A895AF02F1A7DF800A1EE19 /* libSDL2_ttf.a in Frameworks */,
+				8A895AF12F1A7DF800A1EE19 /* libcg_dialog.a in Frameworks */,
+				8A895AF22F1A7DF800A1EE19 /* libengine_keen_galaxy_menu.a in Frameworks */,
+				8A895AF32F1A7DF800A1EE19 /* libGsKit_base.a in Frameworks */,
+				8A895AF42F1A7DF800A1EE19 /* libGsKit_base_interface.a in Frameworks */,
+				8A895AF52F1A7DF800A1EE19 /* libGsKit_fileio.a in Frameworks */,
+				8A895AF62F1A7DF800A1EE19 /* libengine_keen_galaxy_common.a in Frameworks */,
+				8A895AF72F1A7DF800A1EE19 /* libSDL2_mixer.a in Frameworks */,
+				8A895AF82F1A7DF800A1EE19 /* libengine_keen_galaxy_res.a in Frameworks */,
+				8A895AF92F1A7DF800A1EE19 /* libengine_core_mode.a in Frameworks */,
+				8A895AFA2F1A7DF800A1EE19 /* libSDL2.a in Frameworks */,
+				8A895AFB2F1A7DF800A1EE19 /* libengine_core_vgamepad.a in Frameworks */,
+				8A895AFC2F1A7DF800A1EE19 /* libengine_core_menu_widgets.a in Frameworks */,
+				8A895AFD2F1A7DF800A1EE19 /* libGsKit_base_video.a in Frameworks */,
+				8A895AFE2F1A7DF800A1EE19 /* libfreetyped.a in Frameworks */,
+				8A895AFF2F1A7DF800A1EE19 /* libengine_keen.a in Frameworks */,
+				8A895B002F1A7DF800A1EE19 /* libengine_core_menu.a in Frameworks */,
+				8A895B012F1A7DF800A1EE19 /* librefkeen.a in Frameworks */,
+				8A895B022F1A7DF800A1EE19 /* libdepklite.a in Frameworks */,
+				8A895B032F1A7DF800A1EE19 /* libGsKit_graphics.a in Frameworks */,
+				8A895B042F1A7DF800A1EE19 /* libGsKit_widgets.a in Frameworks */,
+				8A895B052F1A7DF800A1EE19 /* libunzip.a in Frameworks */,
+				8A895B062F1A7DF800A1EE19 /* librefkeen_kdreams.a in Frameworks */,
+				8A895B072F1A7DF800A1EE19 /* libSDL2_image.a in Frameworks */,
+				8A895B082F1A7DF800A1EE19 /* libengine_keen_galaxy_ep5.a in Frameworks */,
+				8A895B092F1A7DF800A1EE19 /* libengine_keen_galaxy_ep4.a in Frameworks */,
+				8A895B0A2F1A7DF800A1EE19 /* libfileio.a in Frameworks */,
+				8A895B0B2F1A7DF800A1EE19 /* libfileio_compression.a in Frameworks */,
+				8A895B0C2F1A7DF800A1EE19 /* libGsKit_base_audio.a in Frameworks */,
+				8A895B0D2F1A7DF800A1EE19 /* libGsKit.a in Frameworks */,
+				8A895B0E2F1A7DF800A1EE19 /* libGsKit_base_lua.a in Frameworks */,
+				8A895B0F2F1A7DF800A1EE19 /* libcurl-d.a in Frameworks */,
+				8A895B102F1A7DF800A1EE19 /* libengine_keen_galaxy_ep6.a in Frameworks */,
+				8A895B112F1A7DF800A1EE19 /* libengine_keen_galaxy.a in Frameworks */,
+				8A895B122F1A7DF800A1EE19 /* libengine_keen_dreams.a in Frameworks */,
+				8A895B132F1A7DF800A1EE19 /* libCommanderGenius.a in Frameworks */,
+				8A895B142F1A7DF800A1EE19 /* libengine.a in Frameworks */,
+				8A895AC62F1A7DC100A1EE19 /* Security.framework in Frameworks */,
 				8A5B108E2F0E9ED300733764 /* CoreGraphics.framework in Frameworks */,
 				8A5B108D2F0E9E7900733764 /* OpenGLES.framework in Frameworks */,
 				8A5B108C2F0E9E2E00733764 /* Metal.framework in Frameworks */,
@@ -221,44 +230,47 @@
 		8A5BC41C2F0E704900733764 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8A5B114E2F0F023D00733764 /* libcg_dialog.a */,
-				8A5B11682F0F023E00733764 /* libCommanderGenius.a */,
-				8A5B11462F0F023D00733764 /* libdepklite.a */,
-				8A5B114C2F0F023D00733764 /* libengine.a */,
-				8A5B115A2F0F023E00733764 /* libengine_core.a */,
-				8A5B11562F0F023E00733764 /* libengine_core_menu.a */,
-				8A5B114A2F0F023D00733764 /* libengine_core_menu_widgets.a */,
-				8A5B11492F0F023D00733764 /* libengine_core_mode.a */,
-				8A5B11632F0F023E00733764 /* libengine_core_vgamepad.a */,
-				8A5B11652F0F023E00733764 /* libengine_keen.a */,
-				8A5B115C2F0F023E00733764 /* libengine_keen_dreams.a */,
-				8A5B115B2F0F023E00733764 /* libengine_keen_galaxy.a */,
-				8A5B11442F0F023D00733764 /* libengine_keen_galaxy_common.a */,
-				8A5B114B2F0F023D00733764 /* libengine_keen_galaxy_ep4.a */,
-				8A5B11592F0F023E00733764 /* libengine_keen_galaxy_ep5.a */,
-				8A5B11662F0F023E00733764 /* libengine_keen_galaxy_ep6.a */,
-				8A5B114F2F0F023D00733764 /* libengine_keen_galaxy_menu.a */,
-				8A5B11532F0F023D00733764 /* libengine_keen_galaxy_res.a */,
-				8A5B11432F0F023D00733764 /* libengine_keen_vorticon.a */,
-				8A5B11602F0F023E00733764 /* libfileio.a */,
-				8A5B11572F0F023E00733764 /* libfileio_compression.a */,
-				8A5B11612F0F023E00733764 /* libfreetyped.a */,
-				8A5B11542F0F023E00733764 /* libGsKit.a */,
-				8A5B11472F0F023D00733764 /* libGsKit_base.a */,
-				8A5B11502F0F023D00733764 /* libGsKit_base_audio.a */,
-				8A5B11452F0F023D00733764 /* libGsKit_base_interface.a */,
-				8A5B115F2F0F023E00733764 /* libGsKit_base_lua.a */,
-				8A5B11482F0F023D00733764 /* libGsKit_base_video.a */,
-				8A5B11622F0F023E00733764 /* libGsKit_fileio.a */,
-				8A5B11512F0F023D00733764 /* libGsKit_graphics.a */,
-				8A5B11642F0F023E00733764 /* libGsKit_widgets.a */,
-				8A5B115D2F0F023E00733764 /* librefkeen.a */,
-				8A5B11582F0F023E00733764 /* librefkeen_kdreams.a */,
-				8A5B114D2F0F023D00733764 /* libSDL2.a */,
-				8A5B11522F0F023D00733764 /* libSDL2_image.a */,
-				8A5B115E2F0F023E00733764 /* libSDL2_mixer.a */,
-				8A5B11552F0F023E00733764 /* libSDL2_ttf.a */,
-				8A5B11672F0F023E00733764 /* libunzip.a */,
+				8A895B152F1A7E7A00A1EE19 /* libz.tbd */,
+				8A895ACA2F1A7DF700A1EE19 /* libcg_dialog.a */,
+				8A895AEC2F1A7DF800A1EE19 /* libCommanderGenius.a */,
+				8A895AE82F1A7DF800A1EE19 /* libcurl-d.a */,
+				8A895ADB2F1A7DF700A1EE19 /* libdepklite.a */,
+				8A895AED2F1A7DF800A1EE19 /* libengine.a */,
+				8A895AC82F1A7DF700A1EE19 /* libengine_core.a */,
+				8A895AD92F1A7DF700A1EE19 /* libengine_core_menu.a */,
+				8A895AD52F1A7DF700A1EE19 /* libengine_core_menu_widgets.a */,
+				8A895AD22F1A7DF700A1EE19 /* libengine_core_mode.a */,
+				8A895AD42F1A7DF700A1EE19 /* libengine_core_vgamepad.a */,
+				8A895AD82F1A7DF700A1EE19 /* libengine_keen.a */,
+				8A895AEB2F1A7DF800A1EE19 /* libengine_keen_dreams.a */,
+				8A895AEA2F1A7DF800A1EE19 /* libengine_keen_galaxy.a */,
+				8A895ACF2F1A7DF700A1EE19 /* libengine_keen_galaxy_common.a */,
+				8A895AE22F1A7DF800A1EE19 /* libengine_keen_galaxy_ep4.a */,
+				8A895AE12F1A7DF800A1EE19 /* libengine_keen_galaxy_ep5.a */,
+				8A895AE92F1A7DF800A1EE19 /* libengine_keen_galaxy_ep6.a */,
+				8A895ACB2F1A7DF700A1EE19 /* libengine_keen_galaxy_menu.a */,
+				8A895AD12F1A7DF700A1EE19 /* libengine_keen_galaxy_res.a */,
+				8A895AC72F1A7DF700A1EE19 /* libengine_keen_vorticon.a */,
+				8A895AE32F1A7DF800A1EE19 /* libfileio.a */,
+				8A895AE42F1A7DF800A1EE19 /* libfileio_compression.a */,
+				8A895AD72F1A7DF700A1EE19 /* libfreetyped.a */,
+				8A895AE62F1A7DF800A1EE19 /* libGsKit.a */,
+				8A895ACC2F1A7DF700A1EE19 /* libGsKit_base.a */,
+				8A895AE52F1A7DF800A1EE19 /* libGsKit_base_audio.a */,
+				8A895ACD2F1A7DF700A1EE19 /* libGsKit_base_interface.a */,
+				8A895AE72F1A7DF800A1EE19 /* libGsKit_base_lua.a */,
+				8A895AD62F1A7DF700A1EE19 /* libGsKit_base_video.a */,
+				8A895ACE2F1A7DF700A1EE19 /* libGsKit_fileio.a */,
+				8A895ADC2F1A7DF700A1EE19 /* libGsKit_graphics.a */,
+				8A895ADD2F1A7DF700A1EE19 /* libGsKit_widgets.a */,
+				8A895ADA2F1A7DF700A1EE19 /* librefkeen.a */,
+				8A895ADF2F1A7DF700A1EE19 /* librefkeen_kdreams.a */,
+				8A895AD32F1A7DF700A1EE19 /* libSDL2.a */,
+				8A895AE02F1A7DF700A1EE19 /* libSDL2_image.a */,
+				8A895AD02F1A7DF700A1EE19 /* libSDL2_mixer.a */,
+				8A895AC92F1A7DF700A1EE19 /* libSDL2_ttf.a */,
+				8A895ADE2F1A7DF700A1EE19 /* libunzip.a */,
+				8A895AC52F1A7DC100A1EE19 /* Security.framework */,
 				8A5BC4592F0E975800733764 /* Foundation.framework */,
 				8A5BC4422F0E84DE00733764 /* CoreHaptics.framework */,
 				8A5BC4402F0E84D500733764 /* CoreBluetooth.framework */,
@@ -518,7 +530,7 @@
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = metal;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -556,7 +568,7 @@
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = metal;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

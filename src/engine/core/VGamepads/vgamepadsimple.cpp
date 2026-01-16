@@ -107,7 +107,7 @@ bool TouchButton::handleFingerEvent(const GsVec2D<float> &Pos,
   // Decide how to handle that finger/mouse cursor press/release
   if (fingerDown) {
     if (mFingerSet.find(fingerID) == mFingerSet.end()) {
-      if (!isInsideExpanded(Pos, 0.05f))
+      if (!isInsideExpanded(Pos, 0.02f))
         return false;
 
       mFingerSet.insert(fingerID);
@@ -557,7 +557,7 @@ bool VirtualKeenControl::mouseFingerState(
     }
 
     bool stateChanged = false;
-    if (button.isInsideExpanded(Pos, 0.05f) && down && !button.isDown) {
+    if (button.isInsideExpanded(Pos, 0.02f) && down && !button.isDown) {
       button.isDown = true;
       stateChanged = true;
     } else if (!down && button.isDown) {

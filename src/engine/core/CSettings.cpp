@@ -88,7 +88,7 @@ bool CSettings::saveDrvCfg()
 
         int i = 1;
 
-#if !defined(TARGET_OS_IOS)
+#if !TARGET_OS_IOS
 // Because on IOS each time the app is updated / a new build is done we run in a new container. It should not 
 // keep track of the search paths
         for(searchpathlist::const_iterator p = tSearchPaths.begin(); p != tSearchPaths.end(); p++, i++)
@@ -372,8 +372,7 @@ void CSettings::loadDefaultGraphicsCfg() //Loads default graphics
 
 	gVideoDriver.setZoom(1);
     gTimer.setFPS(60.0f);
-#if defined(ANDROID) || defined(TARGET_OS_IOS)	
-	printf("Set aspect ratio to 0,0\n");
+#if defined(ANDROID) || TARGET_OS_IOS	
 	gVideoDriver.setAspectCorrection(0,0);
 #else
 	gVideoDriver.setAspectCorrection(4,3);

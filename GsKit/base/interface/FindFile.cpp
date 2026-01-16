@@ -29,6 +29,8 @@
 #include <base/interface/StringUtils.h>
 #include <base/interface/ConfigHandler.h>
 #include <base/GsLogging.h>
+#include <TargetConditionals.h>
+#include <iostream>
 
 #ifdef WIN32
 #	ifndef _WIN32_IE
@@ -57,7 +59,7 @@
 
 #endif
 
-#if defined(TARGET_OS_IPHONE) || defined(TARGET_IPHONE_SIMULATOR)
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
 std::string gIOSSandboxSharedFilesDir;
 #endif
 
@@ -86,7 +88,7 @@ void InitSearchPaths(const std::string &cfgFname)
 
     int i = 1;
 
-#if !defined(ANDROID) && !defined(TARGET_OS_IOS)
+#if !defined(ANDROID) && !TARGET_OS_IOS
 	printf("Read from config\n");
     while(true)
     {
@@ -489,7 +491,9 @@ void InitBaseSearchPaths()
 {
     basesearchpaths.clear();
 
-#if defined(TARGET_OS_IPHONE) || defined(TARGET_IPHONE_SIMULATOR)
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+	std::cout << "TARGET_OS_IPHONE = " << TARGET_OS_IPHONE << std::endl;
+	std::cout << "TARGET_OS_OSX = " << TARGET_OS_OSX << std::endl;
 	printf("gIOSSandboxSharedFilesDir=%s\n", gIOSSandboxSharedFilesDir.c_str());
     // AddToFileList(&basesearchpaths, ".");
     AddToFileList(&basesearchpaths, gIOSSandboxSharedFilesDir);

@@ -20,6 +20,7 @@
 #include <fstream>
 #include <SDL_syswm.h>
 #include <SDL_image.h>
+#include <TargetConditionals.h>
 
 bool useScrollTexels = false;
 
@@ -138,7 +139,7 @@ bool CVideoDriver::initResolutionList()
 
     GsVec2D<Uint16> resolution = {1920, 1080};
 
-#if defined(ANDROID) || defined(TARGET_OS_IOS)
+#if defined(ANDROID) || TARGET_OS_IOS
     resolution.x = 320;
     resolution.y = 200;
 #elif defined(__SWITCH__)

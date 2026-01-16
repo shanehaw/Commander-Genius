@@ -9,7 +9,7 @@
 #include "CVideoEngine.h"
 #include <base/GsLogging.h>
 #include <base/GsApp.h>
-
+#include <TargetConditionals.h>
 #include "graphics/GsGraphics.h"
 
 
@@ -113,7 +113,13 @@ bool CSDLVideo::init()
     SDL_RenderClear(renderer);
     SDL_RenderPresent(renderer);
 
+#if TARGET_OS_IOS
+	int rw, rh;
+	SDL_GetRendererOutputSize(renderer, &rw, &rh);
+    resizeDisplayScreen(GsRect<Uint16>(rw, rh));
+#else
     resizeDisplayScreen(m_VidConfig.mDisplayRect);
+#endif
 
 	return true;
 }
@@ -138,6 +144,9 @@ void CSDLVideo::resizeDisplayScreen(const GsRect<Uint16>& newDim)
 
         SDL_RenderSetIntegerScale(renderer,
                     (m_VidConfig.mIntegerScaling) ? SDL_TRUE : SDL_FALSE);
+
+
+        // SDL_RenderSetViewport(renderer, nullptr);
 
         SDL_Rect viewport;
         SDL_RenderGetViewport(renderer, &viewport);

@@ -21,11 +21,6 @@ ENDIF(WIN32)
 
 # iOS-specific configuration
 if (IOS)
-    # Set policy for download timestamp to suppress warnings
-    if(POLICY CMP0135)
-        cmake_policy(SET CMP0135 NEW)
-    endif()
-
     # Make sure all configurations output libraries in the same directory instead of in sub-directories per config
     # This allows easier linking from the Xcode iOS project
 	set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/libs)
@@ -67,6 +62,13 @@ if (IOS)
       PATCH_COMMAND sh external/download.sh
     )
 
+    FetchContent_Declare(
+      curl
+      URL            https://github.com/curl/curl/releases/download/curl-8_11_1/curl-8.11.1.zip
+      SOURCE_DIR     ${CMAKE_BINARY_DIR}/external/curl
+      DOWNLOAD_EXTRACT_TIMESTAMP TRUE
+    )
+
     # Build all libraries as static for iOS
     set(BUILD_SHARED_LIBS OFF)
     
@@ -92,13 +94,27 @@ if (IOS)
     set(SDL2TTF_VENDORED ON CACHE BOOL "" FORCE)
     set(SDL2MIXER_MIDI_NATIVE OFF CACHE BOOL "" FORCE)
     set(SDL2MIXER_MIDI_TIMIDITY ON CACHE BOOL "" FORCE)
+
     # Make sure debug libs have the same name as release ones
     set(SDL_CMAKE_DEBUG_POSTFIX "" CACHE STRING "" FORCE)
     set(SDL2IMAGE_DEBUG_POSTFIX "" CACHE STRING "" FORCE)
     set(SDL2MIXER_DEBUG_POSTFIX "" CACHE STRING "" FORCE)
     set(SDL2TTF_DEBUG_POSTFIX "" CACHE STRING "" FORCE)
+    
+    # Configure curl for iOS
+    set(BUILD_CURL_EXE OFF CACHE BOOL "" FORCE)
+    set(BUILD_STATIC_LIBS ON CACHE BOOL "" FORCE)
+    set(BUILD_TESTING OFF CACHE BOOL "" FORCE)
+    set(CURL_DISABLE_TESTS ON CACHE BOOL "" FORCE)
+    set(CURL_USE_SECTRANSP ON CACHE BOOL "" FORCE)  # Use iOS native SSL
+    set(CURL_USE_OPENSSL OFF CACHE BOOL "" FORCE)   # Don't need OpenSSL with SecureTransport
+    set(CURL_DISABLE_LDAP ON CACHE BOOL "" FORCE)
+    set(CURL_DISABLE_LDAPS ON CACHE BOOL "" FORCE)
+    set(CURL_CA_BUNDLE "none" CACHE STRING "" FORCE)
+    set(CURL_CA_PATH "none" CACHE STRING "" FORCE)
+    set(HTTP_ONLY ON CACHE BOOL "" FORCE)  # Only need HTTP/HTTPS
 
-    FetchContent_MakeAvailable(SDL SDL_image SDL_mixer SDL_ttf)
+    FetchContent_MakeAvailable(SDL SDL_image SDL_mixer SDL_ttf curl)
 
     # SDL2_ttf needs to download free type before it will
     # execute_process(COMMAND ${CMAKE_BINARY_DIR}/external/SDL2_ttf/external/download.sh)
@@ -117,6 +133,13 @@ if (IOS)
     set(SDL2_TTF_INCLUDE_DIR ${CMAKE_BINARY_DIR}/external/SDL2_ttf/include)
     set(SDL2_TTF_LIBRARY SDL2_ttf)
 
+    # Set curl variables for find_package compatibility
+    set(CURL_FOUND TRUE)
+    set(CURL_INCLUDE_DIR ${CMAKE_BINARY_DIR}/external/curl/include)
+    set(CURL_LIBRARY libcurl)  # Singular - required by FindCURL.cmake
+    set(CURL_LIBRARIES libcurl)  # Plural - for consistency
+    set(CURL_VERSION_STRING "8.11.1")
+
     # Add additional SDL2 build include directories directly
     include_directories(
         ${CMAKE_BINARY_DIR}/_deps/sdl-build/include
@@ -127,19 +150,15 @@ if (IOS)
     # Export these for subdirectories
     set(SDL2_INCLUDE_DIR ${SDL2_INCLUDE_DIR} CACHE STRING "SDL2 include directory")
     set(SDL2_LIBRARY ${SDL2_LIBRARY} CACHE STRING "SDL2 library")
-	set(USE_VIRTUALPAD ON)
-
+    set(CURL_INCLUDE_DIR ${CURL_INCLUDE_DIR} CACHE STRING "CURL include directory")
+    set(CURL_LIBRARY ${CURL_LIBRARY} CACHE STRING "CURL library")
+    set(CURL_LIBRARIES ${CURL_LIBRARIES} CACHE STRING "CURL libraries")
 
 
 
 endif()
 
-# Disable downloader for iOS (iOS apps use sandboxed downloads through Apple APIs)
-if(IOS)
-    set(DOWNLOADER OFF CACHE BOOL "Internal Downloader disabled for iOS" FORCE)
-else()
-    option(DOWNLOADER "Internal Downloader" ON)
-endif()
+option(DOWNLOADER "Internal Downloader" ON)
 
 if (OSXCROSS)
     message(STATUS "OSXCross is enabled")
@@ -319,4 +338,15 @@ endif()
 MESSAGE( STATUS "Build system is prepared. To Build the project just type \"make\"" )
 if(NOT IOS)
     MESSAGE( STATUS "If you want to create the installation package just type \"make package\" after you build the project" )
+endif()
+
+
+if(IOS)
+    message(STATUS "IOS is TRUE")
+else()
+    message(STATUS "IOS is FALSE")
+endif()
+
+if(APPLE)
+    message(STATUS "APPLE is TRUE")
 endif()

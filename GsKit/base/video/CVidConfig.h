@@ -50,6 +50,7 @@ public:
   void reset();
 
   void setResolution(const GsVec2D<Uint16> &res);
+  void setGameResolution(const GsVec2D<Uint16>& res);
 
   GsRect<Uint16> mGameRect; // Screenspace of the game. This one gets scaled to
                             // the DisplayRect
@@ -102,7 +103,7 @@ public:
     NEAREST,
     LINEAR
   }
-#ifdef __SWITCH__
+#if defined(__SWITCH__) || TARGET_OS_IOS
   mRenderScQuality = RenderQuality::NEAREST;
 #else
   mRenderScQuality = RenderQuality::LINEAR;

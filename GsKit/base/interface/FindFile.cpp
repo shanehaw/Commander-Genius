@@ -69,13 +69,11 @@ void printSearchPaths()
 {
     // print the searchpaths, this may be very usefull for the user
     gLogging.textOut(FONTCOLORS::BLACK,"I have now the following searchpaths (in this order):\n");
-	printf("I have the following searchpaths:\n");
     for(auto p2 = tSearchPaths.begin(); p2 != tSearchPaths.end(); p2++)
     {
         std::string path = *p2;
         ReplaceFileVariables(path);
         gLogging.textOut(FONTCOLORS::GREEN,"  %s\n", path.c_str());
-		printf("%s:\n", path.c_str());
     }
     gLogging.textOut(FONTCOLORS::BLACK," And that's all.\n");
 }
@@ -492,10 +490,7 @@ void InitBaseSearchPaths()
     basesearchpaths.clear();
 
 #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
-	std::cout << "TARGET_OS_IPHONE = " << TARGET_OS_IPHONE << std::endl;
-	std::cout << "TARGET_OS_OSX = " << TARGET_OS_OSX << std::endl;
-	printf("gIOSSandboxSharedFilesDir=%s\n", gIOSSandboxSharedFilesDir.c_str());
-    // AddToFileList(&basesearchpaths, ".");
+    // Use the ios container's shared dir passed in at runtime
     AddToFileList(&basesearchpaths, gIOSSandboxSharedFilesDir);
 #elif defined(__APPLE__)
     AddToFileList(&basesearchpaths, "${HOME}/Library/Application Support/Commander Genius");

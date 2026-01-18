@@ -199,23 +199,45 @@ bool VirtualKeenControl::ponder() {
   const float sizeWFactor = float(iSizeW) / 200.0f;
   const float sizeHFactor = float(iSizeH) / 200.0f;
 
-  if (mDPad.mTexture && !mDPad.invisible) {
-    const float dpadWSize = 0.2f * sizeWFactor;
-    const float dpadHSize = 0.2f * sizeHFactor;
+  // Get screen dimensions to calculate aspect ratio correction
+  const int screenW = gVideoDriver.getVidConfig().mDisplayRect.dim.x;
+  const int screenH = gVideoDriver.getVidConfig().mDisplayRect.dim.y;
+  const float aspectRatio = float(screenW) / float(screenH);
 
-    const GsRect<float> dpadRect(left, bottom - dpadHSize * 1.05f, dpadWSize,
-                                 dpadHSize);
+  if (mDPad.mTexture && !mDPad.invisible) {
+    // To keep D-pad truly circular on screen, we need to account for screen aspect ratio
+    // Use height factor for actual size, but adjust width in normalized coordinates
+    const float dpadHSize = 0.2f * sizeHFactor;
+    
+    // Adjust width in normalized coordinates to compensate for aspect ratio
+    const float dpadWSize = dpadHSize / aspectRatio;
+
+    const GsRect<float> dpadRect(left, bottom - dpadHSize * 1.05f,
+                                 dpadWSize, dpadHSize);
 
     mDPad.setRect(dpadRect);
     mDPad.mTexture.setAlpha(uint8_t(255.0f * mTranslucency));
 
-    // Ensure that the disc is positioned to the dpad correctly
+    // Store corrected disc rect for rendering - disc needs aspect correction too
     auto discRect = mDiscTexture.Rect();
-    if (discRect.pos < dpadRect.pos ||
-        discRect.pos > dpadRect.pos + dpadRect.dim - discRect.dim) {
-      GsVec2D<float> centDiscPos(dpadRect.pos +
-                                 (dpadRect.dim - discRect.dim) * 0.5f);
-
+    
+    // Make disc width narrower to appear circular on wide screen
+    const float correctedDiscWidth = discRect.dim.x / aspectRatio;
+    const float correctedDiscHeight = discRect.dim.y;
+    
+    GsVec2D<float> correctedDiscDim(correctedDiscWidth, correctedDiscHeight);
+    
+    // Check if disc needs to be repositioned within dpad (initial centering)
+    // Use corrected dimensions for the comparison
+    bool needsReposition = (discRect.pos < dpadRect.pos ||
+                            discRect.pos > dpadRect.pos + dpadRect.dim - correctedDiscDim);
+    
+    if (needsReposition) {
+      // Center the disc in the dpad using the corrected dimensions
+      GsVec2D<float> centDiscPos;
+      centDiscPos.x = dpadRect.pos.x + (dpadWSize - correctedDiscWidth) * 0.5f;
+      centDiscPos.y = dpadRect.pos.y + (dpadHSize - correctedDiscHeight) * 0.5f;
+      
       mDiscTexture.setPos(centDiscPos);
     }
   }
@@ -225,11 +247,10 @@ bool VirtualKeenControl::ponder() {
     const float buttonSizeH = 0.1f * sizeHFactor;
 
     const GsRect<float> confirmRect(right - 2.0f * buttonSizeW,
-                                    bottom - 2.0f * buttonSizeH, buttonSizeW,
-                                    buttonSizeH);
+                                    bottom - 2.0f * buttonSizeH,
+                                    buttonSizeW, buttonSizeH);
 
     mConfirmButton.setRect(confirmRect);
-
     mConfirmButton.mTexture.setAlpha(uint8_t(255.0f * mTranslucency));
   }
 
@@ -238,8 +259,8 @@ bool VirtualKeenControl::ponder() {
     const float buttonHSize = 0.1f * sizeHFactor;
 
     const GsRect<float> menuBtnRect(left + 3.5f * buttonWSize,
-                                    bottom - 1.5f * buttonHSize, buttonWSize,
-                                    buttonHSize);
+                                    bottom - 1.5f * buttonHSize,
+                                    buttonWSize, buttonHSize);
 
     mMenuButton.setRect(menuBtnRect);
     mMenuButton.mTexture.setAlpha(uint8_t(255.0f * mTranslucency));
@@ -250,11 +271,10 @@ bool VirtualKeenControl::ponder() {
     const float buttonHSize = 0.1f * sizeHFactor;
 
     const GsRect<float> statusRect(right - 3.4f * buttonWSize,
-                                   bottom - 2.2f * buttonHSize, buttonWSize,
-                                   buttonHSize);
+                                   bottom - 2.2f * buttonHSize,
+                                   buttonWSize, buttonHSize);
 
     mStatusButton.setRect(statusRect);
-
     mStatusButton.mTexture.setAlpha(uint8_t(255.0f * mTranslucency));
   }
 
@@ -263,11 +283,10 @@ bool VirtualKeenControl::ponder() {
     const float buttonHSize = 0.1f * sizeHFactor;
 
     const GsRect<float> startRect(right - 3.4f * buttonWSize,
-                                  bottom - 1.0f * buttonHSize, buttonWSize,
-                                  buttonHSize);
+                                  bottom - 1.0f * buttonHSize,
+                                  buttonWSize, buttonHSize);
 
     mStartButton.setRect(startRect);
-
     mStartButton.mTexture.setAlpha(uint8_t(255.0f * mTranslucency));
   }
 
@@ -276,11 +295,10 @@ bool VirtualKeenControl::ponder() {
     const float buttonHSize = 0.1f * sizeHFactor;
 
     const GsRect<float> jumpRect(right - 2.2f * buttonWSize,
-                                 bottom - 1.0f * buttonHSize, buttonWSize,
-                                 buttonHSize);
+                                 bottom - 1.0f * buttonHSize,
+                                 buttonWSize, buttonHSize);
 
     mJumpButton.setRect(jumpRect);
-
     mJumpButton.mTexture.setAlpha(uint8_t(255.0f * mTranslucency));
   }
 
@@ -289,11 +307,10 @@ bool VirtualKeenControl::ponder() {
     const float buttonHSize = 0.1f * sizeHFactor;
 
     const GsRect<float> pogoRect(right - 1.0f * buttonWSize,
-                                 bottom - 1.0f * buttonHSize, buttonWSize,
-                                 buttonHSize);
+                                 bottom - 1.0f * buttonHSize,
+                                 buttonWSize, buttonHSize);
 
     mPogoButton.setRect(pogoRect);
-
     mPogoButton.mTexture.setAlpha(uint8_t(255.0f * mTranslucency));
   }
 
@@ -302,16 +319,14 @@ bool VirtualKeenControl::ponder() {
     const float buttonHSize = 0.1f * sizeHFactor;
 
     const GsRect<float> shootRect(right - 2.2f * buttonWSize,
-                                  bottom - 2.2f * buttonHSize, buttonWSize,
-                                  buttonHSize);
+                                  bottom - 2.2f * buttonHSize,
+                                  buttonWSize, buttonHSize);
 
     mShootButton.setRect(shootRect);
-
     mShootButton.mTexture.setAlpha(uint8_t(255.0f * mTranslucency));
   }
 
 #endif
-
   return true;
 }
 
@@ -374,7 +389,19 @@ void VirtualKeenControl::render(GsWeakSurface &) {
   addTexture(mPogoButton);
 
   if (!mDPad.invisible && mDPad.x > 0.0f && mDPad.y > 0.0f) {
-    gVideoDriver.addTextureRefToVirtPadRender(mDiscTexture);
+
+   // Calculate aspect-corrected rect on the fly
+    const int screenW = gVideoDriver.getVidConfig().mDisplayRect.dim.x;
+    const int screenH = gVideoDriver.getVidConfig().mDisplayRect.dim.y;
+    const float aspectRatio = float(screenW) / float(screenH);
+    
+    auto discRect = mDiscTexture.Rect();
+    const float correctedWidth = discRect.dim.x / aspectRatio;
+    GsRect<float> correctedDiscRect(discRect.pos.x, discRect.pos.y, 
+                                    correctedWidth, discRect.dim.y);
+
+
+    gVideoDriver.addTextureRefToVirtPadRender(mDiscTexture.Texture(), correctedDiscRect);
   }
 
 #endif
@@ -429,7 +456,11 @@ bool VirtualKeenControl::handleDPad(const GsVec2D<float> &Pos,
   if (!mDPad.hasFinger(fingerID) && !mDPad.isInside(Pos))
     return false;
 
-  const auto discW = mDiscTexture.Rect().dim.x;
+  const int screenW = gVideoDriver.getVidConfig().mDisplayRect.dim.x;
+  const int screenH = gVideoDriver.getVidConfig().mDisplayRect.dim.y;
+  const float aspectRatio = float(screenW) / float(screenH);
+  
+  const auto discW = mDiscTexture.Rect().dim.x / aspectRatio;  // Use corrected width!
   const auto discH = mDiscTexture.Rect().dim.y;
 
   bool ok = false;
@@ -517,8 +548,8 @@ bool VirtualKeenControl::handleDPad(const GsVec2D<float> &Pos,
   discPos.y = std::min(discPos.y, mDPad.y + mDPad.h - discH);
   discPos.y = std::max(discPos.y, mDPad.y);
 
-  mDiscTexture.setPos(discPos);
 
+  mDiscTexture.setPos(discPos);
   return ok;
 }
 

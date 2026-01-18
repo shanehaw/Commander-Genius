@@ -101,6 +101,12 @@ bool CVideoDriver::init()
 
     initResolutionList();
 
+#if TARGET_OS_IOS
+    // Rather than use a default hardcoded resolution, take a resolution from the set
+    GsVec2D<Uint16> resolution = *mResolutionSet.begin();
+    mVidConfig.setResolution(resolution);
+    mVidConfig.setGameResolution(resolution);
+#endif
 
     if(!mSDLImageInUse)
     {
@@ -138,8 +144,7 @@ bool CVideoDriver::initResolutionList()
     // On the PC, this is the current resolution but we add some more.
 
     GsVec2D<Uint16> resolution = {1920, 1080};
-
-#if defined(ANDROID) || TARGET_OS_IOS
+#if defined(ANDROID)
     resolution.x = 320;
     resolution.y = 200;
 #elif defined(__SWITCH__)
@@ -178,17 +183,24 @@ bool CVideoDriver::initResolutionList()
             continue;
         }
 
+#if TARGET_OS_IOS
+        // TODO: should consider if we need this or not
+        // We only support landscape mode on IOS so only add the resolution where the width
+        // is greater than the height
+        if(mode.w > mode.h) 
+        {
+            mResolutionSet.insert(GsVec2D<Uint16>(mode.w, mode.h));
+        }
+#else
         mResolutionSet.insert(GsVec2D<Uint16>(mode.w, mode.h));
+#endif
     }
 
 
 #else
 
 // TODO: Not sure if those defines are really needed anymore.
-#if defined(TARGET_OS_IPHONE) || defined(TARGET_IPHONE_SIMULATOR)
-    resolution.x = 320; //  320;
-    resolution.y = 200;//  480;
-#elif defined(ANDROID)
+#if defined(ANDROID)
     resolution.x = 320;
     resolution.y = 200;
 #endif
@@ -226,11 +238,15 @@ bool CVideoDriver::initResolutionList()
 
 #endif
 
+
+// Do not use any hardcoded resolutions on IOS, rather let SDL tells us what resolutions are
+// available
+#if !TARGET_OS_IOS
     /// The last resolution in the list is the desktop one normally,
     /// that is the default and user is encouraged to adjust it for own needs.
     mResolutionSet.insert(curDispRes);
+#endif
 
-    mResolutionPos = mResolutionSet.begin();
 
     /// Game resolution part: These are the resolutions used internally by the games we support
     /// If these don't work on your system they get scaled or windowed.
@@ -321,12 +337,9 @@ std::set<std::string> CVideoDriver::getAspectStrSet()
 
 void CVideoDriver::setVidConfig(const CVidConfig& VidConf)
 {
-	printf("Seting vid config\n");
-	printf("New vsync = %s\n", VidConf.mVSync ? "true" : "false");
-	printf("New vpad = %s\n", VidConf.mVPad ? "true" : "false");
-
     mVidConfig = VidConf;
 
+    printf("in setVidConfig CSDL VidConfig x=%d, y=%d\n", mVidConfig.mDisplayRect.dim.x,mVidConfig.mDisplayRect.dim.y); 
     SDL_ShowCursor(mVidConfig.mShowCursor ? SDL_ENABLE : SDL_DISABLE);
 
     setMode(mVidConfig.mDisplayRect);
@@ -430,6 +443,8 @@ bool CVideoDriver::start()
 #endif
     {
         log << "Trying full SDL Video...";
+        printf("Setting vidconfig for CSDL\n");
+        printf("CSDL VidConfig x=%d, y=%d\n", mVidConfig.mDisplayRect.dim.x,mVidConfig.mDisplayRect.dim.y); 
         CSDLVideo *sdlVideoPtr = new CSDLVideo(mVidConfig);
         mpVideoEngine.reset(sdlVideoPtr);
         retval = mpVideoEngine->init();

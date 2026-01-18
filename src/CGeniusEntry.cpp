@@ -37,7 +37,7 @@ void registerEvents()
 
 
 /**
- * @brief  This is the function where CG beings
+ * @brief  This is the function where CG begins
  *
  * @param	argc   	number of arguments
  * @param	argv   	pointer to  char arrays where
@@ -119,10 +119,6 @@ int CommanderGenius_Run(int argc, char *argv[])
 
     gLogging.textOut(FONTCOLORS::GREEN,"Created Log file...\n");
 
-    printSearchPaths();
-    
-    
-    
     gLogging.textOut(FONTCOLORS::GREEN,"Initializing TTF driver...\n");
 
     if(!gTTFDriver.init())
@@ -144,7 +140,7 @@ int CommanderGenius_Run(int argc, char *argv[])
 
     gLogging.textOut(FONTCOLORS::GREEN, "Loading driver settings...\n");
 
-    // Check if there are settings on the PC, otherwise use defaults.
+    // Check if there are settings on the PC/Device, otherwise use defaults.
     if( !gSettings.loadDrvCfg() )
     {
         gLogging.textOut(FONTCOLORS::BLUE,"First time message: CG didn't find the driver config file. ");

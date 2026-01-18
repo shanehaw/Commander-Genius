@@ -13,12 +13,12 @@
 #define CONFIGURATOR_H_
 
 
-#if defined(ANDROID)
+#if defined(ANDROID) || TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
     #define EMBEDDED
     #undef USE_OPENGL
 #endif
 
-#if defined(EMBEDDED) || defined(TARGET_OS_IPHONE) || defined(TARGET_IPHONE_SIMULATOR)
+#if defined(EMBEDDED) || TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
     #define SINGLEPLAYER
 #endif
 

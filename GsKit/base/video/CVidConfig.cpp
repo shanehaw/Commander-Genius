@@ -68,12 +68,12 @@ void CVidConfig::reset()
     mGameRect.dim.y = 1080;
 
 #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
-    mOpengl = true;
+    mOpengl = false;
     mAspectCorrection.dim.x=0;
     mAspectCorrection.dim.y=0;
 #endif
 
-#if defined(ANDROID) || defined(TARGET_OS_IOS)
+#if defined(ANDROID)
     mAspectCorrection.dim.x=0;
     mAspectCorrection.dim.y=0;
 #endif
@@ -83,4 +83,9 @@ void CVidConfig::reset()
 void CVidConfig::setResolution(const GsVec2D<Uint16>& res)
 {
     mDisplayRect.dim = res;
+}
+
+void CVidConfig::setGameResolution(const GsVec2D<Uint16>& res)
+{
+    mGameRect.dim = res;
 }

@@ -276,6 +276,7 @@ void DisplaySettings::release()
     if(oldVidConf == mMyNewConf)
         return;
 
+    printf("in DisplaySettings::release VidConfig x=%d, y=%d\n", mMyNewConf.mDisplayRect.dim.x,mMyNewConf.mDisplayRect.dim.y); 
 	printf("from display settings. New value = %s\n", mMyNewConf.mVSync ? "true": "false");
     gVideoDriver.setVidConfig(mMyNewConf);
 

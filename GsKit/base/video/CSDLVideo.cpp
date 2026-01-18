@@ -71,6 +71,10 @@ bool CSDLVideo::init()
                               m_VidConfig.mDisplayRect.dim.y,
                               SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
 #else
+    printf("Display Rect, width: %d, height: %d\n",
+        m_VidConfig.mDisplayRect.dim.x,
+        m_VidConfig.mDisplayRect.dim.y);
+
     window = SDL_CreateWindow(gApp.getName().c_str(),
                               SDL_WINDOWPOS_CENTERED,
                               SDL_WINDOWPOS_CENTERED,
@@ -83,10 +87,10 @@ bool CSDLVideo::init()
 	{
 		gLogging.textOut(FONTCOLORS::RED,"SDL_CreateWindow(): %s<br>", SDL_GetError());		
 		return false;
-	}	
+	}
 
     mpMainScreenTexture = nullptr;
-	
+
     if(renderer)
     {
         SDL_DestroyRenderer(renderer);
@@ -97,8 +101,8 @@ bool CSDLVideo::init()
     if(m_VidConfig.mVSync)
     {
         rendererFlags |= SDL_RENDERER_PRESENTVSYNC;
-    }					
-		
+    }
+
     rendererFlags |= SDL_RENDERER_ACCELERATED;
 
     renderer = SDL_CreateRenderer(window, -1, rendererFlags);
@@ -113,10 +117,25 @@ bool CSDLVideo::init()
     SDL_RenderClear(renderer);
     SDL_RenderPresent(renderer);
 
+	
 #if TARGET_OS_IOS
 	int rw, rh;
 	SDL_GetRendererOutputSize(renderer, &rw, &rh);
-    resizeDisplayScreen(GsRect<Uint16>(rw, rh));
+    // Did I fix this?
+    // resizeDisplayScreen(GsRect<Uint16>(rw, rh));
+	
+	// Calculate and update virtual pad dimensions based on screen aspect ratio
+	const int VPAD_REFERENCE = 300;
+	
+	// Cast away const to modify the config (this is safe during initialization)
+	CVidConfig &vidConf = const_cast<CVidConfig&>(m_VidConfig);
+	
+	vidConf.mVPadHeight = VPAD_REFERENCE;
+	vidConf.mVPadWidth = (VPAD_REFERENCE * rh) / rw;
+	
+	printf( "Virtual Pad dimensions set to: %d x %d (screen: %d x %d)<br>",
+					vidConf.mVPadWidth, vidConf.mVPadHeight,
+					rw, rh);
 #else
     resizeDisplayScreen(m_VidConfig.mDisplayRect);
 #endif

@@ -1224,8 +1224,7 @@ void CInput::pollEvents()
                 Pos.y = std::max(0.0f, std::min(1.0f, Pos.y));
 #else
                 printf("SDL_MOUSEBUTTONDOWN\n");
-                const GsVec2D<int> rotPt(Event.tfinger.x*float(activeArea.dim.x),
-                        Event.tfinger.y*float(activeArea.dim.y));
+                const GsVec2D<int> rotPt(Event.button.x, Event.button.y);
                 transMouseRelCoord(Pos, rotPt, activeArea, tiltedScreen);
 #endif
                     m_EventList.add( new PointingDevEvent( Pos, PDE_BUTTONDOWN ) );
@@ -1281,10 +1280,8 @@ void CInput::pollEvents()
                 Pos.x = std::max(0.0f, std::min(1.0f, Pos.x));
                 Pos.y = std::max(0.0f, std::min(1.0f, Pos.y));
 #else
-
                 printf("SDL_MOUSEBUTTONUP\n");
-                const GsVec2D<int> rotPt(Event.tfinger.x*float(activeArea.dim.x),
-                        Event.tfinger.y*float(activeArea.dim.y));
+                const GsVec2D<int> rotPt(Event.button.x, Event.button.y);  // Changed from Event.tfinger
                 transMouseRelCoord(Pos, rotPt, activeArea, tiltedScreen);
 #endif
                 m_EventList.add( new PointingDevEvent( Pos, PDE_BUTTONUP ) );

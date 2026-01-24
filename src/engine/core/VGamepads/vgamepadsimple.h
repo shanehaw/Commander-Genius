@@ -125,6 +125,8 @@ public:
      */
     void hideEverything();
 
+    float calcAspectRatio();
+
 #if SDL_VERSION_ATLEAST(2, 0, 0)
 
     // Directional pad with control disc on top

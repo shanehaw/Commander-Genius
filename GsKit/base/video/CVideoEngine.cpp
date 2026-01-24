@@ -99,6 +99,11 @@ bool CVideoEngine::init()
 void CVideoEngine::updateActiveArea(const GsRect<Uint16>& displayRes,
                                     const GsVec2D<int> asp)
 {
+	printf("updateActiveArea. displayRes w:%d,h:%d\n", displayRes.dim.x, displayRes.dim.y);
+	printf("updateActiveArea. vidConfig.mGameRect w:%d,h:%d\n", m_VidConfig.mGameRect.dim.x, m_VidConfig.mGameRect.dim.y);
+	printf("updateActiveArea. asp x:%d,y:%d\n", asp.x, asp.y);
+	printf("updateActiveArea. before mActiveAreaRect pos w:%d,h:%d\n", mActiveAreaRect.pos.x, mActiveAreaRect.pos.y);
+	printf("updateActiveArea. before mActiveAreaRect dim w:%d,h:%d\n", mActiveAreaRect.dim.x, mActiveAreaRect.dim.y);
     const int aspWidth  = asp.x;
     const int aspHeight = asp.y;
 
@@ -143,6 +148,8 @@ void CVideoEngine::updateActiveArea(const GsRect<Uint16>& displayRes,
         }
         mActiveAreaRect.pos = (displayRes.dim-mActiveAreaRect.dim)/2;
     }
+	printf("updateActiveArea. after mActiveAreaRect pos w:%d,h:%d\n", mActiveAreaRect.pos.x, mActiveAreaRect.pos.y);
+	printf("updateActiveArea. after mActiveAreaRect dim w:%d,h:%d\n", mActiveAreaRect.dim.x, mActiveAreaRect.dim.y);
 }
 
 

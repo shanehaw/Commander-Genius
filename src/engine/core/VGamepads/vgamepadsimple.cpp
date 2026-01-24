@@ -199,10 +199,7 @@ bool VirtualKeenControl::ponder() {
   const float sizeWFactor = float(iSizeW) / 200.0f;
   const float sizeHFactor = float(iSizeH) / 200.0f;
 
-  // Get screen dimensions to calculate aspect ratio correction
-  const int screenW = gVideoDriver.getVidConfig().mDisplayRect.dim.x;
-  const int screenH = gVideoDriver.getVidConfig().mDisplayRect.dim.y;
-  const float aspectRatio = float(screenW) / float(screenH);
+  float aspectRatio = calcAspectRatio();
 
   if (mDPad.mTexture && !mDPad.invisible) {
     // To keep D-pad truly circular on screen, we need to account for screen aspect ratio
@@ -243,8 +240,8 @@ bool VirtualKeenControl::ponder() {
   }
 
   if (mConfirmButton.mTexture && !mConfirmButton.invisible) {
-    const float buttonSizeW = 0.1f * sizeWFactor;
-    const float buttonSizeH = 0.1f * sizeHFactor;
+      const float buttonSizeH = 0.1f * sizeHFactor;
+      const float buttonSizeW = buttonSizeH / aspectRatio;
 
     const GsRect<float> confirmRect(right - 2.0f * buttonSizeW,
                                     bottom - 2.0f * buttonSizeH,
@@ -255,10 +252,10 @@ bool VirtualKeenControl::ponder() {
   }
 
   if (mMenuButton.mTexture && !mMenuButton.invisible) {
-    const float buttonWSize = 0.1f * sizeWFactor;
-    const float buttonHSize = 0.1f * sizeHFactor;
+      const float buttonHSize = 0.1f * sizeHFactor;
+      const float buttonWSize = buttonHSize / aspectRatio;
 
-    const GsRect<float> menuBtnRect(left + 3.5f * buttonWSize,
+      const GsRect<float> menuBtnRect(left + 3.5f * buttonWSize,
                                     bottom - 1.5f * buttonHSize,
                                     buttonWSize, buttonHSize);
 
@@ -267,10 +264,10 @@ bool VirtualKeenControl::ponder() {
   }
 
   if (mStatusButton.mTexture && !mStatusButton.invisible) {
-    const float buttonWSize = 0.1f * sizeWFactor;
-    const float buttonHSize = 0.1f * sizeHFactor;
+      const float buttonHSize = 0.1f * sizeHFactor;
+      const float buttonWSize = buttonHSize / aspectRatio;
 
-    const GsRect<float> statusRect(right - 3.4f * buttonWSize,
+      const GsRect<float> statusRect(right - 3.4f * buttonWSize,
                                    bottom - 2.2f * buttonHSize,
                                    buttonWSize, buttonHSize);
 
@@ -279,10 +276,10 @@ bool VirtualKeenControl::ponder() {
   }
 
   if (mStartButton.mTexture && !mStartButton.invisible) {
-    const float buttonWSize = 0.1f * sizeWFactor;
-    const float buttonHSize = 0.1f * sizeHFactor;
+      const float buttonHSize = 0.1f * sizeHFactor;
+      const float buttonWSize = buttonHSize / aspectRatio;
 
-    const GsRect<float> startRect(right - 3.4f * buttonWSize,
+      const GsRect<float> startRect(right - 3.4f * buttonWSize,
                                   bottom - 1.0f * buttonHSize,
                                   buttonWSize, buttonHSize);
 
@@ -291,10 +288,10 @@ bool VirtualKeenControl::ponder() {
   }
 
   if (mJumpButton.mTexture && !mJumpButton.invisible) {
-    const float buttonWSize = 0.1f * sizeWFactor;
-    const float buttonHSize = 0.1f * sizeHFactor;
+      const float buttonHSize = 0.1f * sizeHFactor;
+      const float buttonWSize = buttonHSize / aspectRatio;
 
-    const GsRect<float> jumpRect(right - 2.2f * buttonWSize,
+      const GsRect<float> jumpRect(right - 2.2f * buttonWSize,
                                  bottom - 1.0f * buttonHSize,
                                  buttonWSize, buttonHSize);
 
@@ -303,10 +300,10 @@ bool VirtualKeenControl::ponder() {
   }
 
   if (mPogoButton.mTexture && !mPogoButton.invisible) {
-    const float buttonWSize = 0.1f * sizeWFactor;
-    const float buttonHSize = 0.1f * sizeHFactor;
+      const float buttonHSize = 0.1f * sizeHFactor;
+      const float buttonWSize = buttonHSize / aspectRatio;
 
-    const GsRect<float> pogoRect(right - 1.0f * buttonWSize,
+      const GsRect<float> pogoRect(right - 1.0f * buttonWSize,
                                  bottom - 1.0f * buttonHSize,
                                  buttonWSize, buttonHSize);
 
@@ -315,10 +312,10 @@ bool VirtualKeenControl::ponder() {
   }
 
   if (mShootButton.mTexture && !mShootButton.invisible) {
-    const float buttonWSize = 0.1f * sizeWFactor;
-    const float buttonHSize = 0.1f * sizeHFactor;
+      const float buttonHSize = 0.1f * sizeHFactor;
+      const float buttonWSize = buttonHSize / aspectRatio;
 
-    const GsRect<float> shootRect(right - 2.2f * buttonWSize,
+      const GsRect<float> shootRect(right - 2.2f * buttonWSize,
                                   bottom - 2.2f * buttonHSize,
                                   buttonWSize, buttonHSize);
 
@@ -360,6 +357,7 @@ void VirtualKeenControl::hideAllButtons() {
 #endif
 }
 
+
 void VirtualKeenControl::render(GsWeakSurface &) {
 #if SDL_VERSION_ATLEAST(2, 0, 0)
 
@@ -390,11 +388,8 @@ void VirtualKeenControl::render(GsWeakSurface &) {
 
   if (!mDPad.invisible && mDPad.x > 0.0f && mDPad.y > 0.0f) {
 
-   // Calculate aspect-corrected rect on the fly
-    const int screenW = gVideoDriver.getVidConfig().mDisplayRect.dim.x;
-    const int screenH = gVideoDriver.getVidConfig().mDisplayRect.dim.y;
-    const float aspectRatio = float(screenW) / float(screenH);
-    
+    // Calculate aspect-corrected rect on the fly
+    const float aspectRatio = calcAspectRatio();
     auto discRect = mDiscTexture.Rect();
     const float correctedWidth = discRect.dim.x / aspectRatio;
     GsRect<float> correctedDiscRect(discRect.pos.x, discRect.pos.y, 
@@ -403,7 +398,6 @@ void VirtualKeenControl::render(GsWeakSurface &) {
 
     gVideoDriver.addTextureRefToVirtPadRender(mDiscTexture.Texture(), correctedDiscRect);
   }
-
 #endif
 }
 
@@ -456,9 +450,7 @@ bool VirtualKeenControl::handleDPad(const GsVec2D<float> &Pos,
   if (!mDPad.hasFinger(fingerID) && !mDPad.isInside(Pos))
     return false;
 
-  const int screenW = gVideoDriver.getVidConfig().mDisplayRect.dim.x;
-  const int screenH = gVideoDriver.getVidConfig().mDisplayRect.dim.y;
-  const float aspectRatio = float(screenW) / float(screenH);
+  const float aspectRatio = calcAspectRatio();
   
   const auto discW = mDiscTexture.Rect().dim.x / aspectRatio;  // Use corrected width!
   const auto discH = mDiscTexture.Rect().dim.y;
@@ -551,6 +543,21 @@ bool VirtualKeenControl::handleDPad(const GsVec2D<float> &Pos,
 
   mDiscTexture.setPos(discPos);
   return ok;
+}
+
+float VirtualKeenControl::calcAspectRatio()
+{
+  const int screenDW = gVideoDriver.getVidConfig().mDisplayRect.dim.x;
+  const int screenDH = gVideoDriver.getVidConfig().mDisplayRect.dim.y;
+  float aspectRatio = float(screenDW) / float(screenDH);
+
+  const int screenYAW = gVideoDriver.getVidConfig().mAspectCorrection.dim.x;
+  const int screenYAH = gVideoDriver.getVidConfig().mAspectCorrection.dim.y;
+  if(screenYAH > 0)
+  {
+    aspectRatio = float(screenYAW) / float(screenYAH);
+  }
+  return aspectRatio;
 }
 
 bool VirtualKeenControl::mouseFingerState(

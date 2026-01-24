@@ -1004,10 +1004,19 @@ void CInput::pollEvents()
             if(gVideoDriver.VGamePadEnabled() && mpVirtPad &&
                mpVirtPad->active() )
             {
-                GsVec2D<int> rotPt(Event.tfinger.x*float(activeArea.dim.x),
-                                   Event.tfinger.y*float(activeArea.dim.y));
+                // SDL touch coordinates are in full screen space (0.0-1.0)
+                // Convert to pixel coordinates in full screen space
+                const float screenX = Event.tfinger.x * float(dispRect.dim.x);
+                const float screenY = Event.tfinger.y * float(dispRect.dim.y);
+                
+                // Convert to normalized coordinates within the active area
+                Pos.x = (screenX - float(activeArea.pos.x)) / float(activeArea.dim.x);
+                Pos.y = (screenY - float(activeArea.pos.y)) / float(activeArea.dim.y);
+                
+                // Clamp to valid range (in case touch is outside active area)
+                Pos.x = std::max(0.0f, std::min(1.0f, Pos.x));
+                Pos.y = std::max(0.0f, std::min(1.0f, Pos.y));
 
-                transMouseRelCoord(Pos, rotPt, activeArea, tiltedScreen);
 
                 if(!mpVirtPad->mouseFingerState(Pos, true, Event.tfinger, true))
                 {
@@ -1019,9 +1028,26 @@ void CInput::pollEvents()
             else
 #endif
             {
+#if TARGET_OS_IOS
+                // SDL touch coordinates are in full screen space (0.0-1.0)
+                // Convert to pixel coordinates in full screen space
+                const float screenX = Event.tfinger.x * float(dispRect.dim.x);
+                const float screenY = Event.tfinger.y * float(dispRect.dim.y);
+                
+                // Convert to normalized coordinates within the active area
+                Pos.x = (screenX - float(activeArea.pos.x)) / float(activeArea.dim.x);
+                Pos.y = (screenY - float(activeArea.pos.y)) / float(activeArea.dim.y);
+                
+                // Clamp to valid range (in case touch is outside active area)
+                Pos.x = std::max(0.0f, std::min(1.0f, Pos.x));
+                Pos.y = std::max(0.0f, std::min(1.0f, Pos.y));
+#else
                 const GsVec2D<int> rotPt(Event.tfinger.x*float(activeArea.dim.x),
-                                         Event.tfinger.y*float(activeArea.dim.y));
+                        Event.tfinger.y*float(activeArea.dim.y));
                 transMouseRelCoord(Pos, rotPt, activeArea, tiltedScreen);
+#endif
+
+
                 m_EventList.add( new PointingDevEvent( Pos, PDE_BUTTONDOWN ) );
                 gPointDevice.mPointingState.mActionButton = 1;
                 gPointDevice.mPointingState.mPos = Pos;
@@ -1035,10 +1061,19 @@ void CInput::pollEvents()
             if(gVideoDriver.VGamePadEnabled() && mpVirtPad &&
                mpVirtPad->active())
             {
-                GsVec2D<int> rotPt(Event.tfinger.x*float(activeArea.dim.x),
-                                   Event.tfinger.y*float(activeArea.dim.y));
+                // SDL touch coordinates are in full screen space (0.0-1.0)
+                // Convert to pixel coordinates in full screen space
+                const float screenX = Event.tfinger.x * float(dispRect.dim.x);
+                const float screenY = Event.tfinger.y * float(dispRect.dim.y);
+                
+                // Convert to normalized coordinates within the active area
+                Pos.x = (screenX - float(activeArea.pos.x)) / float(activeArea.dim.x);
+                Pos.y = (screenY - float(activeArea.pos.y)) / float(activeArea.dim.y);
+                
+                // Clamp to valid range (in case touch is outside active area)
+                Pos.x = std::max(0.0f, std::min(1.0f, Pos.x));
+                Pos.y = std::max(0.0f, std::min(1.0f, Pos.y));
 
-                transMouseRelCoord(Pos, rotPt, activeArea, tiltedScreen);
                 if(!mpVirtPad->mouseFingerState(Pos, true, Event.tfinger, false))
                 {
                     passSDLEventVec = true;
@@ -1052,10 +1087,24 @@ void CInput::pollEvents()
             {
                 passSDLEventVec = true;
 
-                GsVec2D<int> rotPt(Event.tfinger.x*float(activeArea.dim.x),
-                                   Event.tfinger.y*float(activeArea.dim.y));
-
+#if TARGET_OS_IOS
+                // SDL touch coordinates are in full screen space (0.0-1.0)
+                // Convert to pixel coordinates in full screen space
+                const float screenX = Event.tfinger.x * float(dispRect.dim.x);
+                const float screenY = Event.tfinger.y * float(dispRect.dim.y);
+                
+                // Convert to normalized coordinates within the active area
+                Pos.x = (screenX - float(activeArea.pos.x)) / float(activeArea.dim.x);
+                Pos.y = (screenY - float(activeArea.pos.y)) / float(activeArea.dim.y);
+                
+                // Clamp to valid range (in case touch is outside active area)
+                Pos.x = std::max(0.0f, std::min(1.0f, Pos.x));
+                Pos.y = std::max(0.0f, std::min(1.0f, Pos.y));
+#else
+                const GsVec2D<int> rotPt(Event.tfinger.x*float(activeArea.dim.x),
+                        Event.tfinger.y*float(activeArea.dim.y));
                 transMouseRelCoord(Pos, rotPt, activeArea, tiltedScreen);
+#endif
                 m_EventList.add( new PointingDevEvent( Pos, PDE_BUTTONUP ) );
                 gPointDevice.mPointingState.mActionButton = 0;
                 gPointDevice.mPointingState.mPos = Pos;
@@ -1073,7 +1122,18 @@ void CInput::pollEvents()
             if(gVideoDriver.VGamePadEnabled() && mpVirtPad &&
                mpVirtPad->active() )
             {
-                transMouseRelCoord(Pos, rotPt, activeArea, tiltedScreen);
+                // SDL touch coordinates are in full screen space (0.0-1.0)
+                // Convert to pixel coordinates in full screen space
+                const float screenX = Event.tfinger.x * float(dispRect.dim.x);
+                const float screenY = Event.tfinger.y * float(dispRect.dim.y);
+                
+                // Convert to normalized coordinates within the active area
+                Pos.x = (screenX - float(activeArea.pos.x)) / float(activeArea.dim.x);
+                Pos.y = (screenY - float(activeArea.pos.y)) / float(activeArea.dim.y);
+                
+                // Clamp to valid range (in case touch is outside active area)
+                Pos.x = std::max(0.0f, std::min(1.0f, Pos.x));
+                Pos.y = std::max(0.0f, std::min(1.0f, Pos.y));
 
                 if(!mpVirtPad->mouseFingerState(Pos, true, Event.tfinger, true))
                 {
@@ -1124,8 +1184,18 @@ void CInput::pollEvents()
                 if(gVideoDriver.VGamePadEnabled() && mpVirtPad &&
                    mpVirtPad->active() )
                 {
-                    const GsVec2D<int> rotPt(Event.motion.x, Event.motion.y);
-                    transMouseRelCoord(Pos, rotPt, activeArea, tiltedScreen);
+                    // SDL touch coordinates are in full screen space (0.0-1.0)
+                    // Convert to pixel coordinates in full screen space
+                    const float screenX = Event.tfinger.x * float(dispRect.dim.x);
+                    const float screenY = Event.tfinger.y * float(dispRect.dim.y);
+                    
+                    // Convert to normalized coordinates within the active area
+                    Pos.x = (screenX - float(activeArea.pos.x)) / float(activeArea.dim.x);
+                    Pos.y = (screenY - float(activeArea.pos.y)) / float(activeArea.dim.y);
+                    
+                    // Clamp to valid range (in case touch is outside active area)
+                    Pos.x = std::max(0.0f, std::min(1.0f, Pos.x));
+                    Pos.y = std::max(0.0f, std::min(1.0f, Pos.y));
 
                     if(!mpVirtPad->mouseDown(Pos))
                     {
@@ -1137,8 +1207,24 @@ void CInput::pollEvents()
                 else
 #endif
                 {
-                    const GsVec2D<int> rotPt(Event.motion.x, Event.motion.y);
-                    transMouseRelCoord(Pos, Event.motion, activeArea, tiltedScreen);
+#if TARGET_OS_IOS
+                // SDL touch coordinates are in full screen space (0.0-1.0)
+                // Convert to pixel coordinates in full screen space
+                const float screenX = Event.tfinger.x * float(dispRect.dim.x);
+                const float screenY = Event.tfinger.y * float(dispRect.dim.y);
+                
+                // Convert to normalized coordinates within the active area
+                Pos.x = (screenX - float(activeArea.pos.x)) / float(activeArea.dim.x);
+                Pos.y = (screenY - float(activeArea.pos.y)) / float(activeArea.dim.y);
+                
+                // Clamp to valid range (in case touch is outside active area)
+                Pos.x = std::max(0.0f, std::min(1.0f, Pos.x));
+                Pos.y = std::max(0.0f, std::min(1.0f, Pos.y));
+#else
+                const GsVec2D<int> rotPt(Event.tfinger.x*float(activeArea.dim.x),
+                        Event.tfinger.y*float(activeArea.dim.y));
+                transMouseRelCoord(Pos, rotPt, activeArea, tiltedScreen);
+#endif
                     m_EventList.add( new PointingDevEvent( Pos, PDE_BUTTONDOWN ) );
                     gPointDevice.mPointingState.mActionButton = 1;
                     gPointDevice.mPointingState.mPos = Pos;
@@ -1153,8 +1239,19 @@ void CInput::pollEvents()
             if(gVideoDriver.VGamePadEnabled() && mpVirtPad &&
                     mpVirtPad->active())
             {
-                const GsVec2D<int> rotPt(Event.motion.x, Event.motion.y);
-                transMouseRelCoord(Pos, rotPt, activeArea, tiltedScreen);
+                    // SDL touch coordinates are in full screen space (0.0-1.0)
+                    // Convert to pixel coordinates in full screen space
+                    const float screenX = Event.tfinger.x * float(dispRect.dim.x);
+                    const float screenY = Event.tfinger.y * float(dispRect.dim.y);
+                    
+                    // Convert to normalized coordinates within the active area
+                    Pos.x = (screenX - float(activeArea.pos.x)) / float(activeArea.dim.x);
+                    Pos.y = (screenY - float(activeArea.pos.y)) / float(activeArea.dim.y);
+                    
+                    // Clamp to valid range (in case touch is outside active area)
+                    Pos.x = std::max(0.0f, std::min(1.0f, Pos.x));
+                    Pos.y = std::max(0.0f, std::min(1.0f, Pos.y));
+
                 if(!mpVirtPad->mouseUp(Pos))
                 {
                     passSDLEventVec = true;
@@ -1167,8 +1264,24 @@ void CInput::pollEvents()
 #endif
             {
                 passSDLEventVec = true;
-                const GsVec2D<int> rotPt(Event.motion.x, Event.motion.y);
-                transMouseRelCoord(Pos, Event.motion, activeArea, tiltedScreen);
+#if TARGET_OS_IOS
+                // SDL touch coordinates are in full screen space (0.0-1.0)
+                // Convert to pixel coordinates in full screen space
+                const float screenX = Event.tfinger.x * float(dispRect.dim.x);
+                const float screenY = Event.tfinger.y * float(dispRect.dim.y);
+                
+                // Convert to normalized coordinates within the active area
+                Pos.x = (screenX - float(activeArea.pos.x)) / float(activeArea.dim.x);
+                Pos.y = (screenY - float(activeArea.pos.y)) / float(activeArea.dim.y);
+                
+                // Clamp to valid range (in case touch is outside active area)
+                Pos.x = std::max(0.0f, std::min(1.0f, Pos.x));
+                Pos.y = std::max(0.0f, std::min(1.0f, Pos.y));
+#else
+                const GsVec2D<int> rotPt(Event.tfinger.x*float(activeArea.dim.x),
+                        Event.tfinger.y*float(activeArea.dim.y));
+                transMouseRelCoord(Pos, rotPt, activeArea, tiltedScreen);
+#endif
                 m_EventList.add( new PointingDevEvent( Pos, PDE_BUTTONUP ) );
                 gPointDevice.mPointingState.mActionButton = 0;
                 gPointDevice.mPointingState.mPos = Pos;

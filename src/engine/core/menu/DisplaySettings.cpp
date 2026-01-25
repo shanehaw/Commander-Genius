@@ -167,6 +167,16 @@ void DisplaySettings::refresh()
 
 void DisplaySettings::release()
 {
+    printf("=== DisplaySettings::release START ===\n");
+    
+    // Copy current config to my new Config.
+    mMyNewConf = gVideoDriver.getVidConfig();
+    
+    printf("  After copying from driver:\n");
+    printf("    mMyNewConf.mGameRect: %dx%d\n", 
+           mMyNewConf.mGameRect.dim.x, mMyNewConf.mGameRect.dim.y);
+    printf("    mMyNewConf.mDisplayRect: %dx%d\n", 
+           mMyNewConf.mDisplayRect.dim.x, mMyNewConf.mDisplayRect.dim.y);
 
 #if !defined(EMBEDDED)
     mMyNewConf.mTiltedScreen = mpTiltScreenSwitch->isEnabled();
@@ -276,9 +286,15 @@ void DisplaySettings::release()
     if(oldVidConf == mMyNewConf)
         return;
 
+    printf("  Before setVidConfig:\n");
+    printf("    mMyNewConf.mGameRect: %dx%d\n", 
+           mMyNewConf.mGameRect.dim.x, mMyNewConf.mGameRect.dim.y);
+    printf("    mMyNewConf.mDisplayRect: %dx%d\n", 
+           mMyNewConf.mDisplayRect.dim.x, mMyNewConf.mDisplayRect.dim.y);
+
     printf("in DisplaySettings::release VidConfig x=%d, y=%d\n", mMyNewConf.mDisplayRect.dim.x,mMyNewConf.mDisplayRect.dim.y); 
     printf("in DisplaySettings::release Aspect correction x=%d, y=%d\n", mMyNewConf.mAspectCorrection.dim.x,mMyNewConf.mAspectCorrection.dim.y); 
-	printf("from display settings. New value = %s\n", mMyNewConf.mVSync ? "true": "false");
+    printf("from display settings. New value = %s\n", mMyNewConf.mVSync ? "true": "false");
     gVideoDriver.setVidConfig(mMyNewConf);
 
 
@@ -300,5 +316,7 @@ void DisplaySettings::release()
     gSettings.saveDrvCfg();
 
     gMenuController.updateGraphics();
+    
+    printf("=== DisplaySettings::release END ===\n");
 }
 

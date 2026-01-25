@@ -151,18 +151,31 @@ void CSDLVideo::resizeDisplayScreen(const GsRect<Uint16>& newDim)
 
     try
     {
+        
+        printf("=== RESIZE DISPLAY SCREEN START ===\n");
+        printf("  Input newDim: %dx%d\n", newDim.dim.x, newDim.dim.y);
+        printf("  m_VidConfig.mGameRect: %dx%d (SHOULD BE 320x200!)\n", 
+               m_VidConfig.mGameRect.dim.x, m_VidConfig.mGameRect.dim.y);
+        printf("  m_VidConfig.mDisplayRect: %dx%d\n", 
+               m_VidConfig.mDisplayRect.dim.x, m_VidConfig.mDisplayRect.dim.y);
+        printf("  Aspect correction: %dx%d\n", 
+               m_VidConfig.mAspectCorrection.dim.x, m_VidConfig.mAspectCorrection.dim.y);
         const auto &asp = m_VidConfig.mAspectCorrection.dim;
+
         updateActiveArea(newDim, asp);
 
         if(renderer == nullptr)
             throw "Error. Renderer not inited.";
 
+        printf("LogicalSize set to mActiveAreaRect.dim.x %d; mActiveAreaRect.dim.y %d\n", 
+                mActiveAreaRect.dim.x,
+                mActiveAreaRect.dim.y);
+        // SDL_RenderSetLogicalSize(renderer,
+        //                          mActiveAreaRect.dim.x,
+        //                          mActiveAreaRect.dim.y);
         SDL_RenderSetLogicalSize(renderer,
-                                 mActiveAreaRect.dim.x,
-                                 mActiveAreaRect.dim.y);
-
-        SDL_RenderSetIntegerScale(renderer,
-                    (m_VidConfig.mIntegerScaling) ? SDL_TRUE : SDL_FALSE);
+                         m_VidConfig.mGameRect.dim.x,
+                         m_VidConfig.mGameRect.dim.y);
 
 
         // SDL_RenderSetViewport(renderer, nullptr);
@@ -271,7 +284,10 @@ extern GsTexture testTex;
 
 void CSDLVideo::transformScreenToDisplay()
 {
-
+   printf("Screen surface: %dx%d, Active area: %dx%d, Logical size should be: %dx%d\n",
+       mpScreenSfc->width(), mpScreenSfc->height(),
+       mActiveAreaRect.dim.x, mActiveAreaRect.dim.y,
+       m_VidConfig.mGameRect.dim.x, m_VidConfig.mGameRect.dim.y);
 #if SDL_VERSION_ATLEAST(2, 0, 0) 
 
     const bool tiltVideo = m_VidConfig.mTiltedScreen;

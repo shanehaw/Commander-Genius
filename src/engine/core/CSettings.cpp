@@ -302,7 +302,6 @@ bool CSettings::loadDrvCfg() {
   config.ReadInteger("Video", "height", &height, 1080);
   GsVec2D<Uint16> resolution(width, height);
   vidConf.setResolution(resolution);
-  vidConf.setGameResolution(resolution);
 
   printf("in load config VidConfig x=%d, y=%d\n", vidConf.mDisplayRect.dim.x,vidConf.mDisplayRect.dim.y); 
   printf("from settings: new value = %s\n", vidConf.mVSync ? "true" : "false");

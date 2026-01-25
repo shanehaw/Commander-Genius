@@ -105,7 +105,6 @@ bool CVideoDriver::init()
     // Rather than use a default hardcoded resolution, take a resolution from the set
     GsVec2D<Uint16> resolution = *mResolutionSet.begin();
     mVidConfig.setResolution(resolution);
-    mVidConfig.setGameResolution(resolution);
 #endif
 
     if(!mSDLImageInUse)
@@ -144,7 +143,7 @@ bool CVideoDriver::initResolutionList()
     // On the PC, this is the current resolution but we add some more.
 
     GsVec2D<Uint16> resolution = {1920, 1080};
-#if defined(ANDROID)
+#if defined(ANDROID) || TARGET_OS_IOS
     resolution.x = 320;
     resolution.y = 200;
 #elif defined(__SWITCH__)
@@ -239,13 +238,9 @@ bool CVideoDriver::initResolutionList()
 #endif
 
 
-// Do not use any hardcoded resolutions on IOS, rather let SDL tells us what resolutions are
-// available
-#if !TARGET_OS_IOS
     /// The last resolution in the list is the desktop one normally,
     /// that is the default and user is encouraged to adjust it for own needs.
     mResolutionSet.insert(curDispRes);
-#endif
 
 
     /// Game resolution part: These are the resolutions used internally by the games we support
@@ -343,6 +338,10 @@ void CVideoDriver::setVidConfig(const CVidConfig& VidConf)
     SDL_ShowCursor(mVidConfig.mShowCursor ? SDL_ENABLE : SDL_DISABLE);
 
     setMode(mVidConfig.mDisplayRect);
+    if(mpVideoEngine)
+    {
+        mpVideoEngine->resizeDisplayScreen(mVidConfig.mDisplayRect);
+    }
 }
 
 void CVideoDriver::setMode(const int width, const int height)

@@ -122,11 +122,10 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		8A5B11202F0EDF4400733764 /* Exceptions for "CommanderGenius" folder in "CommanderGenius" target */ = {
+		8AE354A32F2557A300EDE5D3 /* Exceptions for "CommanderGenius" folder in "CommanderGenius" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
-				main.hpp,
 			);
 			target = 8A5BC3FD2F0E6EC000733764 /* CommanderGenius */;
 		};
@@ -136,11 +135,8 @@
 		8A5BC4002F0E6EC000733764 /* CommanderGenius */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				8A5B11202F0EDF4400733764 /* Exceptions for "CommanderGenius" folder in "CommanderGenius" target */,
+				8AE354A32F2557A300EDE5D3 /* Exceptions for "CommanderGenius" folder in "CommanderGenius" target */,
 			);
-			explicitFileTypes = {
-				main.hpp = sourcecode.cpp.objcpp;
-			};
 			path = CommanderGenius;
 			sourceTree = "<group>";
 		};

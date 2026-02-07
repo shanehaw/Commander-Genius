@@ -185,12 +185,12 @@ ENDIF(WIN32)
 
 # Only for SDL2 and Win32 since it is updated for that platform.
 if(WIN32)
-    target_link_libraries(CGeniusExe mingw32)
-    target_link_libraries(CGeniusExe user32)
-    target_link_libraries(CGeniusExe gdi32)
-    target_link_libraries(CGeniusExe winmm)
-    target_link_libraries(CGeniusExe imm32)
-    target_link_libraries(CGeniusExe version)
+	target_link_libraries(CGeniusExe PUBLIC mingw32)
+    target_link_libraries(CGeniusExe PUBLIC user32)
+    target_link_libraries(CGeniusExe PUBLIC gdi32)
+    target_link_libraries(CGeniusExe PUBLIC winmm)
+    target_link_libraries(CGeniusExe PUBLIC imm32)
+    target_link_libraries(CGeniusExe PUBLIC version)
 endif(WIN32)
 
 # Stuff definitions in case we want to install it

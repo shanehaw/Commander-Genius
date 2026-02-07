@@ -256,6 +256,8 @@ endif()
 # Add GsKit
 add_subdirectory("GsKit")
 
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/GsKit/CMake)
+
 option(DISABLE_HOVER "Disables the hover over effect in the menus, useful for touch based devices" OFF)
 
 if(DISABLE_HOVER OR IOS)

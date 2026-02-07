@@ -12,6 +12,22 @@
 #ifndef CONFIGURATOR_H_
 #define CONFIGURATOR_H_
 
+// Include Apple headers if on Apple platform
+#if defined(__APPLE__)
+    #include <TargetConditionals.h>
+#endif
+
+// Define fallbacks for non-Apple platforms
+#ifndef TARGET_OS_IPHONE
+    #define TARGET_OS_IPHONE 0
+#endif
+#ifndef TARGET_IPHONE_SIMULATOR
+    #define TARGET_IPHONE_SIMULATOR 0
+#endif
+#ifndef TARGET_OS_IOS
+    #define TARGET_OS_IOS 0
+#endif
+
 
 #if defined(ANDROID) || TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
     #define EMBEDDED

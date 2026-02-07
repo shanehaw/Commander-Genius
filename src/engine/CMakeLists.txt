@@ -80,8 +80,9 @@ endif()
 add_custom_target(
     createGameLauncherMenu
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-    COMMAND ${XXD_COMMAND} -i gamelauncher.menu ${CMAKE_CURRENT_BINARY_DIR}/gamelauncher.menu.h
+	COMMAND xxd -i gamelauncher.menu ${CMAKE_CURRENT_BINARY_DIR}/gamelauncher.menu.h
 )
+# COMMAND ${XXD_COMMAND} -i gamelauncher.menu ${CMAKE_CURRENT_BINARY_DIR}/gamelauncher.menu.h
 
 # Add dependency on xxd if we built it
 if(NOT IOS AND NOT OSXCROSS)

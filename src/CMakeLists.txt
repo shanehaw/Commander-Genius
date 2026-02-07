@@ -79,7 +79,7 @@ if(NOT IOS)
 		include_directories(${SDL2_IMAGE_INCLUDE_DIR})
 	endif(SDL2_FOUND)
 
-	find_package(SDL2_mixer REQUIRED)
+	find_package(SDL2_mixer MODULE REQUIRED)
 
 	if(SDL2_MIXER_FOUND)
 	   INCLUDE_DIRECTORIES(${SDL2_MIXER_INCLUDE_DIRS})

@@ -16,7 +16,13 @@
 #include <base/interface/Color.h>
 #include <base/video/scaler/CScaler.h>
 #if defined(__APPLE__)
-#include <TargetConditionals.h>
+    #include <TargetConditionals.h>
+#else
+    // Define Apple platform macros as 0 on non-Apple platforms
+    #define TARGET_OS_IOS 0
+    #define TARGET_OS_IPHONE 0
+    #define TARGET_IPHONE_SIMULATOR 0
+    #define TARGET_OS_MAC 0
 #endif
 #include <string>
 

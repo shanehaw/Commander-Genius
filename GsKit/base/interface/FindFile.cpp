@@ -856,7 +856,7 @@ std::string GetHomeDir()
 std::string GetSystemDataDir() {
 #ifndef WIN32
     return SYSTEM_DATA_DIR;
-#elif defined(TARGET_OS_IPHONE) || defined(TARGET_IPHONE_SIMULATOR)
+#elif TARGET_OS_IOS
     return gIOSSandboxSharedFilesDir;
 #else
     // windows don't have such dir, don't it?

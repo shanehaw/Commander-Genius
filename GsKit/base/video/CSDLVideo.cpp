@@ -9,7 +9,9 @@
 #include "CVideoEngine.h"
 #include <base/GsLogging.h>
 #include <base/GsApp.h>
+#if defined(__APPLE__)
 #include <TargetConditionals.h>
+#endif
 #include "graphics/GsGraphics.h"
 
 

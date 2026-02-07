@@ -20,7 +20,9 @@
 #include <fstream>
 #include <SDL_syswm.h>
 #include <SDL_image.h>
+#if defined(__APPLE__)
 #include <TargetConditionals.h>
+#endif
 
 bool useScrollTexels = false;
 

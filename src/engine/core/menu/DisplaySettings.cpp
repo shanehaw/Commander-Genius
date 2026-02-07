@@ -22,7 +22,9 @@
 #include "engine/core/CMap.h"
 #include "engine/core/CBehaviorEngine.h"
 #include "engine/core/VGamepads/vgamepadsimple.h"
+#if defined(__APPLE__)
 #include <TargetConditionals.h>
+#endif
 
 #include "DisplaySettings.h"
 

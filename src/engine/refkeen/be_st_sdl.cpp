@@ -7,7 +7,9 @@ extern "C"
 #include <stdio.h>
 #include <string.h>
 #include "SDL.h"
+#if defined(__APPLE__)
 #include <TargetConditionals.h>
+#endif
 
 #include "be_cross.h"
 #include "be_st.h"

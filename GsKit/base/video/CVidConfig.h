@@ -15,7 +15,9 @@
 #include <SDL.h>
 #include <base/interface/Color.h>
 #include <base/video/scaler/CScaler.h>
+#if defined(__APPLE__)
 #include <TargetConditionals.h>
+#endif
 #include <string>
 
 const unsigned int RES_BPP = 32;

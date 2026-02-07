@@ -29,7 +29,9 @@
 #include <base/interface/StringUtils.h>
 #include <base/interface/ConfigHandler.h>
 #include <base/GsLogging.h>
+#if defined(__APPLE__)
 #include <TargetConditionals.h>
+#endif
 #include <iostream>
 
 #ifdef WIN32

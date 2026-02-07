@@ -11,6 +11,8 @@
 #include <base/interface/FindFile.h>
 #include <base/CInput.h>
 #include "CVorticonMapLoader.h"
+#include "engine/core/VGamepads/vgamepadsimple.h"
+#include <base/video/CVideoDriver.h>
 
 
 #include "fileio/KeenFiles.h"
@@ -34,6 +36,15 @@ void CPreviews::init()
 
 	m_scene_number = 1;
 	openNextScene();
+#ifdef USE_VIRTUALPAD
+    if( gVideoDriver.VGamePadEnabled() )
+    {
+        VirtualKeenControl *vkc = dynamic_cast<VirtualKeenControl*>(gInput.mpVirtPad.get());
+        assert(vkc);
+        vkc->hideAllButtons();
+        vkc->mMenuButton.invisible = false;
+	}
+#endif
 }
 
 int CPreviews::openNextScene()
@@ -135,5 +146,13 @@ void CPreviews::teardown()
 {
 	CEventContainer &EventContainer = gEventManager;
 	EventContainer.add(new ResetScrollSurface);
+
+#ifdef USE_VIRTUALPAD
+    if( gVideoDriver.VGamePadEnabled() )
+    {
+        VirtualKeenControl *vkc = dynamic_cast<VirtualKeenControl*>(gInput.mpVirtPad.get());
+		if(vkc) vkc->hideEverything();
+	}
+#endif
 }
 

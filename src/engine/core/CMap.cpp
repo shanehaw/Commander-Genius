@@ -849,6 +849,7 @@ void CMap::animateAllTiles()
     // Some refreshes need to be forced. In such case everything is redrawn
     if(gVideoDriver.getRefreshSignal())
     {
+        printf("refreshing everything in map\n");
         refreshStripes();
         drawAll();
 

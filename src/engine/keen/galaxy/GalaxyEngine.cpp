@@ -14,6 +14,7 @@
 #include "engine/core/CResourceLoader.h"
 #include "engine/core/CBehaviorEngine.h"
 #include "engine/core/menu/MainMenu.h"
+#include "engine/core/VGamepads/vgamepadsimple.h"
 #include "fileio/CConfiguration.h"
 #include "fileio/CPatcher.h"
 #include "fileio/CSaveGameController.h"
@@ -513,6 +514,13 @@ void GalaxyEngine::pumpEvent(const std::shared_ptr<CEvent> &evPtr)
         gBehaviorEngine.setPause(false);
         gEventManager.add( new CloseAllMenusEvent() );
         gInput.flushAll();
+#ifdef USE_VIRTUALPAD
+    if( gVideoDriver.VGamePadEnabled() )
+    {
+        VirtualKeenControl *vkc = dynamic_cast<VirtualKeenControl*>(gInput.mpVirtPad.get());
+		if(vkc) vkc->flush();
+	}
+#endif
     }
     else if( std::dynamic_pointer_cast<const OpenMainMenuEvent>(evPtr) )
     {

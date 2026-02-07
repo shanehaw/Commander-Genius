@@ -30,13 +30,10 @@ void CPlayGameVorticon::processPauseDialogs()
     {
         auto pMB = mMessageBoxes.front();
         pMB->processLogic();
-
         if( pMB->isFinished() )
         {
             mMessageBoxes.pop_front();
         }
-
-        return;
     }
 }
 

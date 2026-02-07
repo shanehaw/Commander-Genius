@@ -65,10 +65,7 @@ void CVidConfig::reset()
     mGameRect.pos.x = 0;
     mGameRect.pos.y = 0;
 
-#if TARGET_OS_IOS
-    mGameRect.dim.x = 320;
-    mGameRect.dim.y = 200;
-#else
+#if !TARGET_OS_IOS
     mGameRect.dim.x = 1920;
     mGameRect.dim.y = 1080;
 #endif

@@ -166,6 +166,8 @@ public:
 
     void addVideoTask(const std::function<void()> &task);
 
+	void updateGameRect(const int width, const int height);
+
 protected:
 
     bool allocateScrollSurfaces(const unsigned int numSfc);
@@ -208,7 +210,6 @@ protected:
     // A sub-rectangle where an aspect-corrected frame is displayed.
     // This is already scaled up. Nothing outside this area should be drawn.
     GsRect<Uint16> mActiveAreaRect;
-
 
     /**
      * @brief mClearColor   Color used for clearing the Screen

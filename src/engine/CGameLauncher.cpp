@@ -1,6 +1,6 @@
 /*
  * CGameLauncher.cpp
- *
+ *GameLaunch
  *  Created on: 22.09.2009
  *      Author: gerstrong
  */
@@ -589,7 +589,25 @@ bool GameLauncher::scanExecutables(const std::string& path)
 
 bool GameLauncher::start()
 {
-    // CRC init when Launcher starts.
+
+#if TARGET_OS_IOS
+	// When coming back from a game, we need to ensure everything is hidden
+	VirtualKeenControl *vkc = dynamic_cast<VirtualKeenControl*>(gInput.mpVirtPad.get());
+	if(vkc) vkc->hideEverything();
+
+	// On iphone we have very little screen real estate, make the best use of what we have
+	// by maximizing the screen and "game" resolution
+	GsRect<Uint16> displayRect(0, 0, gVideoDriver.getWidth(), gVideoDriver.getHeight());
+	gVideoDriver.setGameResolution(displayRect.dim.x, displayRect.dim.y);
+	gVideoDriver.setAspectCorrection(0, 0);
+	gVideoDriver.mpVideoEngine->resizeDisplayScreen(displayRect);
+#endif
+
+
+
+	// CRC init when Launcher starts
+
+
     crc32_init();
 
     SDL_ShowCursor(gVideoDriver.getVidConfig().mShowCursor ? SDL_ENABLE : SDL_DISABLE);

@@ -290,7 +290,7 @@ void LineInput::ponder()
         }*/
 
 
-        //if(gInput.getPressedCommand(IC_JUMP))
+        if(gInput.getPressedCommand(IC_JUMP))
         {
             // Let the system set a name;
             mDone = true;

@@ -183,6 +183,12 @@ public:
       mVidConfig.mAspectCorrection.dim.y = h;
     }
 
+	void setGameResolution(const int w, const int h)
+	{
+      mVidConfig.mGameRect.dim.x = w;
+	  mVidConfig.mGameRect.dim.y = h;
+	}
+
 #ifdef USE_VIRTUALPAD
     bool VGamePadEnabled() { return mVidConfig.mVPad;   }
 #endif

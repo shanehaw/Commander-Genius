@@ -107,12 +107,13 @@ void CMessageBox::processLogic()
     }
 
     CGUIDialog::processLogic();
+
     render();
 }
 
 void CMessageBox::render()
 {
-    CGUIDialog::processRendering();
+    processRendering();
 }
 
 bool CMessageBox::isFinished()

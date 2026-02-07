@@ -61,7 +61,7 @@ public:
 
   int mHorizBorders = 0; // Horizontal border bars for a more CRT feeling
 
-#ifdef __SWITCH__
+#if defined(__SWITCH__) || TARGET_OS_IOS
   bool mFullscreen = true;
   bool mIntegerScaling = false;
 #else
@@ -85,8 +85,13 @@ public:
 #else
   bool mVPad = false;
 #endif
+#if TARGET_OS_IOS
+  int mVPadWidth = 300;
+  int mVPadHeight = 300;
+#else
   int mVPadWidth = 150;
   int mVPadHeight = 150;
+#endif
 #endif
 
   GsRect<int> mAspectCorrection;

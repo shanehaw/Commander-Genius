@@ -234,11 +234,16 @@ bool CSettings::loadDrvCfg() {
   config.ReadInteger("Video", "scale", &value, 1);
   vidConf.Zoom = static_cast<unsigned short>(value);
 
+
   std::string arcStr;
   config.ReadString("Video", "aspect", arcStr, "none");
   vidConf.mAspectCorrection.dim = 0;
+#if !TARGET_OS_IOS
   sscanf(arcStr.c_str(), "%i:%i", &vidConf.mAspectCorrection.dim.x,
          &vidConf.mAspectCorrection.dim.y);
+#else
+
+#endif
 
 #if TARGET_OS_SIMULATOR
   // vsync does not work on the ios simulator so default to false for it
@@ -302,9 +307,8 @@ bool CSettings::loadDrvCfg() {
   config.ReadInteger("Video", "height", &height, 1080);
   GsVec2D<Uint16> resolution(width, height);
   vidConf.setResolution(resolution);
+  vidConf.setGameResolution(resolution);
 
-  printf("in load config VidConfig x=%d, y=%d\n", vidConf.mDisplayRect.dim.x,vidConf.mDisplayRect.dim.y); 
-  printf("from settings: new value = %s\n", vidConf.mVSync ? "true" : "false");
   gVideoDriver.setVidConfig(vidConf);
 
   int framerate;

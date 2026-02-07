@@ -12,6 +12,7 @@
 #include <widgets/GsMenuController.h>
 #include <base/interface/Utils.h>
 #include <engine/core/GameEngine.h>
+#include "engine/core/VGamepads/vgamepadsimple.h"
 
 #include "GameSpecSettings.h"
 
@@ -142,6 +143,44 @@ void GameSpecSettings::release()
         gVideoDriver.setVidConfig(oldVidConf);
         gVideoDriver.start();
     }
+
+#if defined(USE_VIRTUALPAD)
+	// gVideoDriver.start when using CSDLVideoEngine, will recreate the SDLRenderer
+	// which means that the textures that were created with the renderer that has now
+	// been destroyed are no longer valid and SDL will silently fail to render the VirtPad.
+	// This recreates the vgampad, which will trigger it to recreate the button textures again
+	// using the new renderer
+
+	 VirtualKeenControl *vkc = dynamic_cast<VirtualKeenControl*>(gInput.mpVirtPad.get());
+	 if(vkc)
+	 {
+	 	 //Save visibility states
+	 	bool dpadVis = !vkc->mDPad.invisible;
+         bool confirmVis = !vkc->mConfirmButton.invisible;
+         bool startVis = !vkc->mStartButton.invisible;
+         bool jumpVis = !vkc->mJumpButton.invisible;
+         bool pogoVis = !vkc->mPogoButton.invisible;
+         bool shootVis = !vkc->mShootButton.invisible;
+         bool statusVis = !vkc->mStatusButton.invisible;
+         bool menuVis = !vkc->mMenuButton.invisible;
+
+	 	gInput.mpVirtPad.reset(new VirtualKeenControl);
+	 	gInput.mpVirtPad->init();
+	 	vkc = dynamic_cast<VirtualKeenControl*>(gInput.mpVirtPad.get());
+
+	 	 //Restore visibility states
+	 	vkc->mDPad.invisible = !dpadVis;
+         vkc->mConfirmButton.invisible = !confirmVis;
+         vkc->mStartButton.invisible = !startVis;
+         vkc->mJumpButton.invisible = !jumpVis;
+         vkc->mPogoButton.invisible = !pogoVis;
+         vkc->mShootButton.invisible = !shootVis;
+         vkc->mStatusButton.invisible = !statusVis;
+         vkc->mMenuButton.invisible = !menuVis;
+	 }
+	
+	
+#endif
 
     gEventManager.add( new SetNativeResolutionEv() );
 

@@ -12,9 +12,10 @@
 #include "fileio/CExeFile.h"
 #include "CVorticonMapLoader.h"
 #include "graphics/GsGraphics.h"
-//#include "sdl/CVideoDriver.h"
+#include <base/video/CVideoDriver.h>
 #include <base/CInput.h>
 #include <base/interface/FindFile.h>
+#include "engine/core/VGamepads/vgamepadsimple.h"
 
 #include <fstream>
 
@@ -98,12 +99,29 @@ void CHelp::init()
 	// Creates the Text ViewerBox and stores the text there!
 	mpTextViewer.reset(new CTextViewer(0, 8, 320, 160));
 	mpTextViewer->formatText(Text);
+#ifdef USE_VIRTUALPAD
+    if( gVideoDriver.VGamePadEnabled() )
+    {
+        VirtualKeenControl *vkc = dynamic_cast<VirtualKeenControl*>(gInput.mpVirtPad.get());
+        assert(vkc);
+        vkc->hideAllButtons();
+        vkc->mDPad.invisible = false;
+        vkc->mMenuButton.invisible = false;
+	}
+#endif
 }
 
 void CHelp::teardown()
 {
 	CEventContainer &EventContainer = gEventManager;
 	EventContainer.add(new ResetScrollSurface);
+#ifdef USE_VIRTUALPAD
+    if( gVideoDriver.VGamePadEnabled() )
+    {
+        VirtualKeenControl *vkc = dynamic_cast<VirtualKeenControl*>(gInput.mpVirtPad.get());
+		if(vkc) vkc->hideEverything();
+	}
+#endif
 }
 
 

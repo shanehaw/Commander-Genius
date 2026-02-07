@@ -235,9 +235,6 @@ void CVortikid::processMove(const int move_x, const int move_y)
                     
                     if(blocksDown)  // This tile blocks upward movement
                     {
-                        printf("🛑 VortiKid BLOCKED by tile %d (bdown=%d) at (%d,%d) while moving upward\n",
-                               tileNum, blocksDown, checkX, checkY);
-                        
                         // Stop at this position
                         yinertia = 0;
                         blockedu = true;

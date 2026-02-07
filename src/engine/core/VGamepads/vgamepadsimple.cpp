@@ -1,4 +1,3 @@
-
 #if defined(USE_VIRTUALPAD)
 
 #include "vgamepadsimple.h"
@@ -90,10 +89,6 @@ bool TouchButton::loadPicture(const std::string &picFile) {
 }
 
 bool TouchButton::isInsideExpanded(const GsVec2D<float> &Pos, float margin) {
-  // printf("Pos.x = %f, Pos.y = %f; x = %f, y = %f; margin = %f\n",
-  //         Pos.x, Pos.y,
-  //         x, y,
-  //         margin);
   return (Pos.x >= x - margin && Pos.x <= x + w + margin &&
           Pos.y >= y - margin && Pos.y <= y + h + margin);
 }
@@ -342,6 +337,7 @@ void VirtualKeenControl::hideEverything() {
   mPogoButton.invisible = true;
   mStatusButton.invisible = true;
   mMenuButton.invisible = true;
+  flush();
 #endif
 }
 
@@ -439,6 +435,8 @@ bool VirtualKeenControl::allInvisible() {
 
   return allInvisible;
 }
+#endif
+
 
 // How much deviation so it can considered to be diagonal or not.
 const float tanTol = std::tan(PI * 0.125);
@@ -486,6 +484,7 @@ bool VirtualKeenControl::handleDPad(const GsVec2D<float> &Pos,
 
   if (mDPad.isDown) {
     const auto relPos = Pos - dPadCenter;
+
     const auto hTol = std::fabs(relPos.x * tanTol);
     const auto wTol = std::fabs(relPos.y * tanTol);
 
@@ -563,8 +562,13 @@ float VirtualKeenControl::calcAspectRatio()
 bool VirtualKeenControl::mouseFingerState(
     const GsVec2D<float> &Pos, const bool isFinger,
     const SDL_TouchFingerEvent &touchFingerEvent, const bool down) {
-  if (allInvisible())
+
+#if SDL_VERSION_ATLEAST(2, 0, 0)
+  
+  
+  if (allInvisible()) {
     return false;
+  }
 
   bool ok = false;
 
@@ -575,22 +579,13 @@ bool VirtualKeenControl::mouseFingerState(
 
   auto bindButtonCommand = [&](TouchButton &button, std::string name,
                                const InpCmd &cmd) -> bool {
-    // if (strcmp(name.c_str(), "mStartButton") == 0 ) {
-    //   printf("\n");
-    //   printf("input on %s\n", name.c_str());
-    //   printf("is finger = %s\n", isFinger ? "true" : "false");
-    //   printf("button hasFinger = %s\n",
-    //          button.hasFinger(touchFingerEvent.fingerId) ? "true" : "false");
-    //   printf("button is down = %s\n", button.isDown ? "true" : "false");
-    //   printf("down = %s\n", down ? "true" : "false");
-    //   printf("fingerId = %lld\n", touchFingerEvent.fingerId);
-    //   printf("hasFingers empty? = %s\n",
-    //          button.hasFingers() ? "true" : "false");
-    //   printf("button is invisible? %s\n", button.invisible ? "true" : "false");
-    // }
+    
+    // DEBUG LOGGING FOR EACH BUTTON
+    if (!button.invisible) {
+      bool inside = button.isInsideExpanded(Pos, 0.02f);
+    }
 
     if (button.invisible && !(button.isDown && !down && button.hasFinger(touchFingerEvent.fingerId))) {
-
       return false;
     }
 
@@ -605,7 +600,6 @@ bool VirtualKeenControl::mouseFingerState(
       }
     }
 
-
     if (stateChanged) {
       gInput.setCommand(0, cmd, down);
 
@@ -619,18 +613,7 @@ bool VirtualKeenControl::mouseFingerState(
 
       return true;
     }
-    /*
-    else if(isFinger)
-    {
-        auto it = button.mFingerSet.find(touchFingerEvent.fingerId);
 
-        if( it != button.mFingerSet.end() )
-        {
-            gInput.setCommand(0, cmd, false);
-            button.mFingerSet.erase(it);
-        }
-    }
-*/
     return false;
   };
 
@@ -642,9 +625,10 @@ bool VirtualKeenControl::mouseFingerState(
   ok |= bindButtonCommand(mJumpButton, "mJumpButton", IC_JUMP);
   ok |= bindButtonCommand(mPogoButton, "mPogoButton", IC_POGO);
 
-#endif
-
   return ok;
+#else
+  return false;
+#endif
 }
 
 bool VirtualKeenControl::mouseState(const GsVec2D<float> &Pos,
@@ -652,3 +636,4 @@ bool VirtualKeenControl::mouseState(const GsVec2D<float> &Pos,
   return mouseFingerState(Pos, false, SDL_TouchFingerEvent(), down);
 }
 #endif
+

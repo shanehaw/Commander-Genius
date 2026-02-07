@@ -71,10 +71,6 @@ bool CSDLVideo::init()
                               m_VidConfig.mDisplayRect.dim.y,
                               SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
 #else
-    printf("Display Rect, width: %d, height: %d\n",
-        m_VidConfig.mDisplayRect.dim.x,
-        m_VidConfig.mDisplayRect.dim.y);
-
     window = SDL_CreateWindow(gApp.getName().c_str(),
                               SDL_WINDOWPOS_CENTERED,
                               SDL_WINDOWPOS_CENTERED,
@@ -117,29 +113,7 @@ bool CSDLVideo::init()
     SDL_RenderClear(renderer);
     SDL_RenderPresent(renderer);
 
-	
-#if TARGET_OS_IOS
-	int rw, rh;
-	SDL_GetRendererOutputSize(renderer, &rw, &rh);
-    // Did I fix this?
-    // resizeDisplayScreen(GsRect<Uint16>(rw, rh));
-	
-	// Calculate and update virtual pad dimensions based on screen aspect ratio
-	const int VPAD_REFERENCE = 300;
-	
-	// Cast away const to modify the config (this is safe during initialization)
-	CVidConfig &vidConf = const_cast<CVidConfig&>(m_VidConfig);
-	
-	vidConf.mVPadHeight = VPAD_REFERENCE;
-	vidConf.mVPadWidth = (VPAD_REFERENCE * rh) / rw;
-	
-	printf( "Virtual Pad dimensions set to: %d x %d (screen: %d x %d)<br>",
-					vidConf.mVPadWidth, vidConf.mVPadHeight,
-					rw, rh);
-#else
     resizeDisplayScreen(m_VidConfig.mDisplayRect);
-#endif
-
 	return true;
 }
 
@@ -148,46 +122,37 @@ bool CSDLVideo::init()
 void CSDLVideo::resizeDisplayScreen(const GsRect<Uint16>& newDim)
 {
     auto &log = gLogging;
-
     try
     {
-        
-        printf("=== RESIZE DISPLAY SCREEN START ===\n");
-        printf("  Input newDim: %dx%d\n", newDim.dim.x, newDim.dim.y);
-        printf("  m_VidConfig.mGameRect: %dx%d (SHOULD BE 320x200!)\n", 
-               m_VidConfig.mGameRect.dim.x, m_VidConfig.mGameRect.dim.y);
-        printf("  m_VidConfig.mDisplayRect: %dx%d\n", 
-               m_VidConfig.mDisplayRect.dim.x, m_VidConfig.mDisplayRect.dim.y);
-        printf("  Aspect correction: %dx%d\n", 
-               m_VidConfig.mAspectCorrection.dim.x, m_VidConfig.mAspectCorrection.dim.y);
         const auto &asp = m_VidConfig.mAspectCorrection.dim;
-
         updateActiveArea(newDim, asp);
 
+        
+        
         if(renderer == nullptr)
             throw "Error. Renderer not inited.";
-
-        printf("LogicalSize set to mActiveAreaRect.dim.x %d; mActiveAreaRect.dim.y %d\n", 
-                mActiveAreaRect.dim.x,
-                mActiveAreaRect.dim.y);
+            
+        // Removed as this changes the width across which SDL
+        // normalises touch positions. We do not set a logical size
+        // size initially and doing so here messes up the touch controls
+        // I have not seen any bad side effect from not doing this yet.
+        //
         // SDL_RenderSetLogicalSize(renderer,
         //                          mActiveAreaRect.dim.x,
         //                          mActiveAreaRect.dim.y);
-        SDL_RenderSetLogicalSize(renderer,
-                         m_VidConfig.mGameRect.dim.x,
-                         m_VidConfig.mGameRect.dim.y);
-
-
-        // SDL_RenderSetViewport(renderer, nullptr);
-
-        SDL_Rect viewport;
-        SDL_RenderGetViewport(renderer, &viewport);
-
-        int dimx, dimy;
-        SDL_RenderGetLogicalSize(renderer, &dimx, &dimy);
-
-        mActiveAreaRect.pos.x = (viewport.w-dimx)/2;
-        mActiveAreaRect.pos.y = (viewport.h-dimy)/2;
+                                 
+        SDL_RenderSetIntegerScale(renderer,
+                    (m_VidConfig.mIntegerScaling) ? SDL_TRUE : SDL_FALSE);
+                    
+        // Get viewport AFTER setting logical size
+        // SDL_Rect viewport;
+        // SDL_RenderGetViewport(renderer, &viewport);
+        
+        // int dimx, dimy;
+        // SDL_RenderGetLogicalSize(renderer, &dimx, &dimy);
+        // mActiveAreaRect.pos.x = (viewport.w - dimx) / 2;
+        // mActiveAreaRect.pos.y = (viewport.h - dimy) / 2;
+        
     }
     catch (const char* msg)
     {
@@ -284,10 +249,6 @@ extern GsTexture testTex;
 
 void CSDLVideo::transformScreenToDisplay()
 {
-   printf("Screen surface: %dx%d, Active area: %dx%d, Logical size should be: %dx%d\n",
-       mpScreenSfc->width(), mpScreenSfc->height(),
-       mActiveAreaRect.dim.x, mActiveAreaRect.dim.y,
-       m_VidConfig.mGameRect.dim.x, m_VidConfig.mGameRect.dim.y);
 #if SDL_VERSION_ATLEAST(2, 0, 0) 
 
     const bool tiltVideo = m_VidConfig.mTiltedScreen;
@@ -296,7 +257,7 @@ void CSDLVideo::transformScreenToDisplay()
     SDL_UpdateTexture(mpMainScreenTexture.get(),
                       nullptr,
                       mpScreenSfc->getSDLSurface()->pixels,
-                      mpScreenSfc->width() * sizeof (Uint32));
+                      mpScreenSfc->getSDLSurface()->pitch);
     mpScreenSfc->unlock();
 
 

@@ -643,13 +643,23 @@ IN_ClearKeysDown(void)
 //	INL_AdjustCursor() - Internal routine of common code from IN_ReadCursor()
 //
 ///////////////////////////////////////////////////////////////////////////
+// static void
+// INL_AdjustCursor(CursorInfo *info,id0_word_t buttons,id0_int_t dx,id0_int_t dy)
+// {
+// 	if (buttons & (1 << 0))
+// 		info->button0 = true;
+// 	if (buttons & (1 << 1))
+// 		info->button1 = true;
+
+// 	info->x += dx;
+// 	info->y += dy;
+// }
 static void
 INL_AdjustCursor(CursorInfo *info,id0_word_t buttons,id0_int_t dx,id0_int_t dy)
 {
-	if (buttons & (1 << 0))
-		info->button0 = true;
-	if (buttons & (1 << 1))
-		info->button1 = true;
+	// Properly set button states based on current button mask
+	info->button0 = (buttons & (1 << 0)) ? true : false;
+	info->button1 = (buttons & (1 << 1)) ? true : false;
 
 	info->x += dx;
 	info->y += dy;

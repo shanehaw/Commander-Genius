@@ -87,7 +87,6 @@ void InitSearchPaths(const std::string &cfgFname)
     int i = 1;
 
 #if !defined(ANDROID) && !TARGET_OS_IOS
-	printf("Read from config\n");
     while(true)
     {
 
@@ -738,7 +737,6 @@ bool OpenGameFileR(std::ifstream& f,
 std::ofstream OpenGameFileW(const std::string& path,
                                const std::ios_base::openmode mode)
 {
-	printf("open game filew(2arg) with path=%s\n", path.c_str());
     std::ofstream f;
 
     if(path.size() == 0)
@@ -764,8 +762,6 @@ bool OpenGameFileW(std::ofstream& f,
 {
     if (path.empty())
         return false;
-
-	printf("open game filew(3arg) with path=%s\n", path.c_str());
 
     std::string fullfn = GetWriteFullFileName(path, true);
     if (fullfn.empty())

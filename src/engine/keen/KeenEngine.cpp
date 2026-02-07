@@ -78,6 +78,18 @@ bool KeenEngine::start()
         return false;
     }
 
+
+#if TARGET_OS_IOS
+	gVideoDriver.setGameResolution(320, 200);
+	gVideoDriver.setAspectCorrection(16, 10);
+	gVideoDriver.mpVideoEngine->updateActiveArea(
+			gVideoDriver.getVidConfig().mDisplayRect,
+			GsVec2D<int>(16, 10));
+#endif
+
+	// gVideoDriver.setAspectCorrection(16, 10);
+	//
+	// gVideoDriver.start();
     return true;
 }
 

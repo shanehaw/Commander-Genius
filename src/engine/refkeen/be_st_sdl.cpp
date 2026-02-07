@@ -7,6 +7,7 @@ extern "C"
 #include <stdio.h>
 #include <string.h>
 #include "SDL.h"
+#include <TargetConditionals.h>
 
 #include "be_cross.h"
 #include "be_st.h"
@@ -1074,8 +1075,12 @@ void BE_ST_GetMouseDelta(int16_t *x, int16_t *y)
 
 uint16_t BE_ST_GetMouseButtons(void)
 {
+#if TARGET_OS_IOS
+	return 0;	
+#else
 	static uint16_t results[] = {0, 1, 4, 5, 2, 3, 6, 7};
 	return results[SDL_GetMouseState(NULL, NULL) & 7];
+#endif
 }
 
 void BE_ST_GetJoyAbs(uint16_t joy, uint16_t *xp, uint16_t *yp)

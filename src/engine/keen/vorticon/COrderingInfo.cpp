@@ -11,6 +11,7 @@
 #include <base/video/CVideoDriver.h>
 #include <graphics/GsGraphics.h>
 
+#include "engine/core/VGamepads/vgamepadsimple.h"
 #include "fileio/CExeFile.h"
 #include "CVorticonMapLoader.h"
 
@@ -143,6 +144,16 @@ void COrderingInfo::init()
 
     mTextSfc.createRGBSurface(gVideoDriver.getGameResolution().SDLRect());
     mTextSfc.makeBlitCompatible();
+
+#ifdef USE_VIRTUALPAD
+    if( gVideoDriver.VGamePadEnabled() )
+    {
+        VirtualKeenControl *vkc = dynamic_cast<VirtualKeenControl*>(gInput.mpVirtPad.get());
+        assert(vkc);
+        vkc->hideAllButtons();
+        vkc->mMenuButton.invisible = false;
+	}
+#endif
 }
 
 void COrderingInfo::ponder()
@@ -181,4 +192,11 @@ void COrderingInfo::teardown()
     mpMap = nullptr;
 	CEventContainer &EventContainer = gEventManager;
 	EventContainer.add(new ResetScrollSurface);
+#ifdef USE_VIRTUALPAD
+    if( gVideoDriver.VGamePadEnabled() )
+    {
+        VirtualKeenControl *vkc = dynamic_cast<VirtualKeenControl*>(gInput.mpVirtPad.get());
+		if(vkc) vkc->hideEverything();
+	}
+#endif
 }

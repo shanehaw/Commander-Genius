@@ -14,6 +14,7 @@
 #include "base/interface/FindFile.h"
 #include "PointDevice.h"
 #include "GsTimer.h"
+// #include "engine/core/VGamepads/vgamepadsimple.h"
 
 #include "fileio/CConfiguration.h"
 
@@ -951,6 +952,8 @@ void CInput::pollEvents()
     while( SDL_PollEvent( &Event ) )
     {
         bool passSDLEventVec = true;
+		dispRect = vidConfig.mDisplayRect;
+		activeArea = gVideoDriver.mpVideoEngine->getActiveAreaRect();
 
         switch( Event.type )
         {
@@ -1000,15 +1003,31 @@ void CInput::pollEvents()
         case SDL_FINGERDOWN:
         {
 #ifdef USE_VIRTUALPAD
+			// SDL touch coordinates are in full screen space (0.0-1.0)
+			// Convert to pixel coordinates in full screen space
+			const float screenX = Event.tfinger.x * float(dispRect.dim.x);
+			const float screenY = Event.tfinger.y * float(dispRect.dim.y);
+			
+
+			// Convert to normalized coordinates within the active area
+			float x = (screenX - float(activeArea.pos.x)) / float(activeArea.dim.x);
+			float y = (screenY - float(activeArea.pos.y)) / float(activeArea.dim.y);
+
+			// Clamp to valid range (in case touch is outside active area)
+			x = std::max(0.0f, std::min(1.0f, x));
+			y = std::max(0.0f, std::min(1.0f, y));
+
             // If Virtual gamepad takes control...
             if(gVideoDriver.VGamePadEnabled() && mpVirtPad &&
                mpVirtPad->active() )
             {
+				// After calculating screenX/screenY
                 // SDL touch coordinates are in full screen space (0.0-1.0)
                 // Convert to pixel coordinates in full screen space
                 const float screenX = Event.tfinger.x * float(dispRect.dim.x);
                 const float screenY = Event.tfinger.y * float(dispRect.dim.y);
                 
+
                 // Convert to normalized coordinates within the active area
                 Pos.x = (screenX - float(activeArea.pos.x)) / float(activeArea.dim.x);
                 Pos.y = (screenY - float(activeArea.pos.y)) / float(activeArea.dim.y);
@@ -1016,7 +1035,6 @@ void CInput::pollEvents()
                 // Clamp to valid range (in case touch is outside active area)
                 Pos.x = std::max(0.0f, std::min(1.0f, Pos.x));
                 Pos.y = std::max(0.0f, std::min(1.0f, Pos.y));
-
 
                 if(!mpVirtPad->mouseFingerState(Pos, true, Event.tfinger, true))
                 {
@@ -1042,7 +1060,6 @@ void CInput::pollEvents()
                 Pos.x = std::max(0.0f, std::min(1.0f, Pos.x));
                 Pos.y = std::max(0.0f, std::min(1.0f, Pos.y));
 #else
-                printf("SDL_FINGERDOWN\n");
                 const GsVec2D<int> rotPt(Event.tfinger.x*float(activeArea.dim.x),
                         Event.tfinger.y*float(activeArea.dim.y));
                 transMouseRelCoord(Pos, rotPt, activeArea, tiltedScreen);
@@ -1102,7 +1119,6 @@ void CInput::pollEvents()
                 Pos.x = std::max(0.0f, std::min(1.0f, Pos.x));
                 Pos.y = std::max(0.0f, std::min(1.0f, Pos.y));
 #else
-                printf("SDL_FINGERUP\n");
                 const GsVec2D<int> rotPt(Event.tfinger.x*float(activeArea.dim.x),
                         Event.tfinger.y*float(activeArea.dim.y));
                 transMouseRelCoord(Pos, rotPt, activeArea, tiltedScreen);
@@ -1223,7 +1239,6 @@ void CInput::pollEvents()
                 Pos.x = std::max(0.0f, std::min(1.0f, Pos.x));
                 Pos.y = std::max(0.0f, std::min(1.0f, Pos.y));
 #else
-                printf("SDL_MOUSEBUTTONDOWN\n");
                 const GsVec2D<int> rotPt(Event.button.x, Event.button.y);
                 transMouseRelCoord(Pos, rotPt, activeArea, tiltedScreen);
 #endif
@@ -1280,7 +1295,6 @@ void CInput::pollEvents()
                 Pos.x = std::max(0.0f, std::min(1.0f, Pos.x));
                 Pos.y = std::max(0.0f, std::min(1.0f, Pos.y));
 #else
-                printf("SDL_MOUSEBUTTONUP\n");
                 const GsVec2D<int> rotPt(Event.button.x, Event.button.y);  // Changed from Event.tfinger
                 transMouseRelCoord(Pos, rotPt, activeArea, tiltedScreen);
 #endif
@@ -2436,4 +2450,3 @@ void CInput::pushBackButtonEventExtEng()
 
     SDL_SemPost( mpPollSem );
 }
-

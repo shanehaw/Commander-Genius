@@ -11,6 +11,7 @@
 #include <base/GsLogging.h>
 #include "fileio/CExeFile.h"
 #include "graphics/GsGraphics.h"
+#include "engine/core/VGamepads/vgamepadsimple.h"
 #include <base/video/CVideoDriver.h>
 #include "CVorticonMapLoader.h"
 #include "fileio/ResourceMgmt.h"
@@ -149,6 +150,15 @@ void CAbout::init()
 
     //GsWeakSurface weakBlit(gVideoDriver.getBlitSurface());
     //mDrawSfc.blitScaledTo(weakBlit);
+#ifdef USE_VIRTUALPAD
+    if( gVideoDriver.VGamePadEnabled() )
+    {
+        VirtualKeenControl *vkc = dynamic_cast<VirtualKeenControl*>(gInput.mpVirtPad.get());
+        assert(vkc);
+        vkc->hideAllButtons();
+        vkc->mMenuButton.invisible = false;
+	}
+#endif
 }
 
 
@@ -198,5 +208,15 @@ void CAbout::teardown()
     mpMap = nullptr;
     CEventContainer &EventContainer = gEventManager;
     EventContainer.add(new ResetScrollSurface);
+#ifdef USE_VIRTUALPAD
+    if( gVideoDriver.VGamePadEnabled() )
+    {
+        VirtualKeenControl *vkc = dynamic_cast<VirtualKeenControl*>(gInput.mpVirtPad.get());
+		if(vkc) {
+			vkc->hideEverything();
+			vkc->flush();
+		}
+	}
+#endif
 }
 

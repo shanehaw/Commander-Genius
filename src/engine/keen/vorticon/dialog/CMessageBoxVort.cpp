@@ -20,8 +20,10 @@ CMessageBoxVort::CMessageBoxVort(const std::string& Text,
                                  const bool lower,
                                  const bool keymsg,
                                  const bool vorticonBorders) :
+// CMessageBox(Text, lower, keymsg, vorticonBorders, CGUIDialog::FXKind::NONE)
 CMessageBox(Text, lower, keymsg, vorticonBorders, CGUIDialog::FXKind::EXPAND)
 {
+    gInput.flushAll();  // <--- ADD THIS - Clear any pending input events
    initVorticonBackground();   
    mpTextCtrl->setFontId(0);
 }

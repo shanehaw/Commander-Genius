@@ -405,6 +405,15 @@ void DreamsEngine::applyScreenMode()
 
 bool DreamsEngine::start()
 {
+
+#if TARGET_OS_IOS
+	gVideoDriver.setGameResolution(320, 200);
+	gVideoDriver.setAspectCorrection(16, 10);
+	gVideoDriver.mpVideoEngine->updateActiveArea(
+			gVideoDriver.getVidConfig().mDisplayRect,
+			GsVec2D<int>(16, 10));
+#endif
+
     CExeFile &ExeFile = gKeenFiles.exeFile;
 
 #ifdef USE_VIRTUALPAD

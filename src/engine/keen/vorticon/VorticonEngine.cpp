@@ -15,6 +15,7 @@
 #include "engine/core/menu/SelectionMenu.h"
 #include "engine/core/menu/ControlSettings.h"
 #include "engine/core/menu/CHelpMenu.h"
+#include "engine/core/VGamepads/vgamepadsimple.h"
 #include "fileio/CPatcher.h"
 #include "fileio/CSaveGameController.h"
 #include "engine/core/CMessages.h"
@@ -317,6 +318,14 @@ void VorticonEngine::pumpEvent(const std::shared_ptr<CEvent> &evPtr)
         mOpenedGamePlay = true;
         gBehaviorEngine.setPause(false);
         gEventManager.add( new CloseAllMenusEvent() );
+
+#ifdef USE_VIRTUALPAD
+    if( gVideoDriver.VGamePadEnabled() )
+    {
+        VirtualKeenControl *vkc = dynamic_cast<VirtualKeenControl*>(gInput.mpVirtPad.get());
+		if(vkc) vkc->flush();
+	}
+#endif
     }
     else if( std::dynamic_pointer_cast<const OpenMainMenuEvent>(evPtr) )
     {

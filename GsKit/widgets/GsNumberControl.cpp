@@ -75,13 +75,11 @@ bool CGUINumberControl::sendEvent(const InpCmd command)
 {
 	if(command == IC_STATUS || command == IC_JUMP || command == IC_RIGHT)
 	{
-		printf("incrementing...\n");
 		increment();
 		return true;
 	}
 	else if(command == IC_LEFT)
 	{
-		printf("decrementing...\n");
 		decrement();
 		return true;
 	}

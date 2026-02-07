@@ -443,7 +443,7 @@ bool CAudioGalaxy::LoadFromAudioCK(const unsigned int dictOffset)
         // PATCH: Keen Dreams Plus. For some reason the second slot has an invalid offset
         if(audiohed[1] == 0xFF)
         {
-            for(unsigned int i=1 ; i<number_of_audiorecs ; i++)
+            for(unsigned int i=1 ; i<number_of_audiorecs-1 ; i++)
             {
                 audiohed[i] = audiohed[i+1];
             }

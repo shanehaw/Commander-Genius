@@ -78,6 +78,26 @@ void CMapPlayGalaxy::pumpEvent(const std::shared_ptr<CEvent> &evPtr)
         std::shared_ptr<CGalaxySpriteObject> foot(new galaxy::CFoot( mpMap, ev->foeID, 0x2EF4, posX, posY));
         mObjectPtr.push_back( foot );
     }
+
+    else if( std::dynamic_pointer_cast<const ResetScrollSurface>(evPtr) )
+	{
+		printf("in reset scroll surface event - galaxy\n");
+        printf("=== Handling aspect change event ===\n");
+        mpMap->refreshStripes();
+        printf("After refreshStripes\n");
+        mpMap->drawAll();
+        printf("After drawAll\n");
+
+        // ADD THESE:
+        mpMap->calcVisibleArea();
+        printf("After calcVisibleArea\n");
+        mpMap->refreshVisibleArea();
+        printf("After refreshVisibleArea\n");
+        
+        gVideoDriver.blitScrollSurfaces();
+        printf("After blitScrollSurfaces\n");
+
+	}
     else if( const auto moveBut = std::dynamic_pointer_cast<const EventMoveAllPlayersBut>(evPtr) )
     {
         const auto excp = moveBut->mException;

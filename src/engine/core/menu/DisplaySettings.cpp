@@ -19,19 +19,26 @@
 #include "widgets/ComboSelection.h"
 
 #include "engine/core/CSettings.h"
+#include "engine/core/CMap.h"
+#include "engine/core/CBehaviorEngine.h"
+#include "engine/core/VGamepads/vgamepadsimple.h"
+#include <TargetConditionals.h>
 
 #include "DisplaySettings.h"
 
 
 DisplaySettings::DisplaySettings(const Style style) :
-#if defined(EMBEDDED)
-GameMenu(GsRect<float>(0.15f, 0.20f, 0.65f, 0.25f), style )
+
+#if TARGET_OS_IOS
+	GameMenu(GsRect<float>(0.15f, 0.20f, 0.65f, 0.70f), style )
+#elif defined(EMBEDDED)
+	GameMenu(GsRect<float>(0.15f, 0.20f, 0.65f, 0.25f), style )
 #else
-GameMenu(GsRect<float>(0.15f, 0.20f, 0.65f, 0.55f), style )
+	GameMenu(GsRect<float>(0.15f, 0.20f, 0.65f, 0.55f), style )
 #endif
 {
 
-#if !defined(EMBEDDED)
+#if !defined(EMBEDDED) && !TARGET_OS_IOS
     mpTiltScreenSwitch =
         mpMenuDialog->add( new Switch("TiltedScr", style) );
 #endif // !defined(EMBEDDED)
@@ -87,8 +94,7 @@ GameMenu(GsRect<float>(0.15f, 0.20f, 0.65f, 0.55f), style )
             mpMenuDialog->add( new ComboSelection( "Quality",
                                                           filledStrList( 3,
                                                                          "nearest",
-                                                                         "linear",
-                                                                         "best" ),
+                                                                         "linear" ),
                                                           style) );
 #endif
 
@@ -167,30 +173,20 @@ void DisplaySettings::refresh()
 
 void DisplaySettings::release()
 {
-    printf("=== DisplaySettings::release START ===\n");
     
     // Copy current config to my new Config.
     mMyNewConf = gVideoDriver.getVidConfig();
     
-    printf("  After copying from driver:\n");
-    printf("    mMyNewConf.mGameRect: %dx%d\n", 
-           mMyNewConf.mGameRect.dim.x, mMyNewConf.mGameRect.dim.y);
-    printf("    mMyNewConf.mDisplayRect: %dx%d\n", 
-           mMyNewConf.mDisplayRect.dim.x, mMyNewConf.mDisplayRect.dim.y);
-
 #if !defined(EMBEDDED)
     mMyNewConf.mTiltedScreen = mpTiltScreenSwitch->isEnabled();
 #endif // !defined(EMBEDDED)
 
     // Render Quality
     const std::string oglFilter = mpRenderScaleQualitySel->getSelection();
-
-    mMyNewConf.mRenderScQuality =
-            (oglFilter == "linear") ?
-                CVidConfig::RenderQuality::LINEAR :
-                CVidConfig::RenderQuality::NEAREST;
-
-
+	mMyNewConf.mRenderScQuality =
+		(oglFilter == "linear") ?
+		CVidConfig::RenderQuality::LINEAR :
+		CVidConfig::RenderQuality::NEAREST;
 
 #if defined(USE_OPENGL)
     // OpenGL Flag
@@ -286,17 +282,7 @@ void DisplaySettings::release()
     if(oldVidConf == mMyNewConf)
         return;
 
-    printf("  Before setVidConfig:\n");
-    printf("    mMyNewConf.mGameRect: %dx%d\n", 
-           mMyNewConf.mGameRect.dim.x, mMyNewConf.mGameRect.dim.y);
-    printf("    mMyNewConf.mDisplayRect: %dx%d\n", 
-           mMyNewConf.mDisplayRect.dim.x, mMyNewConf.mDisplayRect.dim.y);
-
-    printf("in DisplaySettings::release VidConfig x=%d, y=%d\n", mMyNewConf.mDisplayRect.dim.x,mMyNewConf.mDisplayRect.dim.y); 
-    printf("in DisplaySettings::release Aspect correction x=%d, y=%d\n", mMyNewConf.mAspectCorrection.dim.x,mMyNewConf.mAspectCorrection.dim.y); 
-    printf("from display settings. New value = %s\n", mMyNewConf.mVSync ? "true": "false");
     gVideoDriver.setVidConfig(mMyNewConf);
-
 
     // At this point we also must apply and save the settings
     if( !gVideoDriver.applyMode() )
@@ -305,18 +291,57 @@ void DisplaySettings::release()
         return;
     }
 
-    if( !gVideoDriver.start() ) // Here the same situation
-    {
-        gVideoDriver.setVidConfig(oldVidConf);
-        gVideoDriver.start();
-    }
+	if(!gVideoDriver.start() ) // Here the same situation
+	{
+		gVideoDriver.setVidConfig(oldVidConf);
+		gVideoDriver.start();
+	}
 
-    gEventManager.add( new SetNativeResolutionEv() );
+#if defined(USE_VIRTUALPAD)
+	// gVideoDriver.start when using CSDLVideoEngine, will recreate the SDLRenderer
+	// which means that the textures that were created with the renderer that has now
+	// been destroyed are no longer valid and SDL will silently fail to render the VirtPad.
+	// This recreates the vgampad, which will trigger it to recreate the button textures again
+	// using the new renderer
+	//
+
+
+	 VirtualKeenControl *vkc = dynamic_cast<VirtualKeenControl*>(gInput.mpVirtPad.get());
+	 if(vkc)
+	 {
+	 	 //Save visibility states
+	 	bool dpadVis = !vkc->mDPad.invisible;
+         bool confirmVis = !vkc->mConfirmButton.invisible;
+         bool startVis = !vkc->mStartButton.invisible;
+         bool jumpVis = !vkc->mJumpButton.invisible;
+         bool pogoVis = !vkc->mPogoButton.invisible;
+         bool shootVis = !vkc->mShootButton.invisible;
+         bool statusVis = !vkc->mStatusButton.invisible;
+         bool menuVis = !vkc->mMenuButton.invisible;
+
+	 	gInput.mpVirtPad.reset(new VirtualKeenControl);
+	 	gInput.mpVirtPad->init();
+	 	vkc = dynamic_cast<VirtualKeenControl*>(gInput.mpVirtPad.get());
+
+	 	 //Restore visibility states
+	 	vkc->mDPad.invisible = !dpadVis;
+         vkc->mConfirmButton.invisible = !confirmVis;
+         vkc->mStartButton.invisible = !startVis;
+         vkc->mJumpButton.invisible = !jumpVis;
+         vkc->mPogoButton.invisible = !pogoVis;
+         vkc->mShootButton.invisible = !shootVis;
+         vkc->mStatusButton.invisible = !statusVis;
+         vkc->mMenuButton.invisible = !menuVis;
+	 }
+	// gInput.mpVirtPad.reset();
+#endif
+
+	gEventManager.add( new SetNativeResolutionEv() );
 
     gSettings.saveDrvCfg();
-
     gMenuController.updateGraphics();
-    
-    printf("=== DisplaySettings::release END ===\n");
+    gVideoDriver.setRefreshSignal(true);
+
+
 }
 

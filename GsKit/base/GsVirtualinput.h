@@ -203,7 +203,6 @@ public:
      */
     virtual bool isInside(const GsVec2D<float> &Pos) const = 0;
 
-
 protected:
 
     bool mEnabled = true;

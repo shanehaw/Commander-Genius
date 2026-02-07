@@ -3712,6 +3712,9 @@ US_ControlPanel_Init(void)
 {
     ScanCode	c;
 
+    
+    gInput.flushAll();
+
     // REFKEEN - Alternative controllers support
     /*BE_ST_AltControlScheme_Push();
     BE_ST_AltControlScheme_PrepareMenuControls();*/
@@ -3776,6 +3779,8 @@ US_ControlPanel_Init(void)
     lastx = lasty = -1;
 
     VW_UpdateScreen();
+
+	gInput.flushAll();
 }
 
 void 	VWL_DrawCursor (void);
@@ -3792,9 +3797,8 @@ extern bool mGamePlayRunning;
 void
 US_ControlPanel_Ponder(void)
 {        
-
     ScanCode	c;
-
+    id0_boolean_t buttondown = US_UpdateCursor();
 
     if ( (restartgame == gd_Continue) &&
         !(done || loadedgame || ResumeGame) )
@@ -3973,7 +3977,6 @@ US_ControlPanel_Ponder(void)
     }
     else
     {
-
         // TODO: Push event which closes the menu and opens something else
         US_ShutCursor();
 

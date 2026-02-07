@@ -99,11 +99,6 @@ bool CVideoEngine::init()
 void CVideoEngine::updateActiveArea(const GsRect<Uint16>& displayRes,
                                     const GsVec2D<int> asp)
 {
-	printf("updateActiveArea. displayRes w:%d,h:%d\n", displayRes.dim.x, displayRes.dim.y);
-	printf("updateActiveArea. vidConfig.mGameRect w:%d,h:%d\n", m_VidConfig.mGameRect.dim.x, m_VidConfig.mGameRect.dim.y);
-	printf("updateActiveArea. asp x:%d,y:%d\n", asp.x, asp.y);
-	printf("updateActiveArea. before mActiveAreaRect pos w:%d,h:%d\n", mActiveAreaRect.pos.x, mActiveAreaRect.pos.y);
-	printf("updateActiveArea. before mActiveAreaRect dim w:%d,h:%d\n", mActiveAreaRect.dim.x, mActiveAreaRect.dim.y);
     const int aspWidth  = asp.x;
     const int aspHeight = asp.y;
 
@@ -130,9 +125,8 @@ void CVideoEngine::updateActiveArea(const GsRect<Uint16>& displayRes,
         {
             mActiveAreaRect.dim.y = displayRes.dim.y;
             mActiveAreaRect.dim.x = ((displayRes.dim.y*aspWidth)/aspHeight);
-
-            mActiveAreaRect.pos = (displayRes.dim-mActiveAreaRect.dim)/2;
         }
+        mActiveAreaRect.pos = (displayRes.dim-mActiveAreaRect.dim)/2;
     }
     else // Taller than width:height so adapt height
     {
@@ -148,8 +142,6 @@ void CVideoEngine::updateActiveArea(const GsRect<Uint16>& displayRes,
         }
         mActiveAreaRect.pos = (displayRes.dim-mActiveAreaRect.dim)/2;
     }
-	printf("updateActiveArea. after mActiveAreaRect pos w:%d,h:%d\n", mActiveAreaRect.pos.x, mActiveAreaRect.pos.y);
-	printf("updateActiveArea. after mActiveAreaRect dim w:%d,h:%d\n", mActiveAreaRect.dim.x, mActiveAreaRect.dim.y);
 }
 
 
@@ -264,10 +256,16 @@ bool CVideoEngine::createSurfaces(const GsRect<Uint16> &gamerect,
     gLogging << "Creation of main screen texture " <<
                       blit->w << "x" << blit->h << CLogFile::endl;
 
-    mpMainScreenTexture.reset( SDL_CreateTexture(renderer,
+    // mpMainScreenTexture.reset( SDL_CreateTexture(renderer,
+    //                                SDL_PIXELFORMAT_ARGB8888,
+    //                                SDL_TEXTUREACCESS_STREAMING,
+    //                                texW, texH) );
+
+	mpMainScreenTexture.reset( SDL_CreateTexture(renderer,
                                    SDL_PIXELFORMAT_ARGB8888,
                                    SDL_TEXTUREACCESS_STREAMING,
-                                   texW, texH) );
+                                   mpScreenSfc->width(),   // Use actual surface width
+                                   mpScreenSfc->height()) ); // Use actual surface height
 
 #endif
 

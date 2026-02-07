@@ -103,8 +103,10 @@ bool CVideoDriver::init()
 
 #if TARGET_OS_IOS
     // Rather than use a default hardcoded resolution, take a resolution from the set
-    GsVec2D<Uint16> resolution = *mResolutionSet.begin();
-    mVidConfig.setResolution(resolution);
+	GsVec2D<Uint16> resolution = *mResolutionSet.begin();
+	mVidConfig.setResolution(resolution);
+	// Initially set the game resolution
+	mVidConfig.setGameResolution(resolution);
 #endif
 
     if(!mSDLImageInUse)
@@ -254,15 +256,29 @@ bool CVideoDriver::initResolutionList()
         {640,480}
     };
 
-    /// Aspect Ratio section
-    mAspectSet =
-    {
-    "disabled",
-    "4:3",
-    "16:9",
-    "16:10",
-    "5:4"
-    };
+#if TARGET_OS_IOS
+		/// Aspect Ratio section
+		mAspectSet =
+		{
+			"disabled",
+			"16:9",
+			"16:10",
+		};
+#else
+
+		/// Aspect Ratio section
+		mAspectSet =
+		{
+			"disabled",
+			"4:3",
+			"16:9",
+			"16:10",
+			"5:4"
+		};
+#endif
+
+
+
 
     return true;
 }
@@ -334,13 +350,16 @@ void CVideoDriver::setVidConfig(const CVidConfig& VidConf)
 {
     mVidConfig = VidConf;
 
-    printf("in setVidConfig CSDL VidConfig x=%d, y=%d\n", mVidConfig.mDisplayRect.dim.x,mVidConfig.mDisplayRect.dim.y); 
     SDL_ShowCursor(mVidConfig.mShowCursor ? SDL_ENABLE : SDL_DISABLE);
 
     setMode(mVidConfig.mDisplayRect);
+    // Actually apply the changes to the display
     if(mpVideoEngine)
     {
         mpVideoEngine->resizeDisplayScreen(mVidConfig.mDisplayRect);
+        
+        // IMPORTANT: Reset scroll buffers after resizing
+        mpVideoEngine->resetScrollBuffers();
     }
 }
 
@@ -442,8 +461,6 @@ bool CVideoDriver::start()
 #endif
     {
         log << "Trying full SDL Video...";
-        printf("Setting vidconfig for CSDL\n");
-        printf("CSDL VidConfig x=%d, y=%d\n", mVidConfig.mDisplayRect.dim.x,mVidConfig.mDisplayRect.dim.y); 
         CSDLVideo *sdlVideoPtr = new CSDLVideo(mVidConfig);
         mpVideoEngine.reset(sdlVideoPtr);
         retval = mpVideoEngine->init();
@@ -460,6 +477,7 @@ bool CVideoDriver::start()
     // this value is updated here!
     retval &= mpVideoEngine->createSurfaces();
     m_mustrefresh = true;
+
 
     return retval;
 }
@@ -663,5 +681,3 @@ SDL_Surface *CVideoDriver::convertThroughBlitSfc( SDL_Surface *sfc )
 
     return newSfc2;
 }
-
-

@@ -13,6 +13,7 @@
 #include "CVorticonMapLoader.h"
 #include "fileio/CExeFile.h"
 #include "graphics/GsGraphics.h"
+#include "engine/core/VGamepads/vgamepadsimple.h"
 #include <base/video/CVideoDriver.h>
 #include <base/CInput.h>
 #include <base/interface/FindFile.h>
@@ -85,6 +86,17 @@ void CStory::init()
 	// Scroll to the map where you see Keen with his rocket.
 	mpMap->gotoPos( 32+2*320, 32 );
 	mpMap->drawAll();
+
+#ifdef USE_VIRTUALPAD
+    if( gVideoDriver.VGamePadEnabled() )
+    {
+        VirtualKeenControl *vkc = dynamic_cast<VirtualKeenControl*>(gInput.mpVirtPad.get());
+        assert(vkc);
+        vkc->hideAllButtons();
+        vkc->mDPad.invisible = false;
+        vkc->mMenuButton.invisible = false;
+	}
+#endif
 }
 
 void CStory::ponder()
@@ -116,4 +128,11 @@ void CStory::teardown()
 	mpMap = NULL;
 	CEventContainer &EventContainer = gEventManager;
 	EventContainer.add(new ResetScrollSurface);
+#ifdef USE_VIRTUALPAD
+    if( gVideoDriver.VGamePadEnabled() )
+    {
+        VirtualKeenControl *vkc = dynamic_cast<VirtualKeenControl*>(gInput.mpVirtPad.get());
+		if (vkc) vkc->hideEverything();
+	}
+#endif
 }

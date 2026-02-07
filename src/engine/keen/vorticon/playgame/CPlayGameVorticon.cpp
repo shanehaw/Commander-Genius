@@ -798,6 +798,7 @@ void CPlayGameVorticon::drawObjects()
 
 }
 
+static int counter =0;
 void CPlayGameVorticon::drawAllElements()
 {
     // Animate the tiles of the map

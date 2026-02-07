@@ -1,4 +1,4 @@
-/*
+/*GsApp
  * GsApp.cpp
  *
  *  Created on: 01.05.2009
@@ -298,7 +298,6 @@ void GsApp::runMainCycleNonThreaded()
 
 
     const  bool vsyncEnabled = gVideoDriver.isVsync();
-	printf("vsync = %s\n", vsyncEnabled ? "true" : "false");
     while(1)
     {
         const float logicLatency = gTimer.LogicLatency();

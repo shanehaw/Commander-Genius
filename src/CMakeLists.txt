@@ -52,7 +52,8 @@ endif()
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/GsKit)
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/CMake)
+# set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/CMake)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/GsKit/CMake)
 
 # If we want to debug set the proper flags or have release etc.
 IF(CMAKE_BUILD_TYPE STREQUAL "Debug")
@@ -121,7 +122,7 @@ endif(NINTENDO_SWITCH)
 # Build configuration based on platform
 if(${CMAKE_VERSION} VERSION_LESS "3.11.0")
     if(ANDROID)
-        message(STATUS "Mobile build enabled (${BUILD_TARGET}). Building CG as Shared Lib")
+       message(STATUS "Mobile build enabled (${BUILD_TARGET}). Building CG as Shared Lib")
         add_library(CGeniusExe SHARED ${CGENIUS_SRC})
     elseif(IOS)
         message(STATUS "iOS build enabled. Building CG as Static Lib")
